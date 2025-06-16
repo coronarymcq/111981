@@ -7,7 +7,7 @@
 1. Created a footer with a simple no-background design.
 2. Designed the main page with a perfectly centered paragraph.
 3. Published the website on GitHub.  
-   [https://mcqcat.github.io/MCAW_Project01/]
+   [https://github.com/coronarymcq/library]
 
 ---
 
