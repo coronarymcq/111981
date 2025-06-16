@@ -11,43 +11,9 @@
 
 ---
 
-**Version 1.3 - 1.4 | Early-Mid-September**
+**Version 1.3 - 1.6| Early-Mid-September**
 
-1. Added a fixed header.
-2. Switched designs from:
-
-   ![Design 1](images/image-2.png) (1st version)
-
-   to
-
-   ![Design 2](images/image-3.png) (2nd version)
-
-3. Added README and LICENSE files. Applied Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.
-
----
-
-**Version 1.5 - 1.6 | September 15-19**
-
-1. Introduced a new header design (3rd version):
-   ![Previous Header Design](images/image-4.png)
-
-2. Updated the header design in preparation for the sidebar button and sidebar:
-
-   ![Previous Header Design](images/image-4.png) (3rd version)
-
-   to
-
-   ![Current Header Design](images/image-5.png) (4th version)
-
-3. Created the new sidebar (1st version):
-
-   ![Sidebar Design](images/image-8.png)
-
-4. Made the NAV button (chart-line button) interactive with JavaScript and improved transition smoothness:
-
-   ![Interactive NAV Button](images/image-7.png)
-
-   ![Updated Sidebar](images/image-6.png)
+Content was corrupted and therefore cannot be displayed.
 
 ---
 
