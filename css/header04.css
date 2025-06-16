@@ -1,337 +1,331 @@
 .arabic-font {
-    font-family: "Baloo Bhaijaan 2", Arial, sans-serif;
-  }
-  
-.header-container {
-    background-color: #ffffff;
-    color: #505050;
-    font-family:  Nunito ;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 100px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding-right: 10px;
-    padding-left: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.065);
-    border-bottom: none;
-    border-bottom-color: gray ;
-    border-bottom-width: 0.1px ;
-    z-index: 2; /* Ensure it is above the sidebar */
+  font-family: "Baloo Bhaijaan 2", Arial, sans-serif;
 }
 
 .header-container {
-    /* other styles */
-    transition: box-shadow 0.3s ease; /* Adjust duration and easing as needed */
-  }
-  
-  .header-container.no-shadow {
-    box-shadow: none; /* Or adjust to your default shadow */
-  }
+  background-color: #ffffff;
+  color: #505050;
+  font-family: Nunito;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 10px;
+  padding-left: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.065);
+  border-bottom: none;
+  border-bottom-color: gray;
+  border-bottom-width: 0.1px;
+  z-index: 2; /* Ensure it is above the sidebar */
+}
 
-  
+.header-container {
+  /* other styles */
+  transition: box-shadow 0.3s ease; /* Adjust duration and easing as needed */
+}
+
+.header-container.no-shadow {
+  box-shadow: none; /* Or adjust to your default shadow */
+}
+
 .left-section {
-    max-width: 450px;
-    display: flex;
-    flex: 1;
-    align-items: center;
-    position: relative;
+  max-width: 450px;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  position: relative;
 }
 
 nav {
-    margin-left: 8px;
-    
+  margin-left: 8px;
 }
 
 .nav {
-    height: 30px ;
-    opacity: 0.7;
+  height: 30px;
+  opacity: 0.7;
 }
 
 .nav-button {
-    background-color: transparent;
-    border: none;
-    margin-left: 5px;
-    cursor: pointer;
-    transition: opacity 0.2s;
-    touch-action: manipulation;
+  border: none;
+  margin-left: 5px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  touch-action: manipulation;
 }
 
 .nav-button:hover {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 .nav-button:active {
-    opacity: 1;
+  opacity: 1;
 }
 
 .right-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .login-button {
-    background-color: rgba(52, 164, 162, 0);
+  background-color: rgba(52, 164, 162, 0);
 }
-    
+
 .register-button {
-    background-color: rgba(120, 204, 196, 0);
-    margin-right: 10px;
-    transition: background-color 0.3s;
+  background-color: rgba(120, 204, 196, 0);
+  margin-right: 10px;
+  transition: background-color 0.3s;
 }
 
 .right-section button {
-    background-color: transparent;
-    border: none;
-    font-size: 14px;
-    color: rgba(57, 57, 57, 0.696);
-    padding: 10px 30px 10px 30px;
-    border-radius: 2px;
-    transition: background-color 0.3s;
-    white-space: nowrap;
-    touch-action: manipulation;
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
+  color: rgba(57, 57, 57, 0.696);
+  padding: 10px 30px 10px 30px;
+  border-radius: 2px;
+  transition: background-color 0.3s;
+  white-space: nowrap;
+  touch-action: manipulation;
 }
 
 .lang-button:focus,
 .lang-button.active {
-    color: rgb(52, 164, 162);
-    /* Active color */
+  color: rgb(52, 164, 162);
+  /* Active color */
 }
 
 .lang-button:hover,
 .login-button:hover,
 .register-button:hover {
-    cursor: pointer;
-    color: rgb(52, 164, 162);
+  cursor: pointer;
+  color: rgb(52, 164, 162);
 }
 
 .login-button:active,
 .register-button:active {
-    color: rgba(57, 57, 57, 0.696);
+  color: rgba(57, 57, 57, 0.696);
 }
 
 .login-button:focus,
 .register-button:focus {
-    background-color: rgba(52, 164, 162, 0.002);
+  background-color: rgba(52, 164, 162, 0.002);
 }
 
 .right-section .header-logo {
-    cursor: pointer;
-    transition: opacity 0.25s;
-    margin-right: 5px;
+  cursor: pointer;
+  transition: opacity 0.25s;
+  margin-right: 5px;
 }
 
 .header-logo:hover {
-    opacity: 0.7;
+  opacity: 0.7;
 }
 
 .header-logo:active {
-    opacity: 1;
+  opacity: 1;
 }
 
 .header-logo {
-    height: 50px;
+  height: 50px;
 }
 
 /* Default transition settings */
-.header-container, .login-button, .register-button, .header-logo {
-    transition: all 0.3s ease-in-out;
+.header-container,
+.login-button,
+.register-button,
+.header-logo {
+  transition: all 0.3s ease-in-out;
 }
 
 .logo-container {
-    position: relative;
-    margin-left: 60px; /* Pushes the logo container to the right */
-    height: 50px; /* Ensures the container matches the header height */
+  position: relative;
+  margin-left: 60px; /* Pushes the logo container to the right */
+  height: 50px; /* Ensures the container matches the header height */
 }
 
 .header-logo,
 .hover-logo {
-    position: absolute;
-    top: 0;
-    right: 0; /* Align to the right */
-    transition: opacity 0.1s ease; /* Smooth transition with ease-out */
+  position: absolute;
+  top: 0;
+  right: 0; /* Align to the right */
+  transition: opacity 0.1s ease; /* Smooth transition with ease-out */
 }
 
 .hover-logo {
-    opacity: 0.15; /* Hide the second image by default */
+  opacity: 0.15; /* Hide the second image by default */
 }
 
 .logo-container:hover .header-logo {
-    opacity: 1; 
+  opacity: 1;
 }
 
 .logo-container:hover .hover-logo {
-    opacity: 1; /* Fade in the second image */
+  opacity: 1; /* Fade in the second image */
 }
 
 .lang-button {
-    margin-left: 9.7px;
-    margin-right: 8px;
+  margin-left: 9.7px;
+  margin-right: 8px;
 }
-
 
 /* For max-width 580px */
 @media (max-width: 580px) {
-    .header-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: right;
-        margin: 0px;
-        padding: 0px;
-    }
+  .header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    margin: 0px;
+    padding: 0px;
+  }
 
-    .login-button,
-    .register-button {
-        margin-right: 0px;
-        padding: 10px 0px 10px 30px;
-    }
+  .login-button,
+  .register-button {
+    margin-right: 0px;
+    padding: 10px 0px 10px 30px;
+  }
 
-    .lang-button {
-      margin-right: 0 ;
-    }
+  .lang-button {
+    margin-right: 0;
+  }
 }
 
 /* For max-width 454.55px */
 @media (max-width: 454.55px) {
-    .header-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: right;
-        position: fixed;
-        margin: 0px;
-        padding: 0px;
-    }
+  .header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    position: fixed;
+    margin: 0px;
+    padding: 0px;
+  }
 
-    .right-section {
-        position: relative;
-    }
-    /* Instead of display: none, transition opacity for smooth disappearance */
-    .header-logo {
-        opacity: 0;
-        visibility: hidden; /* Makes it invisible but keeps space */
-        position: absolute;
-    }
+  .right-section {
+    position: relative;
+  }
+  /* Instead of display: none, transition opacity for smooth disappearance */
+  .header-logo {
+    opacity: 0;
+    visibility: hidden; /* Makes it invisible but keeps space */
+    position: absolute;
+  }
 
-    .logo-container {
-        margin-left: 0px;
-    }
+  .logo-container {
+    margin-left: 0px;
+  }
 
-    .login-button,
-    .register-button {
-        margin-right: 0px;
-        padding: 10px 0px 10px 30px;
-    }
+  .login-button,
+  .register-button {
+    margin-right: 0px;
+    padding: 10px 0px 10px 30px;
+  }
 
-    .lang-button {
-        display: none;
-    }
+  .lang-button {
+    display: none;
+  }
 }
 
 /* For max-width 340.50px */
-@media (max-width: 340.50px) {
-    .header-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    }
+@media (max-width: 340.5px) {
+  .header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
 
-    .nav {
-        margin: 0px 0px 0px 0px !important;
-    }
-    
-    .register-button {
-        padding: 0px 24px 0px 19px !important;
-    }
+  .nav {
+    margin: 0px 0px 0px 0px !important;
+  }
 
-    .login-button {
-        padding: 0px 19px 0px 19px !important;
-    }
+  .register-button {
+    padding: 0px 24px 0px 19px !important;
+  }
+
+  .login-button {
+    padding: 0px 19px 0px 19px !important;
+  }
 }
 
 /* For max-width 272.40px */
-@media (max-width: 272.40px) {
-    .header-container {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        text-align: center;
-        vertical-align: middle;
-        justify-content: center;
-    }
+@media (max-width: 272.4px) {
+  .header-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    vertical-align: middle;
+    justify-content: center;
+  }
 
-    .left-section {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        text-align: center;
-        vertical-align: middle;
-        justify-content: center;
-    }
+  .left-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    vertical-align: middle;
+    justify-content: center;
+  }
 
-    .right-section {
-        position: relative;
-    }
+  .right-section {
+    position: relative;
+  }
 
-    .login-button,
-    .register-button {
-        position: absolute;
-        opacity: 0;
-        visibility: hidden; /* Use this instead of display: none for smooth transition */
-    }
+  .login-button,
+  .register-button {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden; /* Use this instead of display: none for smooth transition */
+  }
 }
 
-
 .dropdown-content {
-    position: absolute;
-    background-color: white;
-    min-width: 150px;
-    box-shadow: 0 0px 16px rgba(0, 0, 0, 0.089);
-    z-index: 1;
-    padding: 10px;
+  position: absolute;
+  background-color: white;
+  min-width: 150px;
+  box-shadow: 0 0px 16px rgba(0, 0, 0, 0.089);
+  z-index: 1;
+  padding: 10px;
 }
 
 .dropdown-content button {
-    background-color: white;
-    border: none;
-    padding: 10px;
-    text-align: left;
-    width: 100%;
-    cursor: pointer;
+  background-color: white;
+  border: none;
+  padding: 10px;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
 }
 
 .dropdown-content button:hover {
-    background-color: #555555;
+  background-color: #555555;
 }
 
 .nested-dropdown-content {
-    position: absolute;
-    background-color: white;
-    min-width: 100px;
-    left: -110px;
-    /* Position the nested dropdown to the left */
-    top: 0;
-    box-shadow: 0 0px 16px rgba(0, 0, 0, 0.089);
-    z-index: 2;
+  position: absolute;
+  background-color: white;
+  min-width: 100px;
+  left: -110px;
+  /* Position the nested dropdown to the left */
+  top: 0;
+  box-shadow: 0 0px 16px rgba(0, 0, 0, 0.089);
+  z-index: 2;
 }
 
 .nested-dropdown-content button {
-    background-color: white;
-    border: none;
-    padding: 10px;
-    text-align: left;
-    width: 100%;
-    cursor: pointer;
+  background-color: white;
+  border: none;
+  padding: 10px;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
 }
 
 .nested-dropdown-content button:hover {
-    background-color: #555555;
+  background-color: #555555;
 }
-
-
-
-  

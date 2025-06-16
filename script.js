@@ -1,226 +1,255 @@
-document.querySelector('.nav-button').addEventListener('click', function() {
-  var sidebar = document.querySelector('.side-bar-container');
-  var header = document.querySelector('.header-container');
-  const secondBar = document.getElementById('secondBar');
+// Sidebar toggle logic
+document.querySelector(".nav-button").addEventListener("click", function () {
+  const sidebar = document.querySelector(".side-bar-container");
+  const header = document.querySelector(".header-container");
+  const secondBar = document.getElementById("secondBar");
 
-  // Toggle sidebar
-  if (sidebar.classList.contains('show')) {
-    sidebar.classList.remove('show');
-    
-    // Delay the removal of the no-shadow class to sync with sidebar animation
+  if (sidebar.classList.contains("show")) {
+    sidebar.classList.remove("show");
+
     setTimeout(() => {
-      header.classList.remove('no-shadow'); // Remove no-shadow class after delay
-    }, 300); // Set this delay to match sidebar animation duration
+      header.classList.remove("no-shadow");
+    }, 300);
 
-    secondBar.setAttribute('width', '70');
-    secondBar.setAttribute('y', '70');
+    secondBar.setAttribute("width", "70");
+    secondBar.setAttribute("y", "70");
   } else {
-    sidebar.classList.add('show');
-    header.classList.add('no-shadow'); // Add no-shadow class immediately
-    secondBar.setAttribute('width', '0');
-    secondBar.setAttribute('y', '40');
+    sidebar.classList.add("show");
+    header.classList.add("no-shadow");
+    secondBar.setAttribute("width", "0");
+    secondBar.setAttribute("y", "40");
   }
 });
 
-// Add event listeners to all sidebar buttons
-document.querySelectorAll('.nav-bar, .nav-bar5').forEach(button => {
-  button.addEventListener('click', function() {
-    const page = this.getAttribute('data-page'); // Get the data-page attribute
+// Navigation button click logic
+document.querySelectorAll(".nav-bar, .nav-bar5").forEach((button) => {
+  button.addEventListener("click", function () {
+    const page = this.getAttribute("data-page");
     if (page) {
-      loadContent(page); // Load the relevant content
+      loadContent(page);
 
-      // Remove active class from all buttons and set it to the clicked button
-      document.querySelectorAll('.nav-bar, .nav-bar5').forEach(btn => {
-        btn.classList.remove('active');
+      // Restore header and sidebar state
+      const sidebar = document.querySelector(".side-bar-container");
+      const header = document.querySelector(".header-container");
+      const secondBar = document.getElementById("secondBar");
+
+      if (sidebar.classList.contains("show")) {
+        sidebar.classList.remove("show");
+        setTimeout(() => {
+          header.classList.remove("no-shadow");
+        }, 300);
+        secondBar.setAttribute("width", "70");
+        secondBar.setAttribute("y", "70");
+      }
+
+      // Toggle active class
+      document.querySelectorAll(".nav-bar, .nav-bar5").forEach((btn) => {
+        btn.classList.remove("active");
       });
-      this.classList.add('active'); // Set the clicked button as active
+      this.classList.add("active");
+
+      // Scroll to top
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     }
   });
 });
 
 // Hide sidebar on scroll
-window.addEventListener('scroll', function() {
-  var sidebar = document.querySelector('.side-bar-container');
-  var header = document.querySelector('.header-container');
-  const secondBar = document.getElementById('secondBar');
+window.addEventListener("scroll", function () {
+  const sidebar = document.querySelector(".side-bar-container");
+  const header = document.querySelector(".header-container");
+  const secondBar = document.getElementById("secondBar");
 
-  if (sidebar.classList.contains('show')) {
-    sidebar.classList.remove('show');
-
-    // Delay the removal of the no-shadow class
+  if (sidebar.classList.contains("show")) {
+    sidebar.classList.remove("show");
     setTimeout(() => {
-      header.classList.remove('no-shadow'); // Remove no-shadow class after delay
-    }, 300); // Match with sidebar animation duration
-
-    secondBar.setAttribute('width', '70');
-    secondBar.setAttribute('y', '70');
+      header.classList.remove("no-shadow");
+    }, 300);
+    secondBar.setAttribute("width", "70");
+    secondBar.setAttribute("y", "70");
   }
 });
 
-// Hide sidebar when clicking outside of it
-document.addEventListener('click', function(event) {
-  var sidebar = document.querySelector('.side-bar-container');
-  var header = document.querySelector('.header-container');
-  var navButton = document.querySelector('.nav-button');
-  const secondBar = document.getElementById('secondBar');
+// Hide sidebar when clicking outside
+document.addEventListener("click", function (event) {
+  const sidebar = document.querySelector(".side-bar-container");
+  const header = document.querySelector(".header-container");
+  const navButton = document.querySelector(".nav-button");
+  const secondBar = document.getElementById("secondBar");
 
   if (!sidebar.contains(event.target) && !navButton.contains(event.target)) {
-    if (sidebar.classList.contains('show')) {
-      sidebar.classList.remove('show');
-
-      // Delay the removal of the no-shadow class
+    if (sidebar.classList.contains("show")) {
+      sidebar.classList.remove("show");
       setTimeout(() => {
-        header.classList.remove('no-shadow'); // Remove no-shadow class after delay
-      }, 300); // Match with sidebar animation duration
-
-      secondBar.setAttribute('width', '70');
-      secondBar.setAttribute('y', '70');
+        header.classList.remove("no-shadow");
+      }, 300);
+      secondBar.setAttribute("width", "70");
+      secondBar.setAttribute("y", "70");
     }
   }
 });
 
-
-document.addEventListener("DOMContentLoaded", function() {
-  const logo = document.querySelector('.hover-logo');
+// DOM Ready
+document.addEventListener("DOMContentLoaded", function () {
+  const logo = document.querySelector(".hover-logo");
 
   function updateLogoTitle(contentType) {
-    logo.title = contentType === '' ? "" : "";
+    logo.title = contentType === "" ? "" : "";
   }
 
-  // Check the current content type
-  let currentContentType = sessionStorage.getItem('currentPage') || 'home';
+  let currentContentType = sessionStorage.getItem("currentPage") || "home";
   updateLogoTitle(currentContentType);
 
-  logo.onclick = function() {
-    goHome(); // Navigate to home
+  logo.onclick = function () {
+    goHome();
   };
 
-  // Load content based on stored state
-  window.addEventListener('load', function() {
-    const storedPage = sessionStorage.getItem('currentPage');
+  window.addEventListener("load", function () {
+    const storedPage = sessionStorage.getItem("currentPage");
     if (storedPage) {
-      loadContent(storedPage); // Load the stored page
-      updateLogoTitle(storedPage); // Update logo title
+      loadContent(storedPage);
+      updateLogoTitle(storedPage);
     } else {
-      loadContent('main'); // Load default main content
+      loadContent("main");
     }
   });
 });
 
-// Clear sessionStorage and navigate to home
+// Go Home
 function goHome() {
   sessionStorage.clear();
-  window.location.href = 'index.html'; // Always go to the main index page
+  window.location.href = "index.html";
 }
-function loadContent(page) {
-  const mainContent = document.querySelector('.main');
 
-  let filePath = '';
-  let activeNavButton = '';
-  let scriptPath = ''; // To hold the path of the script to be loaded
+// Load content
+function loadContent(page) {
+  const mainContent = document.querySelector(".main");
+  let filePath = "";
+  let activeNavButton = "";
+  let scriptPath = "";
 
   switch (page) {
-      case 'bau':
-          filePath = 'cont/00.bau/bau.html';
-          scriptPath = 'cont/00.bau/bau.js'; // Path to BAU specific JavaScript
-          activeNavButton = 'nav-bar3';
-          break;
-      case 'main':
-          filePath = 'cont/00.home/home.html';
-          activeNavButton = 'nav-bar1';
-          break;
-      case 'contact': // Handle the Contact Us page
-          filePath = 'cont/00.contact/contact.html';
-          scriptPath = 'cont/00.contact/contact.js'; // Path to about us specific JavaScript
-          activeNavButton = 'nav-bar4';
-          break;
-      default:
-          return;
+    case "bau":
+      filePath = "cont/00.bau/bau.html";
+      scriptPath = "cont/00.bau/bau.js";
+      activeNavButton = "nav-bar3";
+      break;
+    case "main":
+      filePath = "cont/00.home/home.html";
+      activeNavButton = "nav-bar1";
+      break;
+    case "contact":
+      filePath = "cont/00.contact/contact.html";
+      scriptPath = "cont/00.contact/contact.js";
+      activeNavButton = "nav-bar4";
+      break;
+    case "library":
+      filePath = "cont/00.library/library.html";
+      activeNavButton = "nav-bar2";
+      break;
+    default:
+      return;
   }
 
   fetch(filePath)
-      .then(response => response.ok ? response.text() : Promise.reject('Failed to load'))
-      .then(data => {
-          console.log("Loaded HTML:", data); // Debugging line
-          mainContent.innerHTML = data;
+    .then((response) =>
+      response.ok ? response.text() : Promise.reject("Failed to load")
+    )
+    .then((data) => {
+      console.log("Loaded HTML:", data);
+      mainContent.innerHTML = data;
 
-          // Check for counters after loading the new HTML
-          const counters = document.querySelectorAll(".info-container div.counter");
+      const counters = document.querySelectorAll(".info-container div.counter");
 
-          // Reset and start counters only if the page is 'bau'
-          if (page === 'bau') {
-              console.log("Resetting counters and starting counting for the 'bau' page.");
-              resetCounters(counters); // Pass the counters to the function
-              startCounting(); // Start counting animation
-          }
+      if (page === "bau") {
+        resetCounters(counters);
+        startCounting();
+      }
 
-          // Activate the correct nav button
-          document.querySelectorAll('.nav-bar, .nav-bar5').forEach(btn => {
-              btn.classList.remove('active');
-          });
-          document.getElementById(activeNavButton).classList.add('active');
+      document.querySelectorAll(".nav-bar, .nav-bar5").forEach((btn) => {
+        btn.classList.remove("active");
+      });
+      document.getElementById(activeNavButton).classList.add("active");
 
-          // Store the current page in sessionStorage
-          sessionStorage.setItem('currentPage', page);
+      sessionStorage.setItem("currentPage", page);
 
-          // Load additional script if necessary
-          if (scriptPath) {
-              loadScript(scriptPath); // Load the script properly
-          }
-      })
-      .catch(error => console.error('Error loading content:', error));
+      if (scriptPath) {
+        loadScript(scriptPath);
+      }
+    })
+    .catch((error) => console.error("Error loading content:", error));
 }
 
-
-// Function to dynamically load the script
+// Load JS dynamically
 function loadScript(scriptPath) {
-  const scriptElement = document.createElement('script');
+  const scriptElement = document.createElement("script");
   scriptElement.src = scriptPath;
-  scriptElement.onload = function() {
+  scriptElement.onload = function () {
     console.log(`${scriptPath} loaded successfully.`);
   };
-  scriptElement.onerror = function() {
+  scriptElement.onerror = function () {
     console.error(`Error loading ${scriptPath}`);
   };
   document.body.appendChild(scriptElement);
 }
 
+// Reset counters
 function resetCounters() {
   const counters = document.querySelectorAll(".info-container div.counter");
-
-  // Ensure counters exist before trying to loop over them
   if (counters.length === 0) {
-    console.warn('No counters found to reset.');
-    return; // Exit the function if there are no counters
+    console.warn("No counters found to reset.");
+    return;
   }
 
   counters.forEach((counter) => {
-    counter.innerText = "0"; // Reset the counter to zero
+    counter.innerText = "0";
   });
 }
 
-
-// Function to start counting
+// Start counter animation
 function startCounting() {
   const counters = document.querySelectorAll(".info-container .counter");
-  
-  counters.forEach(counter => {
-    let count = 0; // Start counting from 0
-    const target = parseInt(counter.getAttribute('data-target')) || 100; // Get target value from a data attribute (set in HTML)
+
+  counters.forEach((counter) => {
+    let count = 0;
+    const target = parseInt(counter.getAttribute("data-target")) || 100;
 
     const interval = setInterval(() => {
       if (count < target) {
         count++;
-        counter.innerText = count; // Update the counter display
+        counter.innerText = count;
       } else {
-        clearInterval(interval); // Stop counting when the target is reached
+        clearInterval(interval);
       }
-    }, 50); // Adjust the speed of counting here (milliseconds)
+    }, 50);
   });
 }
 
-// Load content for the "Contact Us" page
+// Load "Contact Us" page
 function loadContactUs() {
-  loadContent('contact'); // Call the general loadContent function
+  loadContent("contact");
 }
- 
+
+// Back to Top Button Logic
+const backToTopBtn = document.getElementById("backToTopBtn");
+
+window.onscroll = function () {
+  if (
+    document.body.scrollTop > 300 ||
+    document.documentElement.scrollTop > 300
+  ) {
+    backToTopBtn.classList.add("show");
+  } else {
+    backToTopBtn.classList.remove("show");
+  }
+};
+
+backToTopBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+});

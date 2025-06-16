@@ -1,6 +1,7 @@
-.all {
+.all-lib {
   color: red;
   display: block; /* Default visible */
+  padding-bottom: 2000px;
 }
 
 .error {
@@ -12,7 +13,7 @@
 }
 
 @media (max-width: 1000px) {
-  .all {
+  .all-lib {
     display: none;
   }
 }

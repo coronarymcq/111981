@@ -1,3 +1,15 @@
+.dynamic-hover {
+  color: rgb(52, 164, 162);
+  font-weight: bold;
+}
+
+.dynamic-hover {
+  color: rgb(52, 164, 162);
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 0.4s ease-in-out; /* Apply here — base state */
+}
+
 a {
   text-decoration: none; /* remove underline if you prefer */
 }
@@ -12,7 +24,6 @@ a:visited {
 
 #contact-container {
   font-family: Nunito, Arial;
-  padding-bottom: 3000px;
 }
 
 #contact-container header {
@@ -53,8 +64,6 @@ a:visited {
   opacity: 1; /* Fully visible */
   transform: translateX(0); /* Back to its normal position */
 }
-
-
 
 /*-------------------------------------------*/
 
@@ -117,6 +126,10 @@ h2 {
 
 #info0 {
   margin-top: 40px;
+}
+
+#info {
+  margin-top: 60px;
 }
 
 #aboutus {
@@ -185,11 +198,10 @@ h2 {
   cursor: crosshair;
 }
 
-.admins { 
+.admins {
   margin: 0;
   margin-top: 80px;
   margin-bottom: 24.9px;
-
 }
 
 .page-info-div {
@@ -223,7 +235,6 @@ h2 {
   padding: 10px; /* Add padding if necessary */
   box-sizing: border-box; /* Include padding and border in element's total width and height */
 }
-
 
 canvas {
   width: 100%; /* Allow canvas to take full width */
@@ -259,7 +270,7 @@ canvas {
   }
 }
 
-.pnx, 
+.pnx,
 .znx {
   display: flex;
   overflow: hidden;
@@ -289,8 +300,6 @@ canvas {
 
 /* When screen is 1000px or smaller, animate to visible */
 @media (max-width: 1000px) {
- 
-
   .error {
     opacity: 1;
     /* Fade in */
@@ -302,4 +311,3 @@ canvas {
     padding: 10px;
   }
 }
-

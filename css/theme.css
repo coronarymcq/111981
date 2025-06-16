@@ -1,5 +1,3 @@
-
-
 :root {
   /* Light theme variables (default) */
   --bg-color: #ffffff;
@@ -13,37 +11,55 @@
   --header-shadow: rgba(0, 0, 0, 0.1);
   --header-border: 0px solid gray;
   --lang-bg: white;
-  --lang-txt: rgb(96, 96, 96); 
+  --lang-txt: rgb(96, 96, 96);
   --lang-hover: #f1f1f1;
-  --nav-hover: rgba(122, 122, 122, 0.034) ;
+  --nav-hover: rgba(122, 122, 122, 0.034);
   --drop-down: rgba(44, 44, 44, 0.068);
   --selc-la: rgba(82, 82, 82, 0.123);
-  --button-pdf: rgba(147, 147, 147, 0.502) ;
+  --button-pdf: rgba(147, 147, 147, 0.502);
   --titles: rgba(0, 0, 0, 0.582);
+  --top: rgb(0, 0, 0);
 }
 
 /* Dark theme variables */
-[data-theme='dark'] {
+[data-theme="dark"] {
   --bg-color: #454545;
   --text-color: #f0f0f0; /* General text color */
-  --specific-text-color: rgb(255, 255, 255); /* Specific text color for dark theme */
+  --specific-text-color: rgb(
+    255,
+    255,
+    255
+  ); /* Specific text color for dark theme */
   --quote: black;
   --header-bg: #303030;
   --link-color: rgb(162, 162, 162);
   --link-hover-color: rgb(44, 201, 199);
-  --bottom-border-color:  rgb(255, 255, 255);
+  --bottom-border-color: rgb(255, 255, 255);
   --header-shadow: rgba(0, 0, 0, 0.15);
   --header-border: 1px solid #50c7c700;
   --lang-bg: rgba(59, 59, 59, 0.961);
-  --lang-txt: white; 
+  --lang-txt: white;
   --lang-hover: #555555;
   --nav-hover: rgba(255, 255, 255, 0.048);
   --drop-down: rgba(255, 255, 255, 0.082);
   --selc-la: rgb(58, 58, 58);
-  --button-pdf: rgb(219, 219, 219) ;
-  --titles: rgba(206, 206, 206, 0.61); 
+  --button-pdf: rgb(219, 219, 219);
+  --titles: rgba(206, 206, 206, 0.61);
+  --top: rgb(243, 243, 243);
+  --toptxt: black;
 }
 
+.fas {
+  color: var(--toptxt);
+}
+
+.back-to-top {
+  background-color: var(--top);
+}
+
+.dynamic-hover:hover {
+  color: var(--text-color); /* Just change color */
+}
 
 /* Apply the theme variables */
 body {
@@ -58,7 +74,8 @@ body {
   color: var(--text-color);
   box-shadow: 0px 0px 10px var(--header-shadow);
   border-bottom: var(--header-border);
-  transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out, border-color 0.4s ease-in-out;
+  transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out,
+    border-color 0.4s ease-in-out;
 }
 
 /* Link styles */
@@ -83,14 +100,12 @@ a:hover {
 
 .nav-button {
   opacity: 0.7;
-  background-color: transparent;
   border: none;
   margin-left: 5px;
   cursor: pointer;
   transition: opacity 0.2s;
   touch-action: manipulation;
 }
-
 
 .nav-button:hover {
   opacity: 1;
@@ -117,7 +132,6 @@ a:hover {
 .side-bar-container .nav-bar5:hover {
   background-color: var(--nav-hover);
   border-bottom-color: var(--bottom-border-color);
-
 }
 
 .side-bar-container .nav-bar.active,
@@ -141,8 +155,6 @@ a:hover {
 .mark {
   position: relative;
 }
-
-
 
 .dropdown-content {
   position: absolute;
@@ -202,7 +214,6 @@ a:hover {
   text-align: left;
   width: 100%;
   cursor: pointer;
- 
 }
 
 .nested-dropdown-content button:hover {
@@ -214,31 +225,29 @@ a:hover {
 }
 
 @media (max-width: 650px) {
-
   #theme-dropdown {
-      left: 159px;
-    }
+    left: 159px;
+  }
 
-    .nested-dropdown-content {
-      left: 160px;
-      min-width: 120px;
-    }
+  .nested-dropdown-content {
+    left: 160px;
+    min-width: 120px;
+  }
 }
 
 body.arabic-font .dropdown-content button {
   text-align: right;
 }
 
-
 .logo-aboutus:hover {
-  border-color:var(--text-color); /* Change to the desired color on hover */
+  border-color: var(--text-color); /* Change to the desired color on hover */
   opacity: 1; /* Set to full opacity */
   cursor: crosshair;
 }
 
 .desc {
   font-size: 15px;
-  color: var(--text-color)
+  color: var(--text-color);
 }
 
 .toolbut {
@@ -261,7 +270,8 @@ body.arabic-font .dropdown-content button {
     color: var(--text-color); /* Reset color on active */
   }
 
-  button.touched { /* Class added for touch state */
+  button.touched {
+    /* Class added for touch state */
     color: var(--link-hover-color); /* Change to hover color on touch */
   }
 
@@ -311,7 +321,8 @@ body.arabic-font .dropdown-content button {
   border: 4px dashed transparent;
   /* Change border to dashed */
   background: linear-gradient(var(--bg-color), var(--bg-color)) padding-box,
-    linear-gradient(45deg, rgb(52, 164, 162), rgba(52, 164, 162, 0.5)) border-box;
+    linear-gradient(45deg, rgb(52, 164, 162), rgba(52, 164, 162, 0.5))
+      border-box;
   background-size: 200% 200%;
   z-index: -1;
   animation: move-border 4s linear infinite;
@@ -328,9 +339,9 @@ body.arabic-font .dropdown-content button {
 }
 
 /* (Optional) Reapply styling to the statistic numbers */
-.info-container>.QS,
-.info-container>.FA,
-.info-container>.ST {
+.info-container > .QS,
+.info-container > .FA,
+.info-container > .ST {
   font-size: 30px;
   /* Remove any fixed height or line-height if necessary */
   margin: 0;
@@ -338,76 +349,115 @@ body.arabic-font .dropdown-content button {
 }
 
 /* (Optional) Reapply styling to the statistic labels */
-.label-container>.QS,
-.label-container>.FA,
-.label-container>.ST {
+.label-container > .QS,
+.label-container > .FA,
+.label-container > .ST {
   font-size: 30px;
   color: var(--text-color);
   margin: 0;
   text-align: center;
 }
 
- .button-container {
-   display: grid;
-   grid-template-columns: repeat(3, 1fr);
-   gap: 20px;
-   justify-items: center;
-   margin-top: 100px;
- }
+.button-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  justify-items: center;
+  margin-top: 100px;
+}
 
- .button-wrapper {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   gap: 5px;
-   /* Space between button and text */
- }
+.button-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  /* Space between button and text */
+}
 
- .buttons {
-   background-color: white;
-   color: var(--text-color);
-   padding: 10px;
-   border: solid;
-   cursor: pointer;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   border-radius: 5px;
-   border-color: black;
-   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-   width: 90px;
-   /* Adjust size to keep all buttons uniform */
-   height: 90px;
- }
+.buttons {
+  background-color: white;
+  color: var(--text-color);
+  padding: 10px;
+  border: solid;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  border-color: black;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  width: 90px;
+  /* Adjust size to keep all buttons uniform */
+  height: 90px;
+}
 
- .bauweb {
-   width: 10px;
- }
+.bauweb {
+  width: 10px;
+}
 
- .buttons img {
-   width: 60px;
-   transition: transform 0.3s ease-in-out;
- }
+.buttons img {
+  width: 60px;
+  transition: transform 0.3s ease-in-out;
+}
 
- .buttons:hover {
-   background-color: rgba(52, 164, 162, 0.521);
-   color: white;
- }
+.buttons:hover {
+  background-color: rgba(52, 164, 162, 0.521);
+  color: white;
+}
 
- .buttons:hover img {
-   transform: scale(1.1);
- }
+.buttons:hover img {
+  transform: scale(1.1);
+}
 
- .button-text {
+.button-text {
   font-family: Nunito, Arial;
-   font-size: 20px;
-   font-weight: bold;
-   color: black;
-   text-align: center;
-   margin-bottom: 20px;
-   margin-top: 5px;
- }
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 5px;
+}
 
- .OurUNI {
+.OurUNI {
   color: var(--titles);
- }
+}
+
+.theme-toggle-container {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 15px;
+  margin-top: 3.9px;
+}
+
+#themeToggleBtn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+#themeToggleBtn:hover {
+  transform: scale(1.1);
+}
+
+#themeIcon {
+  width: 22px;
+  height: 22px;
+  /* Remove opacity and transition for instant swap */
+  /* transition: opacity 0.1s ease-in-out; */
+  /* opacity: 1; */
+}
+
+/* Change all rect colors inside nav-button */
+.nav-button svg rect {
+  fill: var(--text-color);
+}
+
+/* Or change just the second bar */
+#secondBar {
+  fill: var(--top);
+}
