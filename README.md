@@ -6,7 +6,7 @@
 
 1. Created a footer with a simple no-background design.
 2. Designed the main page with a perfectly centered paragraph.
-3. Published the website on GitHub.
+3. Published the website on GitHub.  
    [https://mcqcat.github.io/MCAW_Project01/]
 
 ---
@@ -41,30 +41,30 @@ Content was corrupted and therefore cannot be displayed.
 
 2. Login page created (1st version), but not compatible with mobile.
 
-   ![alt text](images/image-9.png)
+   ![alt text](/legal/images/image-9.png)
 
 3. Updated login page with precise resizing and scrolling mechanics for all devices (2nd version).
 
-   ![alt text](images/image-11.png)
+   ![alt text](/legal/images/image-11.png)
 
 4. Show and hide button with an animated lock and unlock icon synced with the show and hide button on the login page.
 
 5. Sign In page created (1st version), with warning messages for different rules.
 
-   ![Sign In Page](images/image-12.png)
+   ![Sign In Page](/legal/images/image-12.png)
 
 6. Translation service is now available (so far for the index page, but not other pages).
 
-   ![Translation 1](images/image-13.png)
-   ![Translation 2](images/image-14.png)
-   ![Translation 3](images/image-16.png)
+   ![Translation 1](/legal/images/image-13.png)  
+   ![Translation 2](/legal/images/image-14.png)  
+   ![Translation 3](/legal/images/image-16.png)
 
 7. Updated Header (5th version) and logo animation on all pages
 
-   ![alt text](images/image-17.png)
-   ![alt text](images/image-18.png)
-   ![alt text](images/image-20.png)
-   ![alt text](images/image-19.png)
+   ![alt text](/legal/images/image-17.png)  
+   ![alt text](/legal/images/image-18.png)  
+   ![alt text](/legal/images/image-20.png)  
+   ![alt text](/legal/images/image-19.png)
 
 8. ~~The small default title icon has been changed for the current logo of the website.~~
 
@@ -96,11 +96,11 @@ Content was corrupted and therefore cannot be displayed.
 
 5. New Auth Card design for both the Login and Sign Up page.
 
-   ![alt text](images/image-22.png)
-   ![alt text](images/image-21.png)
-   ![alt text](images/image-23.png)
-   ![alt text](images/image-24.png)
-   ![alt text](images/image-25.png)
+   ![alt text](/legal/images/image-22.png)  
+   ![alt text](/legal/images/image-21.png)  
+   ![alt text](/legal/images/image-23.png)  
+   ![alt text](/legal/images/image-24.png)  
+   ![alt text](/legal/images/image-25.png)
 
 6. A new "Settings" button has been added to the header which is subject to change later on the next updates.
 
@@ -110,17 +110,17 @@ Content was corrupted and therefore cannot be displayed.
 
 - Resize measures is also applied.
 
-  ![alt text](images/image-26.png)
-  ![alt text](images/image-27.png)
-  ![alt text](images/image-28.png)
+  ![alt text](/legal/images/image-26.png)  
+  ![alt text](/legal/images/image-27.png)  
+  ![alt text](/legal/images/image-28.png)
 
 7. A modern synced custom UI for the first pdf viewer on the About Us page.
 
 - Though, an issue preventing the pdf viewer from working on the online github page, it will be fixed on the next update.
 
-![alt text](images/image-29.png)
-![alt text](images/image-30.png)
-![alt text](images/image-31.png)
+![alt text](/legal/images/image-29.png)  
+![alt text](/legal/images/image-30.png)  
+![alt text](/legal/images/image-31.png)
 
 ---
 
@@ -143,16 +143,16 @@ The following changes have been made in this update, along with some reconsidera
 3. With the translation option removed, the settings button now only controls the theme; therefore, the settings menu has been simplified to only include theme switching.
 4. The theme button has been redesigned as a modern, icon-based toggle that smoothly switches between light and dark modes.
 
-![alt text](images/image-7.png)
-![alt text](images/image-8.png)
+![alt text](/legal/images/image-7.png)  
+![alt text](/legal/images/image-8.png)
 
 5. A back-to-top button with smooth scrolling animation has been added, synced with the site’s content for easier navigation and user convenience.
 
-![alt text](images/image-6.png)
-![alt text](images/image-3.png)
-![alt text](images/image-4.png)
-![alt text](images/image-5.png)
+![alt text](/legal/images/image-6.png)  
+![alt text](/legal/images/image-3.png)  
+![alt text](/legal/images/image-4.png)  
+![alt text](/legal/images/image-5.png)
 
 6. In light of these changes, the header has been redesigned with a clean, streamlined layout.
 
-![alt text](images/image-2.png)![alt text](images/image-1.png)
+![alt text](/legal/images/image-2.png)![alt text](/legal/images/image-1.png)
