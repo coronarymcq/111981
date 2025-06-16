@@ -156,3 +156,5 @@ The following changes have been made in this update, along with some reconsidera
 6. In light of these changes, the header has been redesigned with a clean, streamlined layout.
 
 ![alt text](/legal/images/image-2.png)![alt text](/legal/images/image-1.png)
+
+7. Minor UI fixes.
