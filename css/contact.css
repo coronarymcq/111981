@@ -309,5 +309,6 @@ canvas {
     /* Allow interactions */
     text-align: center;
     padding: 10px;
+    margin-top: 65px;
   }
 }

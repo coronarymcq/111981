@@ -25,6 +25,7 @@
     transform: translateY(0);
     pointer-events: auto;
     padding: 10px;
+    margin-top: 65px;
   }
 
   .end-margin {
