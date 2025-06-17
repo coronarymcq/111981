@@ -19,6 +19,15 @@
   --button-pdf: rgba(147, 147, 147, 0.502);
   --titles: rgba(0, 0, 0, 0.582);
   --top: rgb(0, 0, 0);
+  --grad-1: rgb(30, 30, 30); /* Very dark gray */
+  --grad-2: rgb(50, 50, 50); /* Deep gray */
+  --grad-3: rgb(44, 201, 199); /* Teal */
+  --grad-4: rgb(72, 201, 176); /* Bright Teal */
+  --grad-5: rgb(126, 214, 223); /* Aqua Blue */
+  --grad-6: rgb(18, 18, 18); /* Almost black */
+  --grad-7: rgb(100, 100, 100); /* Medium gray */
+  --grad-8: rgb(32, 40, 48); /* Midnight gray */
+  --grad-9: rgb(60, 120, 120); /* Desaturated cyan */
 }
 
 /* Dark theme variables */
@@ -47,6 +56,15 @@
   --titles: rgba(206, 206, 206, 0.61);
   --top: rgb(243, 243, 243);
   --toptxt: black;
+  --grad-1: rgb(255, 255, 255); /* White */
+  --grad-2: rgb(240, 240, 240); /* Light Gray */
+  --grad-3: rgb(126, 214, 223); /* Aqua Blue */
+  --grad-4: rgb(72, 201, 176); /* Bright Teal */
+  --grad-5: rgb(44, 201, 199); /* Teal */
+  --grad-6: rgb(255, 244, 229); /* Light Cream */
+  --grad-7: rgb(223, 249, 251); /* Pale Aqua */
+  --grad-8: rgb(244, 244, 244); /* Near-white */
+  --grad-9: rgb(200, 255, 255); /* Soft Cyan */
 }
 
 .fas {
@@ -460,4 +478,44 @@ body.arabic-font .dropdown-content button {
 /* Or change just the second bar */
 #secondBar {
   fill: var(--top);
+}
+
+#stsx,
+#aboutus {
+  font-size: 100px;
+  font-weight: 400;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 50px;
+  padding: 50px;
+  margin-top: 5px;
+
+  background: linear-gradient(
+    270deg,
+    var(--grad-1),
+    var(--grad-2),
+    var(--grad-3),
+    var(--grad-4),
+    var(--grad-5),
+    var(--grad-6),
+    var(--grad-7),
+    var(--grad-8),
+    var(--grad-9)
+  );
+  background-size: 400% 400%;
+  animation: gradientMove 300s ease-in-out infinite;
+  will-change: background-position;
+}
+
+/* Animation Keyframes */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

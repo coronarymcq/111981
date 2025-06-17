@@ -33,7 +33,9 @@ a:visited {
 
 .scroll-section {
   padding: 50px;
+  padding-top: 0px;
   margin: 50px 0;
+  margin-top: 0px;
   opacity: 0; /* Hidden initially */
   transition: all 1s ease-out;
 }
@@ -83,6 +85,8 @@ h2 {
 
 .desc1 {
   font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  margin-bottom: 50px;
 }
 
 #section4,
@@ -108,8 +112,7 @@ h2 {
 }
 
 #section1 {
-  margin-bottom: 10px;
-  margin-top: 10px;
+  margin-bottom: 100px;
 }
 
 #info0,
@@ -132,16 +135,34 @@ h2 {
   margin-top: 60px;
 }
 
+#stsx,
 #aboutus {
-  color: rgb(52, 164, 162);
-  font-size: 30px;
-  font-weight: 900;
+  font-family: Montserrat, Arial, sans-serif;
+  font-size: 150px;
+  font-weight: 500;
   text-align: center;
-  border-bottom: 1px solid gray;
   margin: 0;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
   padding: 50px;
   margin-top: 5px;
+
+  background-size: 1000% 1000%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: gradientMove 10s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 #li5 {
@@ -282,32 +303,25 @@ canvas {
 
 .error {
   text-align: center;
-  /* Always present in the layout */
+  overflow: hidden;
+  max-height: 0; /* Hidden height = no space taken */
   opacity: 0;
-  /* Start invisible */
   transform: translateY(-10px);
-  /* Slightly shifted up */
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: max-height 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
   pointer-events: none;
-  /* Prevent interactions when hidden */
 }
 
+/* Show on small screens */
 @media (max-width: 1000px) {
   #contact-container {
     display: none;
   }
-}
 
-/* When screen is 1000px or smaller, animate to visible */
-@media (max-width: 1000px) {
   .error {
+    max-height: 300px; /* Enough to show full content */
     opacity: 1;
-    /* Fade in */
     transform: translateY(0);
-    /* Slide into place */
     pointer-events: auto;
-    /* Allow interactions */
-    text-align: center;
     padding: 10px;
     margin-top: 65px;
   }
