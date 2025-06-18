@@ -138,7 +138,7 @@ Due to time constraints, this project will now focus on gathering pre-existing Q
 
 The following changes have been made in this update, along with some reconsiderations:
 
-1. The website’s focus has shifted to serve primarily as a personal space for publishing work, rather than as an interactive platform for solving questions.
+1. Once again, the website’s focus has shifted to serve primarily as a personal space for publishing work, rather than as an interactive platform for solving questions.
 2. The translation feature has been removed, since most users understand basic English, and I will only use simple language to publish my work.
 3. With the translation option removed, the settings button now only controls the theme; therefore, the settings menu has been simplified to only include theme switching.
 4. The theme button has been redesigned as a modern, icon-based toggle that smoothly switches between light and dark modes.
