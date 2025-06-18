@@ -11,7 +11,7 @@
 
 ---
 
-**Version 1.3 - 1.6| Early-Mid-September**
+**Version 1.3 - 1.6 | Early-Mid-September**
 
 Content was corrupted and therefore cannot be displayed.
 
