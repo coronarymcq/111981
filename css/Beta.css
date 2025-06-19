@@ -1,3 +1,9 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .arabic-font {
   font-family: "Baloo Bhaijaan 2", Arial, sans-serif;
 }
@@ -41,12 +47,9 @@ footer {
 .main {
   flex: 1;
   margin: 0;
-  margin-left: 70px;
-  margin-right: 70px;
   text-align: left;
   margin-top: 0px;
   margin-bottom: 0px;
-  padding-top: 50px;
   a:visited {
     color: inherit; /* Keeps the original color */
   }

@@ -1,11 +1,8 @@
 .all {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative; /* stays in flow */
   width: 100vw;
-  height: 100vh;
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.136);
-  pointer-events: none; /* disables mouse events on .all and children */
+  height: 95vh; /* full screen height */
+  padding-top: 100px; /* ✅ this stays */
   background: linear-gradient(
     270deg,
     #2aa5ae,
@@ -16,8 +13,9 @@
   );
   background-size: 1600% 1600%;
   animation: gradientMove 20s ease infinite;
-
-  z-index: -1;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.136);
+  pointer-events: none;
+  box-sizing: border-box; /* ✅ this is the key */
 }
 
 @keyframes gradientMove {
@@ -43,15 +41,18 @@
   }
 }
 
-/* Wrapper that is absolutely centered */
 .center-text {
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
+  top: 35%;
+  transform: translateY(-50%);
   text-align: center;
-  z-index: 1; /* put .center-text above .all */
-  pointer-events: auto; /* enable pointer events */
+  z-index: 1;
+  pointer-events: auto;
+}
+
+.containerhome {
+  min-height: 100vh;
+  padding: 80px 20px;
 }
 
 /* No need to position these absolutely */
@@ -63,7 +64,8 @@
   animation: slideUpFadeIn 0.5s ease forwards;
   animation-delay: 0s;
   white-space: nowrap;
-  margin: 30px;
+  margin: 0px;
+  margin-bottom: 20px;
 }
 
 .all-text0 {
@@ -97,7 +99,7 @@
     transform: translateY(0);
     pointer-events: auto;
     padding: 10px;
-    margin-top: 65px;
+    margin-top: 500px;
   }
 
   .end-margin {
