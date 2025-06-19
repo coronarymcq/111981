@@ -1,21 +1,84 @@
+.scroll-btn {
+  margin-top: 40px;
+  padding: 12px 28px;
+  font-size: 18px;
+  font-family: Montserrat, sans-serif;
+  font-weight: 600; /* unified font-weight */
+  border-radius: 8px;
+  cursor: pointer;
+  opacity: 0;
+  animation: slideUpFadeIn 0.5s ease forwards;
+  animation-delay: 0.6s;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.207);
+}
+
+#scrollButton {
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  border-width: 1.5px;
+  border-style: solid;
+  border-radius: 100px; /* Fully rounded */
+  padding: 20px 25px; /* Slightly bigger padding than .scroll-btn */
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease, padding 0.25s ease;
+}
+
+#scrollButton:hover {
+  padding: 20px 55px; /* Slightly bigger padding than .scroll-btn */
+  border-color: rgba(0, 0, 0, 0.8); /* Darker border on hover */
+}
+
+#scrollButton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(160, 160, 160, 0) 20%,
+    /* lighter transparent gray */ rgba(190, 190, 190, 0.25) 45%,
+    /* light gray, soft opacity */ rgba(210, 210, 210, 0.25) 55%,
+    /* even lighter gray, same opacity */ rgba(160, 160, 160, 0) 80%
+      /* lighter transparent gray */
+  );
+
+  transform: skewX(-20deg);
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#scrollButton:hover::before {
+  animation: shine 0.7s ease forwards;
+  opacity: 1;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(100%) skewX(-20deg);
+  }
+}
+
 .all {
   position: relative; /* stays in flow */
   width: 100vw;
   height: 95vh; /* full screen height */
-  padding-top: 100px; /* ✅ this stays */
-  background: linear-gradient(
-    270deg,
-    #2aa5ae,
-    #2cc9c7,
-    #5edcd2,
-    #7ed6df,
-    #b4ebe6
-  );
+  padding-top: 100px;
+  background: linear-gradient(270deg, #2aa5ae, #2cc9c7, #13c9ba);
   background-size: 1600% 1600%;
   animation: gradientMove 20s ease infinite;
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.136);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.192);
   pointer-events: none;
-  box-sizing: border-box; /* ✅ this is the key */
+  box-sizing: border-box;
 }
 
 @keyframes gradientMove {
@@ -76,6 +139,7 @@
   margin: 0;
   animation: slideUpFadeIn 0.5s ease forwards;
   animation-delay: 0.35s;
+  margin-bottom: 30px;
 }
 
 .error {

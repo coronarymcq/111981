@@ -29,6 +29,10 @@
   --grad-8: rgb(32, 40, 48); /* Midnight gray */
   --grad-9: rgb(60, 120, 120); /* Desaturated cyan */
   --all-text: rgb(0, 0, 0);
+  --scrl: white;
+  --shine-start: rgba(255, 255, 255, 0);
+  --shine-middle: rgba(255, 255, 255, 0.2);
+  --shine-end: rgba(255, 255, 255, 0);
 }
 
 /* Dark theme variables */
@@ -67,6 +71,19 @@
   --grad-8: rgb(244, 244, 244); /* Near-white */
   --grad-9: rgb(200, 255, 255); /* Soft Cyan */
   --all-text: rgb(255, 255, 255);
+  --scrl: black;
+  --shine-start: rgba(0, 0, 0, 0);
+  --shine-middle: rgba(0, 0, 0, 0.1);
+  --shine-end: rgba(0, 0, 0, 0);
+}
+
+.scroll-btn {
+  color: var(--text-color);
+  border-color: var(--text-color);
+}
+
+#scrollButton:hover {
+  background-color: var(--scrl);
 }
 
 .all-text0,

@@ -6,11 +6,7 @@ document.querySelector(".nav-button").addEventListener("click", function () {
 
   if (sidebar.classList.contains("show")) {
     sidebar.classList.remove("show");
-
-    setTimeout(() => {
-      header.classList.remove("no-shadow");
-    }, 300);
-
+    setTimeout(() => header.classList.remove("no-shadow"), 300);
     secondBar.setAttribute("width", "70");
     secondBar.setAttribute("y", "70");
   } else {
@@ -28,36 +24,27 @@ document.querySelectorAll(".nav-bar, .nav-bar5").forEach((button) => {
     if (page) {
       loadContent(page);
 
-      // Restore header and sidebar state
       const sidebar = document.querySelector(".side-bar-container");
       const header = document.querySelector(".header-container");
       const secondBar = document.getElementById("secondBar");
 
       if (sidebar.classList.contains("show")) {
         sidebar.classList.remove("show");
-        setTimeout(() => {
-          header.classList.remove("no-shadow");
-        }, 300);
+        setTimeout(() => header.classList.remove("no-shadow"), 300);
         secondBar.setAttribute("width", "70");
         secondBar.setAttribute("y", "70");
       }
 
-      // Toggle active class
       document.querySelectorAll(".nav-bar, .nav-bar5").forEach((btn) => {
         btn.classList.remove("active");
       });
       this.classList.add("active");
 
-      // Scroll to top
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   });
 });
 
-// Hide sidebar on scroll
 window.addEventListener("scroll", function () {
   const sidebar = document.querySelector(".side-bar-container");
   const header = document.querySelector(".header-container");
@@ -65,15 +52,12 @@ window.addEventListener("scroll", function () {
 
   if (sidebar.classList.contains("show")) {
     sidebar.classList.remove("show");
-    setTimeout(() => {
-      header.classList.remove("no-shadow");
-    }, 300);
+    setTimeout(() => header.classList.remove("no-shadow"), 300);
     secondBar.setAttribute("width", "70");
     secondBar.setAttribute("y", "70");
   }
 });
 
-// Hide sidebar when clicking outside
 document.addEventListener("click", function (event) {
   const sidebar = document.querySelector(".side-bar-container");
   const header = document.querySelector(".header-container");
@@ -83,48 +67,18 @@ document.addEventListener("click", function (event) {
   if (!sidebar.contains(event.target) && !navButton.contains(event.target)) {
     if (sidebar.classList.contains("show")) {
       sidebar.classList.remove("show");
-      setTimeout(() => {
-        header.classList.remove("no-shadow");
-      }, 300);
+      setTimeout(() => header.classList.remove("no-shadow"), 300);
       secondBar.setAttribute("width", "70");
       secondBar.setAttribute("y", "70");
     }
   }
 });
 
-// DOM Ready
-document.addEventListener("DOMContentLoaded", function () {
-  const logo = document.querySelector(".hover-logo");
-
-  function updateLogoTitle(contentType) {
-    logo.title = contentType === "" ? "" : "";
-  }
-
-  let currentContentType = sessionStorage.getItem("currentPage") || "home";
-  updateLogoTitle(currentContentType);
-
-  logo.onclick = function () {
-    goHome();
-  };
-
-  window.addEventListener("load", function () {
-    const storedPage = sessionStorage.getItem("currentPage");
-    if (storedPage) {
-      loadContent(storedPage);
-      updateLogoTitle(storedPage);
-    } else {
-      loadContent("main");
-    }
-  });
-});
-
-// Go Home
 function goHome() {
   sessionStorage.clear();
   window.location.href = "index.html";
 }
 
-// Load content
 function loadContent(page) {
   const mainContent = document.querySelector(".main");
   let filePath = "";
@@ -139,6 +93,7 @@ function loadContent(page) {
       break;
     case "main":
       filePath = "cont/00.home/home.html";
+      scriptPath = "cont/00.home/home.js";
       activeNavButton = "nav-bar1";
       break;
     case "contact":
@@ -177,18 +132,22 @@ function loadContent(page) {
       sessionStorage.setItem("currentPage", page);
 
       if (scriptPath) {
-        loadScript(scriptPath);
+        loadScript(scriptPath, () => {
+          if (page === "main" && typeof initHomeScroll === "function") {
+            initHomeScroll();
+          }
+        });
       }
     })
     .catch((error) => console.error("Error loading content:", error));
 }
 
-// Load JS dynamically
-function loadScript(scriptPath) {
+function loadScript(scriptPath, callback) {
   const scriptElement = document.createElement("script");
   scriptElement.src = scriptPath;
   scriptElement.onload = function () {
     console.log(`${scriptPath} loaded successfully.`);
+    if (typeof callback === "function") callback();
   };
   scriptElement.onerror = function () {
     console.error(`Error loading ${scriptPath}`);
@@ -196,20 +155,17 @@ function loadScript(scriptPath) {
   document.body.appendChild(scriptElement);
 }
 
-// Reset counters
 function resetCounters() {
   const counters = document.querySelectorAll(".info-container div.counter");
   if (counters.length === 0) {
     console.warn("No counters found to reset.");
     return;
   }
-
   counters.forEach((counter) => {
     counter.innerText = "0";
   });
 }
 
-// Start counter animation
 function startCounting() {
   const counters = document.querySelectorAll(".info-container .counter");
 
@@ -228,12 +184,10 @@ function startCounting() {
   });
 }
 
-// Load "Contact Us" page
 function loadContactUs() {
   loadContent("contact");
 }
 
-// Back to Top Button Logic
 const backToTopBtn = document.getElementById("backToTopBtn");
 
 window.onscroll = function () {
@@ -252,4 +206,16 @@ backToTopBtn.addEventListener("click", () => {
     top: 0,
     behavior: "smooth",
   });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const logo = document.querySelector(".hover-logo");
+  if (logo) {
+    logo.onclick = function () {
+      goHome();
+    };
+  }
+
+  const storedPage = sessionStorage.getItem("currentPage") || "main";
+  loadContent(storedPage);
 });
