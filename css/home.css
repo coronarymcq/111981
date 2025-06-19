@@ -49,7 +49,7 @@
   bottom: 150px;
   font-family: Montserrat, Arial, sans-serif;
   font-size: 3rem;
-  font-weight: 100;
+  font-weight: 400;
   opacity: 0;
   animation: slideUpFadeIn 0.5s ease forwards;
   animation-delay: 0s; /* starts immediately */
@@ -62,7 +62,7 @@
   bottom: 100px;
   font-family: Montserrat, Arial, sans-serif;
   font-size: 33px;
-
+  font-weight: 300;
   opacity: 0;
   animation: slideUpFadeIn 0.5s ease forwards;
   animation-delay: 0.35s; /* delayed for smooth stagger */
