@@ -28,6 +28,7 @@
   --grad-7: rgb(100, 100, 100); /* Medium gray */
   --grad-8: rgb(32, 40, 48); /* Midnight gray */
   --grad-9: rgb(60, 120, 120); /* Desaturated cyan */
+  --all-text: rgb(0, 0, 0);
 }
 
 /* Dark theme variables */
@@ -65,6 +66,12 @@
   --grad-7: rgb(223, 249, 251); /* Pale Aqua */
   --grad-8: rgb(244, 244, 244); /* Near-white */
   --grad-9: rgb(200, 255, 255); /* Soft Cyan */
+  --all-text: rgb(255, 255, 255);
+}
+
+.all-text0,
+.all-text {
+  color: var(--all-text);
 }
 
 .fas {

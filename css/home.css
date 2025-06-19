@@ -1,6 +1,71 @@
 .all {
-  color: red;
-  display: block; /* Default visible */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 80vh;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.136);
+
+  background: linear-gradient(
+    135deg,
+    rgb(52, 197, 207),
+    rgb(44, 201, 199),
+    rgb(94, 220, 210),
+    rgb(126, 214, 223),
+    rgb(180, 235, 230)
+  );
+  background-size: 600% 600%;
+  animation: gradientMove 12s ease infinite;
+  z-index: -1;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes slideUpFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.all-text {
+  position: absolute;
+  z-index: 1;
+  left: 80px;
+  bottom: 150px;
+  font-family: Montserrat, Arial, sans-serif;
+  font-size: 3rem;
+  font-weight: 100;
+  opacity: 0;
+  animation: slideUpFadeIn 0.5s ease forwards;
+  animation-delay: 0s; /* starts immediately */
+}
+
+.all-text0 {
+  position: absolute;
+  z-index: 1;
+  left: 80px;
+  bottom: 100px;
+  font-family: Montserrat, Arial, sans-serif;
+  font-size: 33px;
+
+  opacity: 0;
+  animation: slideUpFadeIn 0.5s ease forwards;
+  animation-delay: 0.35s; /* delayed for smooth stagger */
 }
 
 .error {
