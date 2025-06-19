@@ -3,19 +3,20 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 80vh;
+  height: 100vh;
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.136);
-
+  pointer-events: none; /* disables mouse events on .all and children */
   background: linear-gradient(
-    135deg,
-    rgb(52, 197, 207),
-    rgb(44, 201, 199),
-    rgb(94, 220, 210),
-    rgb(126, 214, 223),
-    rgb(180, 235, 230)
+    270deg,
+    #2aa5ae,
+    #2cc9c7,
+    #5edcd2,
+    #7ed6df,
+    #b4ebe6
   );
-  background-size: 600% 600%;
-  animation: gradientMove 12s ease infinite;
+  background-size: 1600% 1600%;
+  animation: gradientMove 20s ease infinite;
+
   z-index: -1;
 }
 
@@ -42,30 +43,37 @@
   }
 }
 
-.all-text {
+/* Wrapper that is absolutely centered */
+.center-text {
   position: absolute;
-  z-index: 1;
-  left: 80px;
-  bottom: 150px;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 1; /* put .center-text above .all */
+  pointer-events: auto; /* enable pointer events */
+}
+
+/* No need to position these absolutely */
+.all-text {
   font-family: Montserrat, Arial, sans-serif;
-  font-size: 3rem;
-  font-weight: 400;
+  font-size: 50px;
+  font-weight: 500;
   opacity: 0;
   animation: slideUpFadeIn 0.5s ease forwards;
-  animation-delay: 0s; /* starts immediately */
+  animation-delay: 0s;
+  white-space: nowrap;
+  margin: 30px;
 }
 
 .all-text0 {
-  position: absolute;
-  z-index: 1;
-  left: 80px;
-  bottom: 100px;
   font-family: Montserrat, Arial, sans-serif;
   font-size: 33px;
   font-weight: 300;
   opacity: 0;
+  margin: 0;
   animation: slideUpFadeIn 0.5s ease forwards;
-  animation-delay: 0.35s; /* delayed for smooth stagger */
+  animation-delay: 0.35s;
 }
 
 .error {
