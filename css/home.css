@@ -149,6 +149,10 @@
   .all {
     display: none;
   }
+
+  .containerhome {
+    display: none;
+  }
 }
 
 /* Media query to hide mainhome and show error */
@@ -164,4 +168,136 @@
   .end-margin {
     display: none;
   }
+}
+
+/*--------------------------------------------*/
+
+.timeline-container {
+  position: relative;
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 60px 0;
+}
+
+.timeline-track {
+  position: relative;
+  display: flex;
+  height: 100px;
+  align-items: flex-start;
+  min-width: 1600px; /* increase total width to allow more spacing */
+  justify-content: space-between; /* spread labels evenly */
+  padding: 0 40px; /* optional horizontal padding inside container */
+}
+
+.timeline-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 1;
+}
+
+.timeline-label {
+  position: relative;
+  display: inline-block;
+  width: 140px; /* slightly wider labels for more breathing room */
+  text-align: center;
+  z-index: 2;
+  cursor: pointer;
+  margin: 0 20px; /* horizontal margin for extra spacing */
+}
+
+.timeline-label span {
+  display: block;
+  font-size: 14px;
+  margin-top: 60px;
+  pointer-events: none;
+}
+
+.timeline-label::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 25px;
+  z-index: 2;
+}
+
+.content-display {
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+  margin-bottom: 40px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column; /* stack cards vertically */
+  gap: 16px; /* vertical spacing between cards */
+  padding: 20px;
+  /* optional: stretch children horizontally */
+  align-items: stretch; /* make cards take full width */
+  justify-content: flex-start;
+}
+
+.floating-card {
+  position: relative;
+  width: 100%; /* make each card fill container width */
+  max-width: 400px; /* optional max width for cards */
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.floating-card h3 {
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.floating-card button {
+  padding: 4px 10px;
+  font-size: 13px;
+  background: #2aa5ae;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+/* 1. On hover, enlarge the label text slightly */
+.timeline-label:hover span {
+  transform: scale(1.15);
+  transition: transform 0.3s ease;
+}
+
+.timeline-label::after {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--text-color); /* Uses synced theme color */
+  transition: transform 0.3s ease;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Hover effect (preview the dot) */
+.timeline-label:hover::after {
+  transform: translateX(-50%) scale(1.2);
+}
+
+/* Active circle stays filled and visible */
+.timeline-label.active::after {
+  transform: translateX(-50%) scale(1.2);
 }

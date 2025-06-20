@@ -73,7 +73,7 @@ function initHomeScroll() {
 // Call the function once DOM is ready
 document.addEventListener("DOMContentLoaded", initHomeScroll);
 
-/* */
+/* -------------------------------------------------------------- */
 
 const statements = [
   {
@@ -136,3 +136,68 @@ animateIn(pElement, 500);
 
 // Switch every 5s
 setInterval(switchStatement, 5000);
+
+/* -------------------------------------------------------------- */
+
+const semesterData = {
+  y1s1: [
+    { title: "Histology Intro", url: "/pdfs/histology1.pdf" },
+    { title: "General Anatomy", url: "/pdfs/anatomy1.pdf" },
+  ],
+  y1s2: [{ title: "Physiology Midterm", url: "/pdfs/physiology2.pdf" }],
+  y1sum: [],
+  y2s1: [{ title: "Pharmacology Basics", url: "/pdfs/pharma.pdf" }],
+};
+
+function renderFloatingCards(cards) {
+  const container = document.getElementById("contentDisplay");
+  container.innerHTML = "";
+  if (!cards || cards.length === 0) {
+    container.innerHTML = "<p>No PDFs available for this semester yet.</p>";
+    return;
+  }
+  cards.forEach((card) => {
+    const div = document.createElement("div");
+    div.className = "floating-card";
+    div.innerHTML = `
+      <h3>${card.title}</h3>
+      <button onclick="window.open('${card.url}', '_blank')">Download</button>
+    `;
+    container.appendChild(div);
+  });
+}
+
+document.querySelectorAll(".timeline-label").forEach((label) => {
+  label.addEventListener("click", () => {
+    document
+      .querySelectorAll(".timeline-label")
+      .forEach((n) => n.classList.remove("active"));
+    label.classList.add("active");
+    const semesterKey = label.dataset.semester;
+    renderFloatingCards(semesterData[semesterKey]);
+    localStorage.setItem("selectedSemester", semesterKey); // Save selection
+  });
+});
+
+/*------------------------------------*/
+
+const timelineLabels = document.querySelectorAll(".timeline-label");
+
+// Initial load - set active from saved or default, render cards
+const savedSemester = localStorage.getItem("selectedSemester") || "y1s1";
+timelineLabels.forEach((label) => {
+  label.classList.remove("active");
+  if (label.dataset.semester === savedSemester) {
+    label.classList.add("active");
+  }
+});
+renderFloatingCards(semesterData[savedSemester]);
+
+// Clear saved semester and reload when clicking logo to reset to default
+const logo = document.querySelector(".hover-logo");
+if (logo) {
+  logo.addEventListener("click", () => {
+    localStorage.removeItem("selectedSemester");
+    location.reload();
+  });
+}

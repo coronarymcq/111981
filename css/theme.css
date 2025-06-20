@@ -75,6 +75,11 @@
   --scrl: black;
 }
 
+.timeline-label::before,
+.timeline-line {
+  background-color: var(--text-color);
+}
+
 .scroll-btn {
   color: var(--text-color);
   border-color: var(--text-color);
