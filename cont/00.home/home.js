@@ -72,3 +72,67 @@ function initHomeScroll() {
 
 // Call the function once DOM is ready
 document.addEventListener("DOMContentLoaded", initHomeScroll);
+
+/* */
+
+const statements = [
+  {
+    h1: "See What We've Achieved.",
+    p: "Throughout the Years.",
+  },
+  {
+    h1: "Crafted Work. Constant Growth.",
+    p: "For everyone.",
+  },
+  {
+    h1: "Simple but yet valiable.",
+    p: "Rich work. Like always.",
+  },
+];
+
+let currentIndex = 0;
+const h1Element = document.querySelector(".all-text");
+const pElement = document.querySelector(".all-text0");
+
+// <-- ADD THIS TO PREVENT INITIAL FLICKER
+h1Element.textContent = statements[0].h1;
+pElement.textContent = statements[0].p;
+
+function animateOut(element, delay = 0) {
+  element.classList.remove("animate-in");
+  void element.offsetWidth;
+  setTimeout(() => {
+    element.classList.add("animate-out");
+  }, delay);
+}
+
+function animateIn(element, delay = 0) {
+  element.classList.remove("animate-out");
+  void element.offsetWidth;
+  setTimeout(() => {
+    element.classList.add("animate-in");
+  }, delay);
+}
+
+function switchStatement() {
+  // Animate old text out
+  animateOut(h1Element, 0);
+  animateOut(pElement, 0); // leaves 300ms after h1
+
+  // After exit animation completes (~600ms), update content and animate in
+  setTimeout(() => {
+    currentIndex = (currentIndex + 1) % statements.length;
+    h1Element.textContent = statements[currentIndex].h1;
+    pElement.textContent = statements[currentIndex].p;
+
+    animateIn(h1Element, 0);
+    animateIn(pElement, 500); // staggered appearance
+  }, 650);
+}
+
+// Initial entrance animation
+animateIn(h1Element, 0);
+animateIn(pElement, 500);
+
+// Switch every 5s
+setInterval(switchStatement, 5000);

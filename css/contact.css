@@ -34,6 +34,8 @@ a:visited {
 .scroll-section {
   padding: 50px;
   padding-top: 0px;
+  padding-left: 100px;
+  padding-right: 100px;
   margin: 50px 0;
   margin-top: 0px;
   opacity: 0; /* Hidden initially */
@@ -86,7 +88,7 @@ h2 {
 .desc1 {
   font-size: 20px;
   font-family: "Roboto", sans-serif;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 #section4,
@@ -142,10 +144,9 @@ h2 {
   font-weight: 500;
   text-align: center;
   margin: 0;
-  margin-bottom: 100px;
+  margin-bottom: 150px;
   padding: 50px;
-  margin-top: 5px;
-
+  margin-top: 110px;
   background-size: 1000% 1000%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

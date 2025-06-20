@@ -29,7 +29,6 @@
 
 #scrollButton:hover {
   padding: 20px 55px; /* Slightly bigger padding than .scroll-btn */
-  border-color: rgba(0, 0, 0, 0.8); /* Darker border on hover */
 }
 
 #scrollButton::before {
@@ -39,16 +38,6 @@
   left: -50%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    120deg,
-    rgba(160, 160, 160, 0) 20%,
-    /* lighter transparent gray */ rgba(190, 190, 190, 0.25) 45%,
-    /* light gray, soft opacity */ rgba(210, 210, 210, 0.25) 55%,
-    /* even lighter gray, same opacity */ rgba(160, 160, 160, 0) 80%
-      /* lighter transparent gray */
-  );
-
-  transform: skewX(-20deg);
   transition: opacity 0.3s ease;
   opacity: 0;
   pointer-events: none;
@@ -57,15 +46,6 @@
 #scrollButton:hover::before {
   animation: shine 0.7s ease forwards;
   opacity: 1;
-}
-
-@keyframes shine {
-  0% {
-    transform: translateX(-100%) skewX(-20deg);
-  }
-  100% {
-    transform: translateX(100%) skewX(-20deg);
-  }
 }
 
 .all {
@@ -93,20 +73,9 @@
   }
 }
 
-@keyframes slideUpFadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .center-text {
   position: relative;
-  top: 35%;
+  top: 42%;
   transform: translateY(-50%);
   text-align: center;
   z-index: 1;
@@ -124,8 +93,6 @@
   font-size: 50px;
   font-weight: 500;
   opacity: 0;
-  animation: slideUpFadeIn 0.5s ease forwards;
-  animation-delay: 0s;
   white-space: nowrap;
   margin: 0px;
   margin-bottom: 20px;
@@ -137,9 +104,37 @@
   font-weight: 300;
   opacity: 0;
   margin: 0;
-  animation: slideUpFadeIn 0.5s ease forwards;
-  animation-delay: 0.35s;
   margin-bottom: 30px;
+}
+
+@keyframes slideUpFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUpFadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+}
+
+.animate-in {
+  animation: slideUpFadeIn 1s ease-in-out forwards; /* smoother ease and longer */
+}
+
+.animate-out {
+  animation: slideUpFadeOut 1s ease-in-out forwards; /* match duration with in */
 }
 
 .error {

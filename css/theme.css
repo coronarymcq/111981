@@ -33,6 +33,7 @@
   --shine-start: rgba(255, 255, 255, 0);
   --shine-middle: rgba(255, 255, 255, 0.2);
   --shine-end: rgba(255, 255, 255, 0);
+  --borderline: white;
 }
 
 /* Dark theme variables */
@@ -72,9 +73,6 @@
   --grad-9: rgb(200, 255, 255); /* Soft Cyan */
   --all-text: rgb(255, 255, 255);
   --scrl: black;
-  --shine-start: rgba(0, 0, 0, 0);
-  --shine-middle: rgba(0, 0, 0, 0.1);
-  --shine-end: rgba(0, 0, 0, 0);
 }
 
 .scroll-btn {
@@ -84,6 +82,7 @@
 
 #scrollButton:hover {
   background-color: var(--scrl);
+  border-color: var(--scrl);
 }
 
 .all-text0,
