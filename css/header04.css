@@ -329,3 +329,23 @@ nav {
 .nested-dropdown-content button:hover {
   background-color: #555555;
 }
+
+#pageLoadingBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 0%;
+  background: linear-gradient(
+    90deg,
+    rgb(173, 232, 244),
+    /* pastel light blue */ rgb(144, 224, 239),
+    /* soft aqua */ rgb(123, 217, 243),
+    /* calm cyan */ rgb(152, 228, 255),
+    /* sky blue */ rgb(144, 224, 239),
+    /* soft aqua (repeat) */ rgb(173, 232, 244) /* pastel light blue (repeat) */
+  );
+  z-index: 9999;
+  opacity: 1;
+  transition: width 0.8s ease, opacity 0.6s ease 0.2s;
+}

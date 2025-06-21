@@ -219,3 +219,25 @@ document.addEventListener("DOMContentLoaded", function () {
   const storedPage = sessionStorage.getItem("currentPage") || "main";
   loadContent(storedPage);
 });
+
+const loadingBar = document.getElementById("pageLoadingBar");
+
+// Phase 1: Simulate load buildup
+loadingBar.style.width = "20%";
+setTimeout(() => (loadingBar.style.width = "50%"), 200);
+setTimeout(() => (loadingBar.style.width = "80%"), 500);
+
+// Final Phase: On full page load
+window.addEventListener("load", () => {
+  loadingBar.style.width = "100%";
+
+  // Let the 100% width visually settle
+  setTimeout(() => {
+    loadingBar.style.opacity = "0";
+
+    // Remove from DOM after fade out completes
+    setTimeout(() => {
+      loadingBar.remove();
+    }, 800); // matches CSS opacity transition
+  }, 400); // delay before fade to let width reach 100%
+});
