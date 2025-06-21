@@ -139,65 +139,76 @@ setInterval(switchStatement, 5000);
 
 /* -------------------------------------------------------------- */
 
-const semesterData = {
-  y1s1: [
-    { title: "Histology Intro", url: "/pdfs/histology1.pdf" },
-    { title: "General Anatomy", url: "/pdfs/anatomy1.pdf" },
-  ],
-  y1s2: [{ title: "Physiology Midterm", url: "/pdfs/physiology2.pdf" }],
-  y1sum: [],
-  y2s1: [{ title: "Pharmacology Basics", url: "/pdfs/pharma.pdf" }],
-};
+(function () {
+  const semesters = [
+    "First Year<br>Second Semester",
+    "Second Year<br>Second Semester",
+    "Second Year<br>Summer Semester",
+    "Third Year<br>First Semester",
+    "Third Year<br>Second Semester",
+  ];
 
-function renderFloatingCards(cards) {
-  const container = document.getElementById("contentDisplay");
-  container.innerHTML = "";
-  if (!cards || cards.length === 0) {
-    container.innerHTML = "<p>No PDFs available for this semester yet.</p>";
-    return;
+  const miniPages = {
+    "First Year<br>Second Semester": "📘 Basic Sciences & Midterms prep notes.",
+    "Second Year<br>Second Semester":
+      "🧬 Pathology systems, Pharm II, and behavioral.",
+    "Second Year<br>Summer Semester":
+      "🧪 Research or electives like radiology, derm.",
+    "Third Year<br>First Semester":
+      "🩺 Internal Medicine, Surgery & Ward work starts.",
+    "Third Year<br>Second Semester":
+      "🧒 Pediatric + OBGYN + Psych rotations ongoing.",
+  };
+
+  let currentIndex = 0;
+
+  function renderSemester() {
+    const semesterTitle = document.getElementById("semesterTitle");
+    const miniPage = document.getElementById("miniPageContainer");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    if (!semesterTitle || !miniPage || !prevBtn || !nextBtn) {
+      return setTimeout(renderSemester, 100);
+    }
+
+    semesterTitle.innerHTML = semesters[currentIndex];
+    miniPage.innerHTML = `
+    <div>
+      ${miniPages[semesters[currentIndex]]}
+    </div>`;
+
+    // Left arrow: always visible in layout, but hidden & disabled on first semester
+    if (currentIndex === 0) {
+      prevBtn.style.opacity = "0";
+      prevBtn.style.pointerEvents = "none";
+    } else {
+      prevBtn.style.opacity = "1";
+      prevBtn.style.pointerEvents = "auto";
+    }
+
+    // Right arrow: hide on last semester
+    nextBtn.style.display =
+      currentIndex === semesters.length - 1 ? "none" : "inline-block";
+
+    // Ensure left arrow always takes up space to prevent shifting
+    prevBtn.style.display = "inline-block";
   }
-  cards.forEach((card) => {
-    const div = document.createElement("div");
-    div.className = "floating-card";
-    div.innerHTML = `
-      <h3>${card.title}</h3>
-      <button onclick="window.open('${card.url}', '_blank')">Download</button>
-    `;
-    container.appendChild(div);
-  });
-}
 
-document.querySelectorAll(".timeline-label").forEach((label) => {
-  label.addEventListener("click", () => {
-    document
-      .querySelectorAll(".timeline-label")
-      .forEach((n) => n.classList.remove("active"));
-    label.classList.add("active");
-    const semesterKey = label.dataset.semester;
-    renderFloatingCards(semesterData[semesterKey]);
-    localStorage.setItem("selectedSemester", semesterKey); // Save selection
-  });
-});
+  window.changeSemester = function (direction) {
+    if (
+      (direction === -1 && currentIndex > 0) ||
+      (direction === 1 && currentIndex < semesters.length - 1)
+    ) {
+      currentIndex += direction;
+      renderSemester();
+    }
+    // else do nothing to ignore invalid clicks
+  };
 
-/*------------------------------------*/
-
-const timelineLabels = document.querySelectorAll(".timeline-label");
-
-// Initial load - set active from saved or default, render cards
-const savedSemester = localStorage.getItem("selectedSemester") || "y1s1";
-timelineLabels.forEach((label) => {
-  label.classList.remove("active");
-  if (label.dataset.semester === savedSemester) {
-    label.classList.add("active");
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", renderSemester);
+  } else {
+    renderSemester();
   }
-});
-renderFloatingCards(semesterData[savedSemester]);
-
-// Clear saved semester and reload when clicking logo to reset to default
-const logo = document.querySelector(".hover-logo");
-if (logo) {
-  logo.addEventListener("click", () => {
-    localStorage.removeItem("selectedSemester");
-    location.reload();
-  });
-}
+})();

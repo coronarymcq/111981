@@ -14,32 +14,41 @@
 </div>
 
 <div class="containerhome">
-  <div class="content-display" id="contentDisplay">
-    <!-- Cards will appear here -->
-  </div>
+  <h1
+    id="aboutus"
+    style="
+      margin-bottom: 0;
+      margin-top: 0px;
+      font-size: 90px;
+      padding-top: 150px;
+    "
+  >
+    Time line
+  </h1>
 
-  <div class="timeline-container">
-    <div class="timeline-track">
-      <div class="timeline-line"></div>
+  <div class="timeline-header">
+    <button id="prevBtn" onclick="changeSemester(-1)" style="display: none">
+      ←
+    </button>
 
-      <div class="timeline-label active" data-semester="y1s1">
-        <span>First Year<br />First Semester</span>
-      </div>
-
-      <div class="timeline-label" data-semester="y2s2">
-        <span>Second Year<br />Second Semester</span>
-      </div>
-      <div class="timeline-label" data-semester="y2sum">
-        <span>Second Year<br />Summer Semester</span>
-      </div>
-      <div class="timeline-label" data-semester="y3s1">
-        <span>Third Year<br />First Semester</span>
-      </div>
-      <div class="timeline-label" data-semester="y3s2">
-        <span>Third Year<br />Second Semester</span>
-      </div>
+    <div id="titleWrapper">
+      <h2 id="semesterTitle" class="undertime"></h2>
     </div>
+
+    <button id="nextBtn" onclick="changeSemester(1)">→</button>
   </div>
+
+  <div
+    id="miniPageContainer"
+    style="
+      margin-top: 90px;
+      font-family: Arial, sans-serif;
+      font-size: 20px;
+      display: block;
+      width: 100vw;
+      box-sizing: border-box;
+    "
+  ></div>
 </div>
 
 <div class="error">

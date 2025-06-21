@@ -547,3 +547,62 @@ body.arabic-font .dropdown-content button {
     background-position: 0% 50%;
   }
 }
+
+#semesterTitle {
+  /* your existing styles */
+  font-family: Montserrat, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 50px;
+  margin: 0;
+  padding: 0 50px;
+  white-space: nowrap;
+  overflow: visible;
+  min-width: 350px;
+  text-align: center;
+
+  background: linear-gradient(
+    270deg,
+    var(--grad-1),
+    var(--grad-2),
+    var(--grad-3),
+    var(--grad-4),
+    var(--grad-5),
+    var(--grad-6),
+    var(--grad-7),
+    var(--grad-8),
+    var(--grad-9)
+  );
+  background-size: 400% 400%;
+  animation: gradientMove 300s ease-in-out infinite;
+  will-change: background-position;
+  background-size: 1000% 1000%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: gradientMove 10s ease infinite, slideDownFadeIn 1s ease forwards;
+  opacity: 0;
+  animation-delay: 0s, 0s;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes slideDownFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px); /* start 30px above */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* normal position */
+  }
+}

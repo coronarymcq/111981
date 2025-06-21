@@ -172,132 +172,90 @@
 
 /*--------------------------------------------*/
 
-.timeline-container {
-  position: relative;
-  width: 100%;
-  overflow-x: auto;
-  white-space: nowrap;
-  padding: 60px 0;
-}
-
-.timeline-track {
-  position: relative;
-  display: flex;
-  height: 100px;
-  align-items: flex-start;
-  min-width: 1600px; /* increase total width to allow more spacing */
-  justify-content: space-between; /* spread labels evenly */
-  padding: 0 40px; /* optional horizontal padding inside container */
-}
-
-.timeline-line {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  z-index: 1;
-}
-
-.timeline-label {
-  position: relative;
-  display: inline-block;
-  width: 140px; /* slightly wider labels for more breathing room */
-  text-align: center;
-  z-index: 2;
-  cursor: pointer;
-  margin: 0 20px; /* horizontal margin for extra spacing */
-}
-
-.timeline-label span {
-  display: block;
-  font-size: 14px;
-  margin-top: 60px;
-  pointer-events: none;
-}
-
-.timeline-label::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1px;
-  height: 25px;
-  z-index: 2;
-}
-
-.content-display {
-  position: relative;
-  width: 100%;
-  min-height: 300px;
-  margin-bottom: 40px;
+#miniPageContainer {
+  padding: 30px;
+  margin-top: 30px;
   border-radius: 12px;
-  display: flex;
-  flex-direction: column; /* stack cards vertically */
-  gap: 16px; /* vertical spacing between cards */
-  padding: 20px;
-  /* optional: stretch children horizontally */
-  align-items: stretch; /* make cards take full width */
-  justify-content: flex-start;
+  background-color: #f5f5f5;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  width: 100vw; /* stretches across full viewport */
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 20px;
 }
 
-.floating-card {
+.containerhome {
+  width: 100%; /* full width of parent (usually viewport) */
+  margin: 0; /* remove auto centering */
+  padding: 0 10px; /* keep horizontal padding if you want */
+  box-sizing: border-box;
+}
+
+.timeline-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* buttons take only needed space */
+  align-items: center;
+  width: 100vw; /* full viewport width */
+  max-width: 100%; /* prevent overflow */
+  padding: 0 10px; /* optional padding so buttons aren’t stuck to screen edges */
+  box-sizing: border-box;
+}
+
+#titleWrapper {
   position: relative;
-  width: 100%; /* make each card fill container width */
-  max-width: 400px; /* optional max width for cards */
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 12px;
+  width: 100%;
+  height: 100px; /* adjust as needed */
+  overflow: hidden;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 }
 
-.floating-card h3 {
-  font-size: 15px;
-  margin-bottom: 4px;
+#semesterTitle {
+  font-family: Montserrat, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 50px;
+  margin: 0 10px; /* some horizontal margin so text doesn’t touch buttons */
+  white-space: nowrap;
+  overflow: visible;
+  text-align: center;
+  width: 100%; /* fill the middle column */
+  background-size: 1000% 1000%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 10s ease infinite, slideDownFadeIn 1s ease forwards;
+  opacity: 0;
+  animation-delay: 0s, 0s;
 }
 
-.floating-card button {
-  padding: 4px 10px;
-  font-size: 13px;
-  background: #2aa5ae;
-  color: white;
-  border: none;
-  border-radius: 5px;
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes slideDownFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px); /* start 30px above */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* normal position */
+  }
+}
+
+#prevBtn,
+#nextBtn {
+  width: 50px; /* match grid column width */
+  height: 40px;
+  font-size: 24px;
   cursor: pointer;
-  align-self: flex-start;
-}
-
-/* 1. On hover, enlarge the label text slightly */
-.timeline-label:hover span {
-  transform: scale(1.15);
-  transition: transform 0.3s ease;
-}
-
-.timeline-label::after {
-  content: "";
-  position: absolute;
-  top: -15px;
-  left: 50%;
-  transform: translateX(-50%) scale(0);
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: var(--text-color); /* Uses synced theme color */
-  transition: transform 0.3s ease;
-  z-index: 3;
-  pointer-events: none;
-}
-
-/* Hover effect (preview the dot) */
-.timeline-label:hover::after {
-  transform: translateX(-50%) scale(1.2);
-}
-
-/* Active circle stays filled and visible */
-.timeline-label.active::after {
-  transform: translateX(-50%) scale(1.2);
+  transition: opacity 0.3s ease;
 }
