@@ -138,7 +138,6 @@ animateIn(pElement, 500);
 setInterval(switchStatement, 5000);
 
 /* -------------------------------------------------------------- */
-
 (function () {
   const semesters = [
     "First Year<br>Second Semester",
@@ -186,13 +185,17 @@ setInterval(switchStatement, 5000);
       prevBtn.style.opacity = "1";
       prevBtn.style.pointerEvents = "auto";
     }
-
-    // Right arrow: hide on last semester
-    nextBtn.style.display =
-      currentIndex === semesters.length - 1 ? "none" : "inline-block";
-
-    // Ensure left arrow always takes up space to prevent shifting
     prevBtn.style.display = "inline-block";
+
+    // Right arrow: same treatment as left arrow now
+    if (currentIndex === semesters.length - 1) {
+      nextBtn.style.opacity = "0";
+      nextBtn.style.pointerEvents = "none";
+    } else {
+      nextBtn.style.opacity = "1";
+      nextBtn.style.pointerEvents = "auto";
+    }
+    nextBtn.style.display = "inline-block";
   }
 
   window.changeSemester = function (direction) {
@@ -203,7 +206,6 @@ setInterval(switchStatement, 5000);
       currentIndex += direction;
       renderSemester();
     }
-    // else do nothing to ignore invalid clicks
   };
 
   if (document.readyState === "loading") {
@@ -212,3 +214,12 @@ setInterval(switchStatement, 5000);
     renderSemester();
   }
 })();
+
+document.querySelectorAll("#nextBtn, #prevBtn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    btn.classList.add("clicked");
+    setTimeout(() => {
+      btn.classList.remove("clicked");
+    }, 30); // match the animation duration
+  });
+});
