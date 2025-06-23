@@ -152,50 +152,59 @@ setInterval(switchStatement, 5000);
   const miniPages = {
     "First Year<br>Second Semester": [
       {
-        title: "Health manegment quiz, part 1",
+        title: "Health Manegment Quiz, Part 1",
         url: "../HCM  - CH1 (1).pdf",
       },
       {
-        title: "Health manegment quiz, part 2",
+        title: "Health Manegment Quiz, Part 2",
         url: "../HCM - CH1 (2).pdf",
       },
       {
-        title: "Health manegment quiz, part 3",
+        title: "Health Manegment Quiz, Part 3",
         url: "../HCM - CH1 (3).pdf",
       },
       {
-        title: "Health manegment quiz, part 4",
+        title: "Health Manegment Quiz, Part 4",
         url: "../HCM - CH2.pdf",
       },
       {
-        title: "Health informatics quiz, part 1",
+        title: "Health Informatics Quiz, Part 1",
         url: "../HIS CH1.pdf",
       },
       {
-        title: "Health informatics quiz, part 2",
+        title: "Health Informatics Quiz, Part 2",
         url: "../HIS CH2-PT2.pdf",
       },
       {
-        title: "Health informatics quiz, part 3",
+        title: "Health Informatics Quiz, Part 3",
         url: "../HIS CH3.pdf",
       },
       {
-        title: "Health informatics quiz, part 4",
+        title: "Health Informatics Quiz, Part 4",
         url: "https://docs.google.com/forms/d/e/1FAIpQLSdUmHknBEsriVNkrWZHFW6mCJq3ezJxP3ZhoU73I4w9mtQ0IQ/viewform",
       },
       {
-        title: "Health informatics quiz, part 5",
+        title: "Health Informatics Quiz, Part 5",
         url: "https://docs.google.com/forms/d/e/1FAIpQLSdfP5CCevfWXfU8Ep8G16SvS9arwttYGbivYk_py3rP-XETlw/viewform?usp=sf_link",
       },
       {
-        title: "Health informatics quiz, part 6",
+        title: "Health Informatics Quiz, Part 6",
         url: "https://docs.google.com/forms/d/e/1FAIpQLSdKWsL9xCohiI77LSfVS8fHW2LXWKL2hu4gF82wB3qQQ6g3LQ/viewform?usp=sf_link",
       },
     ],
     "Second Year<br>Second Semester": [
-      { title: "Pathology Systems.pdf", url: "/pdfs/pathology_systems.pdf" },
-      { title: "Pharm II Notes.pdf", url: "/pdfs/pharm_ii.pdf" },
-      { title: "Behavioral Science.pdf", url: "/pdfs/behavioral.pdf" },
+      {
+        title: "Physiology ECG Lab Sheet",
+        url: "../CVS PHYSIOLOGY LAB 2024.pdf",
+      },
+      {
+        title: "Histology CVS Lab Sheet",
+        url: "../CVS HISTOLOGY LAB 2024.pdf",
+      },
+      {
+        title: "Anatomy CVS Quiz",
+        url: "../CVS ANATOMY SUGGESTED MCQ’S.pdf",
+      },
     ],
     "Second Year<br>Summer Semester": [
       { title: "Radiology Elective.pdf", url: "/pdfs/radiology.pdf" },
