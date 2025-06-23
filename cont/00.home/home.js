@@ -153,31 +153,31 @@ setInterval(switchStatement, 5000);
     "First Year<br>Second Semester": [
       {
         title: "Health Manegment Quiz, Part 1",
-        url: "../HCM  - CH1 (1).pdf",
+        url: "HCM  - CH1 (1).pdf",
       },
       {
         title: "Health Manegment Quiz, Part 2",
-        url: "../HCM - CH1 (2).pdf",
+        url: "HCM - CH1 (2).pdf",
       },
       {
         title: "Health Manegment Quiz, Part 3",
-        url: "../HCM - CH1 (3).pdf",
+        url: "HCM - CH1 (3).pdf",
       },
       {
         title: "Health Manegment Quiz, Part 4",
-        url: "../HCM - CH2.pdf",
+        url: "HCM - CH2.pdf",
       },
       {
         title: "Health Informatics Quiz, Part 1",
-        url: "../HIS CH1.pdf",
+        url: "HIS CH1.pdf",
       },
       {
         title: "Health Informatics Quiz, Part 2",
-        url: "../HIS CH2-PT2.pdf",
+        url: "HIS CH2-PT2.pdf",
       },
       {
         title: "Health Informatics Quiz, Part 3",
-        url: "../HIS CH3.pdf",
+        url: "HIS CH3.pdf",
       },
       {
         title: "Health Informatics Quiz, Part 4",
@@ -195,15 +195,15 @@ setInterval(switchStatement, 5000);
     "Second Year<br>Second Semester": [
       {
         title: "Physiology ECG Lab Sheet",
-        url: "../CVS PHYSIOLOGY LAB 2024.pdf",
+        url: "CVS PHYSIOLOGY LAB 2024.pdf",
       },
       {
         title: "Histology CVS Lab Sheet",
-        url: "../CVS HISTOLOGY LAB 2024.pdf",
+        url: "CVS HISTOLOGY LAB 2024.pdf",
       },
       {
         title: "Anatomy CVS Quiz",
-        url: "../CVS ANATOMY SUGGESTED MCQ’S.pdf",
+        url: "CVS ANATOMY SUGGESTED MCQ’S.pdf",
       },
     ],
     "Second Year<br>Summer Semester": [
