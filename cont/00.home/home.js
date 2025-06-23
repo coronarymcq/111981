@@ -244,8 +244,18 @@ setInterval(switchStatement, 5000);
       },
     ],
     "Second Year<br>Summer Semester": [
-      { title: "Radiology Elective.pdf", url: "/pdfs/radiology.pdf" },
-      { title: "Dermatology Elective.pdf", url: "/pdfs/dermatology.pdf" },
+      {
+        title: "Coronary Batch Final Public Health Exam",
+        url: "CORONARY FINAL PUBLIC HEALTH.pdf",
+      },
+      {
+        title: "Coronary Batch Final Biostatisics Exam",
+        url: "CORONARY FINAL EPIDEMIOLOGY.pdf",
+      },
+      {
+        title: "Biostatisics SPSS Program Sheet",
+        url: "SPSS.pdf",
+      },
     ],
     "Third Year<br>First Semester": [
       {
