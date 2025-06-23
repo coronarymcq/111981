@@ -147,16 +147,34 @@ setInterval(switchStatement, 5000);
     "Third Year<br>Second Semester",
   ];
 
+  // Mapping semesters to arrays of pdf info: {title, url}
   const miniPages = {
-    "First Year<br>Second Semester": "📘 Basic Sciences & Midterms prep notes.",
-    "Second Year<br>Second Semester":
-      "🧬 Pathology systems, Pharm II, and behavioral.",
-    "Second Year<br>Summer Semester":
-      "🧪 Research or electives like radiology, derm.",
-    "Third Year<br>First Semester":
-      "🩺 Internal Medicine, Surgery & Ward work starts.",
-    "Third Year<br>Second Semester":
-      "🧒 Pediatric + OBGYN + Psych rotations ongoing.",
+    "First Year<br>Second Semester": [
+      { title: "Basic Sciences Notes.pdf", url: "/pdfs/basic_sciences.pdf" },
+      { title: "Midterms Prep.pdf", url: "/pdfs/midterms_prep.pdf" },
+    ],
+    "Second Year<br>Second Semester": [
+      { title: "Pathology Systems.pdf", url: "/pdfs/pathology_systems.pdf" },
+      { title: "Pharm II Notes.pdf", url: "/pdfs/pharm_ii.pdf" },
+      { title: "Behavioral Science.pdf", url: "/pdfs/behavioral.pdf" },
+    ],
+    "Second Year<br>Summer Semester": [
+      { title: "Radiology Elective.pdf", url: "/pdfs/radiology.pdf" },
+      { title: "Dermatology Elective.pdf", url: "/pdfs/dermatology.pdf" },
+    ],
+    "Third Year<br>First Semester": [
+      {
+        title: "Internal Medicine Notes.pdf",
+        url: "/pdfs/internal_medicine.pdf",
+      },
+      { title: "Surgery Notes.pdf", url: "/pdfs/surgery.pdf" },
+      { title: "Ward Work Guide.pdf", url: "/pdfs/ward_work.pdf" },
+    ],
+    "Third Year<br>Second Semester": [
+      { title: "Pediatrics Rotation.pdf", url: "/pdfs/pediatrics.pdf" },
+      { title: "OBGYN Rotation.pdf", url: "/pdfs/obgyn.pdf" },
+      { title: "Psychiatry Rotation.pdf", url: "/pdfs/psych.pdf" },
+    ],
   };
 
   let currentIndex = 0;
@@ -172,29 +190,45 @@ setInterval(switchStatement, 5000);
     }
 
     semesterTitle.innerHTML = semesters[currentIndex];
-    miniPage.innerHTML = `
-    <div>
-      ${miniPages[semesters[currentIndex]]}
-    </div>`;
 
-    // Left arrow: always visible in layout, but hidden & disabled on first semester
-    if (currentIndex === 0) {
-      prevBtn.style.opacity = "0";
-      prevBtn.style.pointerEvents = "none";
-    } else {
-      prevBtn.style.opacity = "1";
-      prevBtn.style.pointerEvents = "auto";
-    }
+    // Clear old content
+    miniPage.innerHTML = "";
+
+    // Create a div for each PDF file
+    const pdfFiles = miniPages[semesters[currentIndex]] || [];
+    pdfFiles.forEach(({ title, url }, index) => {
+      const pdfDiv = document.createElement("div");
+      pdfDiv.className = "pdf-card";
+      pdfDiv.style.animationDelay = `${index * 200}ms`; // staggered 0.1s steps
+
+      const titleSpan = document.createElement("span");
+      titleSpan.textContent = title;
+      titleSpan.style.flex = "1";
+
+      const viewBtn = document.createElement("button");
+      viewBtn.textContent = "View";
+      viewBtn.onclick = (e) => {
+        e.stopPropagation();
+        window.open(url, "_blank");
+      };
+
+      pdfDiv.style.display = "flex";
+      pdfDiv.style.alignItems = "center";
+      pdfDiv.style.justifyContent = "space-between";
+
+      pdfDiv.appendChild(titleSpan);
+      pdfDiv.appendChild(viewBtn);
+      miniPage.appendChild(pdfDiv);
+    });
+
+    // Manage nav button visibility
+    prevBtn.style.opacity = currentIndex === 0 ? "0" : "1";
+    prevBtn.style.pointerEvents = currentIndex === 0 ? "none" : "auto";
     prevBtn.style.display = "inline-block";
 
-    // Right arrow: same treatment as left arrow now
-    if (currentIndex === semesters.length - 1) {
-      nextBtn.style.opacity = "0";
-      nextBtn.style.pointerEvents = "none";
-    } else {
-      nextBtn.style.opacity = "1";
-      nextBtn.style.pointerEvents = "auto";
-    }
+    nextBtn.style.opacity = currentIndex === semesters.length - 1 ? "0" : "1";
+    nextBtn.style.pointerEvents =
+      currentIndex === semesters.length - 1 ? "none" : "auto";
     nextBtn.style.display = "inline-block";
   }
 
@@ -214,12 +248,3 @@ setInterval(switchStatement, 5000);
     renderSemester();
   }
 })();
-
-document.querySelectorAll("#nextBtn, #prevBtn").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    btn.classList.add("clicked");
-    setTimeout(() => {
-      btn.classList.remove("clicked");
-    }, 30); // match the animation duration
-  });
-});

@@ -52,7 +52,7 @@
   --bottom-border-color: rgb(255, 255, 255);
   --header-shadow: rgba(0, 0, 0, 0.15);
   --header-border: 1px solid #50c7c700;
-  --lang-bg: rgba(59, 59, 59, 0.961);
+  --lang-bg: rgb(0, 0, 0);
   --lang-txt: white;
   --lang-hover: #555555;
   --nav-hover: rgba(255, 255, 255, 0.048);
