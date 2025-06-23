@@ -205,6 +205,22 @@ setInterval(switchStatement, 5000);
         title: "Anatomy CVS Quiz",
         url: "CVS ANATOMY SUGGESTED MCQ’S.pdf",
       },
+      {
+        title: "Anatomy GIS Lab Checklist, Part 1",
+        url: "GIS ANATOMY CHECK LIST LAB 1.pdf",
+      },
+      {
+        title: "Anatomy GIS Lab Checklist, Part 2",
+        url: "GIS ANATOMY CHECK LIST LAB 2.pdf",
+      },
+      {
+        title: "Anatomy GIS Lab Sheet",
+        url: "GIS ANATOMY LAB (2) 2024.pdf",
+      },
+      {
+        title: "Histology GIS Lab Sheet",
+        url: "GIS HISTOLOGY LAB 2024.pdf",
+      },
     ],
     "Second Year<br>Summer Semester": [
       { title: "Radiology Elective.pdf", url: "/pdfs/radiology.pdf" },
