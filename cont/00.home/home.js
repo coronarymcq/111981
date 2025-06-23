@@ -202,7 +202,7 @@ setInterval(switchStatement, 5000);
         url: "CORONARY FINAL GENETICS.pdf",
       },
       {
-        title: "Genetics MCQ Bank",
+        title: "Genetics QBank",
         url: "https://t.me/coronarymcq/1724",
       },
       {
@@ -259,12 +259,47 @@ setInterval(switchStatement, 5000);
     ],
     "Third Year<br>First Semester": [
       {
-        title: "Internal Medicine Notes.pdf",
-        url: "/pdfs/internal_medicine.pdf",
+        title: "Coronary Batch Midterm RS Exam",
+        url: "CORONARY MIDTERM RS.pdf",
       },
-      { title: "Surgery Notes.pdf", url: "/pdfs/surgery.pdf" },
-      { title: "Ward Work Guide.pdf", url: "/pdfs/ward_work.pdf" },
+      {
+        title: "Coronary Batch Final RS Exam",
+        url: "CORONARY FINAL RS.pdf",
+      },
+      {
+        title: "RS Past Papers QBank",
+        url: "https://drive.google.com/drive/folders/1LA00tdwJ0YT0U7xFaZe0AvnYWuv-Fsv5?usp=drive_link",
+      },
+      {
+        title: "Coronary Batch Midterm MSS Exam",
+        url: "CORONARY MIDTERM MSS.pdf",
+      },
+      {
+        title: "Coronary Batch Final MSS Exam",
+        url: "https://t.me/coronarymcq/2500",
+      },
+      {
+        title: "Coronary Batch Midterm Immunology Exam",
+        url: "Midterm Exam 2023-2024 student - official key answers.docx.pdf",
+      },
+      {
+        title: "Immunology Past Papers QBank",
+        url: "Final Immunology تجميع.pdf",
+      },
+      {
+        title: "Coronary Batch Midterm ES Exam",
+        url: "CORONARY MIDTERM ES.pdf",
+      },
+      {
+        title: "Coronary Batch Final ES Exam",
+        url: "CORONARY FINAL ES.pdf",
+      },
+      {
+        title: "ES Past Papers QBank",
+        url: "https://drive.google.com/drive/folders/101pwUCbBA7Qit5wiUxy4X_T44DFN7R_b?usp=drive_link",
+      },
     ],
+
     "Third Year<br>Second Semester": [
       { title: "Pediatrics Rotation.pdf", url: "/pdfs/pediatrics.pdf" },
       { title: "OBGYN Rotation.pdf", url: "/pdfs/obgyn.pdf" },
