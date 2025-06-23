@@ -292,7 +292,7 @@ setInterval(switchStatement, 5000);
       },
       {
         title: "Coronary Batch Final ES Exam",
-        url: "CORONARY FINAL ES.pdf",
+        url: "https://t.me/coronarymcqgc/4105",
       },
       {
         title: "ES Past Papers QBank",
@@ -300,11 +300,7 @@ setInterval(switchStatement, 5000);
       },
     ],
 
-    "Third Year<br>Second Semester": [
-      { title: "Pediatrics Rotation.pdf", url: "/pdfs/pediatrics.pdf" },
-      { title: "OBGYN Rotation.pdf", url: "/pdfs/obgyn.pdf" },
-      { title: "Psychiatry Rotation.pdf", url: "/pdfs/psych.pdf" },
-    ],
+    "Third Year<br>Second Semester": [],
   };
 
   let currentIndex = 0;
