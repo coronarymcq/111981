@@ -202,6 +202,7 @@
   padding: 35px;
   padding-bottom: 25px;
   margin-top: 70px;
+  margin-bottom: 20px;
   border-radius: 8px;
   border: 1px solid rgb(123, 123, 123);
   width: 100%; /* Changed from 100vw to 100% */
