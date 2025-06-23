@@ -194,6 +194,27 @@ setInterval(switchStatement, 5000);
     ],
     "Second Year<br>Second Semester": [
       {
+        title: "Coronary Batch Midterm Genetics Exam",
+        url: "CORONARY MIDTERM GENETICS.pdf",
+      },
+      {
+        title: "Coronary Batch Final Genetics Exam",
+        url: "CORONARY FINAL GENETICS.pdf",
+      },
+      {
+        title: "Genetics MCQ Bank",
+        url: "https://t.me/coronarymcq/1724",
+      },
+      {
+        title: "HY Mendel Inheritance Concepts",
+        url: "HIGH YIELD CONCEPTS IN MENDEL INHERITANCE MODES.pdf",
+      },
+
+      {
+        title: "HY Pedigree Concepts",
+        url: "PEDIGREE GUIDELINES AND CONCEPTS.pdf",
+      },
+      {
         title: "Physiology ECG Lab Sheet",
         url: "CVS PHYSIOLOGY LAB 2024.pdf",
       },
