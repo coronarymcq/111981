@@ -188,24 +188,28 @@ function loadContactUs() {
   loadContent("contact");
 }
 
-const backToTopBtn = document.getElementById("backToTopBtn");
+const backToTopBtn = document.querySelector(".back-to-top");
 
-window.onscroll = function () {
-  if (
-    document.body.scrollTop > 300 ||
-    document.documentElement.scrollTop > 300
-  ) {
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    // Show the button (remove fade-out if any)
+    backToTopBtn.classList.remove("fade-out");
     backToTopBtn.classList.add("show");
   } else {
-    backToTopBtn.classList.remove("show");
+    // Fade out first, then remove show after animation
+    if (backToTopBtn.classList.contains("show")) {
+      backToTopBtn.classList.add("fade-out");
+
+      backToTopBtn.addEventListener("transitionend", function handler() {
+        backToTopBtn.classList.remove("show", "fade-out");
+        backToTopBtn.removeEventListener("transitionend", handler);
+      });
+    }
   }
-};
+});
 
 backToTopBtn.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 document.addEventListener("DOMContentLoaded", function () {

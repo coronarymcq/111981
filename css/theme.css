@@ -53,7 +53,7 @@
   --header-shadow: rgba(0, 0, 0, 0.15);
   --header-border: 1px solid #50c7c700;
   --lang-bg: rgb(0, 0, 0);
-  --lang-txt: white;
+  --lang-txt: rgba(255, 255, 255, 0.759);
   --lang-hover: #555555;
   --nav-hover: rgba(255, 255, 255, 0.048);
   --drop-down: rgba(255, 255, 255, 0.082);
@@ -97,10 +97,6 @@
 
 .fas {
   color: var(--toptxt);
-}
-
-.back-to-top {
-  background-color: var(--top);
 }
 
 .dynamic-hover:hover {

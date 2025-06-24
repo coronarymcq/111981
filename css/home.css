@@ -77,7 +77,7 @@
 .all {
   position: relative; /* stays in flow */
   width: 100vw;
-  height: 95vh; /* full screen height */
+  height: 100vh; /* full screen height */
   padding-top: 100px;
   background: linear-gradient(270deg, #2aa5ae, #2cc9c7, #13c9ba);
   background-size: 1600% 1600%;
@@ -177,6 +177,10 @@
   }
 
   .containerhome {
+    display: none;
+  }
+
+  footer {
     display: none;
   }
 }

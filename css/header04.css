@@ -83,13 +83,6 @@ nav {
 }
 
 .right-section button {
-  background-color: transparent;
-  border: none;
-  font-size: 14px;
-  color: rgba(57, 57, 57, 0.696);
-  padding: 10px 30px 10px 30px;
-  border-radius: 2px;
-  transition: background-color 0.3s;
   white-space: nowrap;
   touch-action: manipulation;
 }
