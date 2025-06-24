@@ -44,14 +44,24 @@ a:visited {
 
 /* Default animation for all sections except Section 1 and li5 */
 .scroll-section {
-  transform: translateY(50px); /* Default Y animation */
-  opacity: 0; /* Initially hidden */
-  transition: opacity 1s ease, transform 1s ease; /* Smooth transition */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.scroll-section1 {
+  padding: 50px;
+  padding-top: 0px;
+  padding-left: 100px;
+  padding-right: 100px;
+  margin: 50px 0;
+  margin-top: 0px;
+  transition: all 1s ease-out;
 }
 
 .scroll-section.visible {
-  opacity: 1; /* Fully visible */
-  transform: translateY(0); /* Moves to its normal position */
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Specific animations for li5 and section1 */
