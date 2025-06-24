@@ -300,7 +300,32 @@ setInterval(switchStatement, 5000);
       },
     ],
 
-    "Third Year<br>Second Semester": [],
+    "Third Year<br>Second Semester": [
+      {
+        title: "Coronary Batch Midterm UGS Exam",
+        url: "CORONARY MIDTERM UGS.pdf",
+      },
+      {
+        title: "Coronary Batch Final UGS Exam",
+        url: "https://t.me/coronarymcqgc/5880",
+      },
+      {
+        title: "Development of Placental Circulation Anatomy Sheet",
+        url: "Anatomy last lecture final sheet.pdf",
+      },
+      {
+        title: "Histology UGS Summary Table",
+        url: "Histology table.pdf",
+      },
+      {
+        title: "Microbiology UGS Lab Sheet",
+        url: "UGS-Microbiology.html",
+      },
+      {
+        title: "Microbiology UGS Lecture 5 Sheet",
+        url: "MICROBIOLOGY-GUS-5 (1).html",
+      },
+    ],
   };
 
   let currentIndex = 0;

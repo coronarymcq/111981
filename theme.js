@@ -1,6 +1,6 @@
 // Apply saved theme and update everything when DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
-  const savedTheme = localStorage.getItem("theme") || "light";
+  const savedTheme = localStorage.getItem("theme") || "Dark";
   applyTheme(savedTheme);
   preloadLogos();
 });
