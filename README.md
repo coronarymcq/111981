@@ -1,4 +1,4 @@
-# UPDATES (current version: 1.13)
+# UPDATES (current version: 1.15)
 
 ---
 
