@@ -109,7 +109,6 @@
 }
 
 .containerhome {
-  min-height: 100vh;
   padding: 80px 20px;
 }
 
@@ -163,43 +162,6 @@
   animation: slideUpFadeOut 1s ease-in-out forwards; /* match duration with in */
 }
 
-.error {
-  text-align: center;
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  pointer-events: none;
-}
-
-@media (max-width: 1000px) {
-  .all {
-    display: none;
-  }
-
-  .containerhome {
-    display: none;
-  }
-
-  footer {
-    display: none;
-  }
-}
-
-/* Media query to hide mainhome and show error */
-@media (max-width: 1000px) {
-  .error {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-    padding: 10px;
-    margin-top: 500px;
-  }
-
-  .end-margin {
-    display: none;
-  }
-}
-
 /*--------------------------------------------*/
 
 #miniPageContainer {
@@ -234,7 +196,7 @@
   border-width: 2px;
   border-style: dashed;
   border-color: gray;
-  font-size: 23px;
+  font-size: 18px;
   padding: 15px 20px;
   margin-bottom: 15px;
   cursor: auto;
@@ -264,7 +226,7 @@
 
 .pdf-card button {
   padding: 10px 15px;
-  font-size: 19px;
+  font-size: 15px;
   border: none;
   border-radius: 6px;
   background-color: var(--all-text);
@@ -304,23 +266,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-#semesterTitle {
-  font-family: Montserrat, Arial, sans-serif;
-  font-weight: 500;
-  font-size: 45px;
-  margin: 0 10px; /* some horizontal margin so text doesn’t touch buttons */
-  white-space: nowrap;
-  overflow: visible;
-  text-align: center;
-  width: 100%; /* fill the middle column */
-  background-size: 1000% 1000%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientMove 10s ease infinite, slideDownFadeIn 1s ease forwards;
-  opacity: 0;
-  animation-delay: 0s, 0s;
 }
 
 @keyframes gradientMove {
@@ -450,4 +395,207 @@
   100% {
     transform: translateX(0);
   }
+}
+
+/*------------------------------------------------------*/
+
+.half-bg-container {
+  display: block;
+}
+
+.left-half {
+  padding: 40px;
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--bg-color);
+}
+
+.btn-take-me-there {
+  background: linear-gradient(45deg, #2aa5ae, #2cc9c7, #13c9ba);
+  color: white;
+  font-weight: 600;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(59, 130, 246, 0.4);
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  font-size: 1.4rem;
+  user-select: none;
+  margin-top: 20px;
+}
+
+.btn-take-me-there:hover {
+  background: linear-gradient(45deg, #7fb0fe, #70a4ff);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.6);
+  transform: translateY(-3px);
+}
+
+.btn-take-me-there:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+.error {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+}
+
+@media (max-width: 1000px) {
+  .all {
+    display: none;
+  }
+
+  .containerhome {
+    display: none;
+  }
+
+  footer {
+    display: none;
+  }
+
+  .half-bg-container {
+    display: none;
+  }
+}
+
+/* Media query to hide mainhome and show error */
+@media (max-width: 1000px) {
+  .error {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    padding: 10px;
+    margin-top: 500px;
+  }
+
+  .end-margin {
+    display: none;
+  }
+}
+
+.button-53 {
+  position: relative;
+  background-color: #2cc9c7;
+  border: 0 solid #e5e7eb;
+  box-sizing: border-box;
+  color: var(--all-text);
+  font-family: ui-sans-serif, system-ui, -apple-system, system-ui, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1.3rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1.75rem;
+  padding: 1.5rem 1.5rem;
+  display: inline-block; /* ensure natural size */
+  text-align: center;
+  width: 100%;
+  max-width: 460px;
+  cursor: pointer;
+  transform: rotate(-2deg);
+  user-select: none;
+  margin-top: 30px;
+  z-index: 0;
+  transition: color 0.3s ease;
+  overflow: visible; /* Allow ripple to overflow */
+}
+
+.button-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+  transform: none;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.button-inner {
+  position: relative;
+  display: block; /* changed from inline-block */
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  user-select: none;
+  pointer-events: auto;
+  text-align: center; /* ensure text centers */
+  line-height: 1.75rem; /* keep your line height */
+  margin-top: 5.5px;
+}
+
+@keyframes expand {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(10);
+  }
+}
+
+@keyframes stay-expanded {
+  0% {
+    transform: translate(-50%, -50%) scale(10);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(10);
+  }
+}
+
+.button-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  background-color: var(--all-text);
+  border-radius: 50%;
+  transform-origin: center;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 1s ease;
+  z-index: -1;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.button-53:not(:hover) .button-wrapper::before {
+  transition-duration: 0.7s; /* fast collapse */
+}
+
+.button-53:hover .button-wrapper::before {
+  transform: translate(-50%, -50%) scale(10);
+}
+
+.button-53:hover {
+  color: var(--scrl);
+}
+
+.button-53:after {
+  content: "";
+  position: absolute;
+  border: solid;
+  border-width: 2px;
+  border-color: var(--all-text);
+  bottom: 4px;
+  left: 4px;
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+  pointer-events: none;
+  transition: bottom 0.3s ease, left 0.3s ease;
+}
+
+.button-53:hover:after {
+  bottom: 2px;
+  left: 2px;
 }
