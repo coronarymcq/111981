@@ -158,3 +158,30 @@ The following changes have been made in this update, along with some reconsidera
 ![alt text](/legal/images/image-2.png)![alt text](/legal/images/image-1.png)
 
 7. Minor UI fixes.
+
+---
+
+**Version 1.15 | June the 24th**
+
+Big changes have taken place in this new version, including the following:
+
+1. A whole new redesigned **About Us** page, with a clear, colorful heading based on our color scheme. The heading changes dynamically with the currently applied theme, either dark or light.
+
+![alt text](legal/images/image-99.png) ![alt text](legal/images/image-98.png) ![alt text](legal/images/image-97.png)
+
+2. Fixed an auto-resizing issue on the **About Us** page on iPads, caused by a scroll visibility–invisibility mechanism from a function in JavaScript.
+
+3. A redesigned **Back to Top** button has been added, now placed in the **fixed top header** for easier interaction. The old fixed position was interfering with the layout and overlapping with the new homepage content.
+
+   ![alt text](legal/images/image-95.png) ![alt text](legal/images/image-96.png)
+
+4. A small footer has been added via JavaScript to mark the end of the webpage. It’s been redesigned from the old version.
+   ![alt text](legal/images/image-64.png) ![alt text](legal/images/image63.png)
+
+5. Minor UI fixes and redesigns on the header for better consistency and appearance. Navigation issues also have been fixed.
+
+6. New homepage content has been added, including a **main interface**, auto-switching **statements** every few seconds, and a button labeled **"Explore"** that smoothly scrolls the user to the first content section.
+   ![alt text](legal/images/home2.png) ![alt text](legal/images/home1.png) ![alt text](legal/images/home.png) ![alt text](legal/images/home3.png)
+
+7. A **timeline** section has been added where the user can switch between semesters and years smoothly. The work completed in each academic period appears under a dedicated mini container.
+   ![alt text](legal/images/home4.png) ![alt text](legal/images/home5.png) ![alt text](legal/images/home6.png) ![alt text](legal/images/home7.png) ![alt text](legal/images/home8.png)
