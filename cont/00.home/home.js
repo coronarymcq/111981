@@ -325,6 +325,58 @@ setInterval(switchStatement, 5000);
         title: "Microbiology UGS Lecture 5 Sheet",
         url: "MICROBIOLOGY-GUS-5 (1).html",
       },
+      {
+        title: "Vulva Pathologies Summary",
+        url: "Vulva.pdf",
+      },
+      {
+        title: "Vagina Pathologies Summary",
+        url: "Vagina.pdf",
+      },
+      {
+        title: "Uterus Pathologies Summary",
+        url: "Uterus.pdf",
+      },
+      {
+        title: "Testes Pathologies Summary",
+        url: "Testes.pdf",
+      },
+      {
+        title: "Prostate Pathologies Summary",
+        url: "Prostate.pdf",
+      },
+      {
+        title: "Ovaries Pathologies Summary",
+        url: "Ovaries.pdf",
+      },
+      {
+        title: "Pathology Mutations UGS Summary",
+        url: "Mutations.pdf",
+      },
+      {
+        title: "Cervix Pathologies Summary",
+        url: "Cervix.pdf",
+      },
+      {
+        title: "Breast Pathologies Summary",
+        url: "Breast.pdf",
+      },
+      {
+        title: "BS Past Papers QBank",
+        url: "https://drive.google.com/drive/folders/11D2Z_EBdm-eoMvbZI4VdNrVeUs-m0noH?usp=drive_link",
+      },
+      {
+        title: "Coronary Batch Final BS Exam",
+        url: "https://t.me/coronarymcqgc/6290",
+      },
+      {
+        title: "Coronary Batch Midterm HE Exam",
+        url: "https://t.me/coronarymcqgc/5551",
+      },
+      {
+        title: "Coronary Batch Final HE Exam",
+        url: "https://t.me/coronarymcqgc/6376",
+      },
     ],
   };
 
