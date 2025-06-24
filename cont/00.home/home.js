@@ -377,6 +377,26 @@ setInterval(switchStatement, 5000);
         title: "Coronary Batch Final HE Exam",
         url: "https://t.me/coronarymcqgc/6376",
       },
+      {
+        title: "Coronary Batch Final NS Exam",
+        url: "CORONARY FINAL NS.pdf",
+      },
+      {
+        title: "Coronary Batch Midterm NS Exam",
+        url: "CORONARY MIDTERM NS.pdf",
+      },
+      {
+        title: "Anatomy NS Lab 1 Sheet",
+        url: "Anatomy lab 1.pdf",
+      },
+      {
+        title: "Anatomy NS Lab 2 Sheet",
+        url: "Anatomy lab 2.pdf",
+      },
+      {
+        title: "Anatomy NS Lab 4 Sheet",
+        url: "Anatomy lab 4.pdf",
+      },
     ],
   };
 
