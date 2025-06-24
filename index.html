@@ -189,5 +189,26 @@
         }, 2500); // Wait for the complete transition duration before hiding
       }
     </script>
+    <script>
+      fetch("home.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("mainContainer").innerHTML = html;
+
+          // MutationObserver to wait for scrollButton to appear
+          const observer = new MutationObserver((mutations, obs) => {
+            if (document.getElementById("scrollButton")) {
+              console.log("🟢 scrollButton found by observer");
+              window.initHomeScroll();
+              obs.disconnect(); // Stop observing after found
+            }
+          });
+
+          observer.observe(document.getElementById("mainContainer"), {
+            childList: true,
+            subtree: true,
+          });
+        });
+    </script>
   </body>
 </html>

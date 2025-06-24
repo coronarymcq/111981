@@ -10,14 +10,14 @@ if (contactContainer) {
   function checkVisibility() {
     const windowHeight = window.innerHeight;
     sections.forEach((section) => {
-      const sectionTop = section.getBoundingClientRect().top;
-      const sectionBottom = section.getBoundingClientRect().bottom;
+      const rect = section.getBoundingClientRect();
+      const sectionTop = rect.top;
+      const sectionBottom = rect.bottom;
 
       if (sectionTop < windowHeight && sectionBottom >= 0) {
-        section.classList.add("visible"); // Adds the class to make it visible
-      } else {
-        section.classList.remove("visible"); // Removes the class when scrolling away
+        section.classList.add("visible"); // Add visible once
       }
+      // No removal of the class to keep it visible
     });
   }
 
