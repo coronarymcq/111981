@@ -559,7 +559,7 @@
   left: 50%;
   width: 100px;
   height: 100px;
-  background-color: var(--all-text);
+  background-color: var(--all-text) !important;
   border-radius: 50%;
   transform-origin: center;
   transform: translate(-50%, -50%) scale(0);
@@ -578,7 +578,7 @@
 }
 
 .button-53:hover {
-  color: var(--scrl);
+  color: var(--scrl) !important;
 }
 
 .button-53:after {

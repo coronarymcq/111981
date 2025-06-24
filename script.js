@@ -17,33 +17,44 @@ document.querySelector(".nav-button").addEventListener("click", function () {
   }
 });
 
-// Navigation button click logic
-document.querySelectorAll(".nav-bar, .nav-bar5").forEach((button) => {
-  button.addEventListener("click", function () {
-    const page = this.getAttribute("data-page");
-    if (page) {
-      loadContent(page);
+// Navigation button click logic with active state fix
+document
+  .querySelectorAll(".nav-bar, .nav-bar5, .nav-bar6")
+  .forEach((button) => {
+    button.addEventListener("click", function () {
+      const page = this.getAttribute("data-page");
+      if (page) {
+        loadContent(page).then(() => {
+          // Remove active from all nav buttons
+          document
+            .querySelectorAll(".nav-bar, .nav-bar5, .nav-bar6")
+            .forEach((btn) => btn.classList.remove("active"));
 
-      const sidebar = document.querySelector(".side-bar-container");
-      const header = document.querySelector(".header-container");
-      const secondBar = document.getElementById("secondBar");
+          // Sidebar library button always active on library page
+          if (page === "library") {
+            const sidebarLibBtn = document.getElementById("nav-bar2");
+            if (sidebarLibBtn) sidebarLibBtn.classList.add("active");
+          }
 
-      if (sidebar.classList.contains("show")) {
-        sidebar.classList.remove("show");
-        setTimeout(() => header.classList.remove("no-shadow"), 300);
-        secondBar.setAttribute("width", "70");
-        secondBar.setAttribute("y", "70");
+          // Active on clicked button too
+          this.classList.add("active");
+        });
+
+        const sidebar = document.querySelector(".side-bar-container");
+        const header = document.querySelector(".header-container");
+        const secondBar = document.getElementById("secondBar");
+
+        if (sidebar.classList.contains("show")) {
+          sidebar.classList.remove("show");
+          setTimeout(() => header.classList.remove("no-shadow"), 300);
+          secondBar.setAttribute("width", "70");
+          secondBar.setAttribute("y", "70");
+        }
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
-
-      document.querySelectorAll(".nav-bar, .nav-bar5").forEach((btn) => {
-        btn.classList.remove("active");
-      });
-      this.classList.add("active");
-
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    });
   });
-});
 
 window.addEventListener("scroll", function () {
   const sidebar = document.querySelector(".side-bar-container");
@@ -74,6 +85,45 @@ document.addEventListener("click", function (event) {
   }
 });
 
+// Delegated handler for dynamically loaded nav buttons (e.g. from home.html)
+document.addEventListener("click", function (e) {
+  const button = e.target.closest(".nav-bar, .nav-bar5, .nav-bar6");
+  if (!button || button.dataset.dynamicHandled) return;
+
+  const page = button.getAttribute("data-page");
+  if (page) {
+    loadContent(page).then(() => {
+      // Remove active from all nav buttons
+      document
+        .querySelectorAll(".nav-bar, .nav-bar5, .nav-bar6")
+        .forEach((btn) => btn.classList.remove("active"));
+
+      // Sidebar library button always active on library page
+      if (page === "library") {
+        const sidebarLibBtn = document.getElementById("nav-bar2");
+        if (sidebarLibBtn) sidebarLibBtn.classList.add("active");
+      }
+
+      // Active on clicked button too
+      button.classList.add("active");
+    });
+
+    const sidebar = document.querySelector(".side-bar-container");
+    const header = document.querySelector(".header-container");
+    const secondBar = document.getElementById("secondBar");
+
+    if (sidebar.classList.contains("show")) {
+      sidebar.classList.remove("show");
+      setTimeout(() => header.classList.remove("no-shadow"), 300);
+      secondBar.setAttribute("width", "70");
+      secondBar.setAttribute("y", "70");
+    }
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    button.dataset.dynamicHandled = true; // prevent re-trigger if static now
+  }
+});
+
 function goHome() {
   sessionStorage.clear();
   window.location.href = "index.html";
@@ -82,64 +132,62 @@ function goHome() {
 function loadContent(page) {
   const mainContent = document.querySelector(".main");
   let filePath = "";
-  let activeNavButton = "";
   let scriptPath = "";
 
   switch (page) {
     case "bau":
       filePath = "cont/00.bau/bau.html";
       scriptPath = "cont/00.bau/bau.js";
-      activeNavButton = "nav-bar3";
       break;
     case "main":
       filePath = "cont/00.home/home.html";
       scriptPath = "cont/00.home/home.js";
-      activeNavButton = "nav-bar1";
       break;
     case "contact":
       filePath = "cont/00.contact/contact.html";
       scriptPath = "cont/00.contact/contact.js";
-      activeNavButton = "nav-bar4";
       break;
     case "library":
       filePath = "cont/00.library/library.html";
-      activeNavButton = "nav-bar2";
       break;
     default:
-      return;
+      return Promise.reject("Unknown page");
   }
 
-  fetch(filePath)
+  return fetch(filePath)
     .then((response) =>
       response.ok ? response.text() : Promise.reject("Failed to load")
     )
     .then((data) => {
-      console.log("Loaded HTML:", data);
       mainContent.innerHTML = data;
 
-      const counters = document.querySelectorAll(".info-container div.counter");
-
       if (page === "bau") {
+        const counters = document.querySelectorAll(
+          ".info-container div.counter"
+        );
         resetCounters(counters);
         startCounting();
       }
 
-      document.querySelectorAll(".nav-bar, .nav-bar5").forEach((btn) => {
-        btn.classList.remove("active");
-      });
-      document.getElementById(activeNavButton).classList.add("active");
-
       sessionStorage.setItem("currentPage", page);
 
       if (scriptPath) {
-        loadScript(scriptPath, () => {
-          if (page === "main" && typeof initHomeScroll === "function") {
-            initHomeScroll();
-          }
+        return new Promise((resolve) => {
+          loadScript(scriptPath, () => {
+            if (page === "main" && typeof initHomeScroll === "function") {
+              initHomeScroll();
+            }
+            resolve();
+          });
         });
       }
+
+      return Promise.resolve();
     })
-    .catch((error) => console.error("Error loading content:", error));
+    .catch((error) => {
+      console.error("Error loading content:", error);
+      return Promise.reject(error);
+    });
 }
 
 function loadScript(scriptPath, callback) {
@@ -192,14 +240,11 @@ const backToTopBtn = document.querySelector(".back-to-top");
 
 window.addEventListener("scroll", () => {
   if (window.scrollY > 300) {
-    // Show the button (remove fade-out if any)
     backToTopBtn.classList.remove("fade-out");
     backToTopBtn.classList.add("show");
   } else {
-    // Fade out first, then remove show after animation
     if (backToTopBtn.classList.contains("show")) {
       backToTopBtn.classList.add("fade-out");
-
       backToTopBtn.addEventListener("transitionend", function handler() {
         backToTopBtn.classList.remove("show", "fade-out");
         backToTopBtn.removeEventListener("transitionend", handler);
@@ -221,27 +266,37 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   const storedPage = sessionStorage.getItem("currentPage") || "main";
-  loadContent(storedPage);
+  loadContent(storedPage).then(() => {
+    // On page load, make sure correct active states are set
+    document
+      .querySelectorAll(".nav-bar, .nav-bar5, .nav-bar6")
+      .forEach((btn) => btn.classList.remove("active"));
+
+    if (storedPage === "library") {
+      const sidebarLibBtn = document.getElementById("nav-bar2");
+      if (sidebarLibBtn) sidebarLibBtn.classList.add("active");
+    } else {
+      // Find nav button matching storedPage and add active
+      const activeBtn = document.querySelector(
+        `.nav-bar[data-page="${storedPage}"], .nav-bar5[data-page="${storedPage}"], .nav-bar6[data-page="${storedPage}"]`
+      );
+      if (activeBtn) activeBtn.classList.add("active");
+    }
+  });
 });
 
 const loadingBar = document.getElementById("pageLoadingBar");
 
-// Phase 1: Simulate load buildup
+// Loading bar animation omitted for brevity (same as your code)
 loadingBar.style.width = "20%";
 setTimeout(() => (loadingBar.style.width = "50%"), 200);
 setTimeout(() => (loadingBar.style.width = "80%"), 500);
-
-// Final Phase: On full page load
 window.addEventListener("load", () => {
   loadingBar.style.width = "100%";
-
-  // Let the 100% width visually settle
   setTimeout(() => {
     loadingBar.style.opacity = "0";
-
-    // Remove from DOM after fade out completes
     setTimeout(() => {
       loadingBar.remove();
-    }, 800); // matches CSS opacity transition
-  }, 400); // delay before fade to let width reach 100%
+    }, 800);
+  }, 400);
 });

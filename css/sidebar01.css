@@ -7,19 +7,20 @@
   justify-content: space-between;
   padding: 10px 30px 0px 30px;
   position: fixed;
-  left: 0; 
-  top: 95px; 
-  height: 100px; 
-  right: 0; 
+  left: 0;
+  top: 95px;
+  height: 100px;
+  right: 0;
   border: none;
   border-bottom: none;
-  border-bottom-color: gray ;
-  border-bottom-width: 0.1px ;
+  border-bottom-color: gray;
+  border-bottom-width: 0.1px;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.031);
   transform: translateY(-100%); /* Hide initially */
-  transition: transform 0.39s ease-in-out, opacity 0.39s ease-in-out, visibility 0.39s ease-in-out; /* Smooth transition */
-  visibility: hidden ; 
-  z-index: 1; 
+  transition: transform 0.39s ease-in-out, opacity 0.39s ease-in-out,
+    visibility 0.39s ease-in-out; /* Smooth transition */
+  visibility: hidden;
+  z-index: 1;
 }
 
 .side-bar-container.show {
@@ -44,7 +45,7 @@
   flex: 1;
   align-items: center;
   justify-content: center;
-  cursor: pointer ;
+  cursor: pointer;
   text-align: center;
   font-size: 14px;
   white-space: nowrap;
@@ -52,7 +53,8 @@
   border: none;
   border-bottom: solid transparent; /* Start with transparent border */
   border-width: 1px; /* Set border width */
-  transition: border-bottom-color 0.4s ease-in-out, border-bottom-width 0.4s ease-in-out; /* Transition properties */
+  transition: border-bottom-color 0.4s ease-in-out,
+    border-bottom-width 0.4s ease-in-out; /* Transition properties */
   background-color: transparent;
 }
 
@@ -63,14 +65,15 @@
   flex: 1;
   align-items: center;
   justify-content: center;
-  cursor: pointer ;
+  cursor: pointer;
   font-size: 14px;
   white-space: nowrap;
   background-color: transparent;
   border: none;
   border-bottom: solid transparent; /* Start with transparent border */
   border-width: 1px; /* Set border width */
-  transition: border-bottom-color 0.4s ease-in-out, border-bottom-width 0.4s ease-in-out; /* Transition properties */
+  transition: border-bottom-color 0.4s ease-in-out,
+    border-bottom-width 0.4s ease-in-out; /* Transition properties */
   background-color: transparent;
 }
 
@@ -78,25 +81,25 @@
 .nav-bar5:hover {
   background-color: rgba(237, 237, 237, 0.202);
   border-color: rgba(0, 0, 0, 0.417); /* Specify the border color */
-  border-width: 1px ;
+  border-width: 1px;
 }
 
 .nav-bar:focus,
 .nav-bar5:focus,
 .nav-bar.active,
 .nav-bar5.active {
-    border-bottom-color: rgb(0, 0, 0); /* Ensure the border stays */
-    border-bottom-width: 1px; /* Ensure the border width */
-    outline: none; /* Remove default outline */
+  border-bottom-color: rgb(0, 0, 0); /* Ensure the border stays */
+  border-bottom-width: 1px; /* Ensure the border width */
+  outline: none; /* Remove default outline */
 }
 
 /* For max-width 619.9 */
- @media (max-width: 619.9px) {
+@media (max-width: 619.9px) {
   #nav-bar2,
   #nav-bar4 {
     display: none;
   }
-} 
+}
 
 @media (max-width: 605.09px) {
   #nav-bar2,
@@ -106,7 +109,6 @@
 }
 
 @media (max-width: 547.99px) {
-
   .side-bar-container {
     display: flex;
     flex-direction: row;
@@ -121,8 +123,6 @@
 }
 
 @media (max-width: 533.55px) {
-
-
   .nav-bar,
   .nav-bar5 {
     white-space: normal;
@@ -150,7 +150,6 @@
 }
 
 @media (max-width: 285.75px) {
-
   .nav-bar,
   .nav-bar5 {
     white-space: normal;
@@ -164,8 +163,7 @@
 }
 
 /* For max-width 272.40px */
-@media (max-width: 272.40px) {
-
+@media (max-width: 272.4px) {
   #nav-bar4,
   .nav-bar5 {
     display: none;
@@ -173,12 +171,10 @@
 }
 
 @media (max-width: 250px) {
-
   #nav-bar3,
   #nav-bar2 {
     display: none;
   }
- 
 }
 
 .arabic-font {
