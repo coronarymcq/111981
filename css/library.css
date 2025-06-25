@@ -1,7 +1,44 @@
-.all-lib {
-  color: red;
-  display: block; /* Default visible */
-  padding-bottom: 2000px;
+.container {
+  max-width: 800px;
+  margin: auto;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+#tagFilters {
+  margin-bottom: 15px;
+}
+
+.tag-button {
+  padding: 6px 12px;
+  margin: 5px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.tag-button.active {
+  background-color: #0056b3;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+th,
+td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
 }
 
 .error {

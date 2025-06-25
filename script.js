@@ -149,6 +149,7 @@ function loadContent(page) {
       break;
     case "library":
       filePath = "cont/00.library/library.html";
+      scriptPath = "cont/00.library/library.js";
       break;
     default:
       return Promise.reject("Unknown page");
