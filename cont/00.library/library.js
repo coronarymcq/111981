@@ -275,9 +275,9 @@
     const hasSearch = searchInput.value.trim() !== "";
 
     if (hasTags || hasSearch) {
-      clearIcon.style.display = "inline-block";
+      clearIcon.classList.add("visible");
     } else {
-      clearIcon.style.display = "none";
+      clearIcon.classList.remove("visible");
     }
   }
 
@@ -374,8 +374,10 @@
       return;
     }
 
-    filteredData.forEach((item) => {
+    filteredData.forEach((item, index) => {
       const row = document.createElement("tr");
+      row.classList.add("table-row-animated");
+      row.style.animationDelay = `${index * 60}ms`; // staggered animation delay
 
       const nameCell = document.createElement("td");
       const link = document.createElement("a");

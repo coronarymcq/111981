@@ -1,21 +1,21 @@
 .container {
-  max-width: 800px;
+  max-width: 70%;
   margin: auto;
 }
 
 .search-container {
   position: relative;
   width: 100%;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
 
 #searchInput {
   width: 100%;
-  padding: 13px 150px 13px 50px; /* Left for icon, right for select */
+  padding: 15px 150px 15px 50px; /* Left for icon, right for select */
   font-size: 16px;
   box-sizing: border-box;
   border: 1px solid gray;
-  border-radius: 10px;
+  border-radius: 50px;
   background-color: var(--header-bg);
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.04);
   color: var(--all-text);
@@ -51,6 +51,16 @@
   color: #888;
   font-size: 18px;
   z-index: 10;
+
+  /* Start hidden */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.search-container .clear-icon.visible {
+  opacity: 1;
+  pointer-events: auto; /* enable interaction when visible */
 }
 
 .clear-icon:hover {
@@ -59,8 +69,8 @@
 
 .multi-select-display i.fa-caret-down {
   position: absolute;
-  top: 50%;
-  left: 60px;
+  top: 49%;
+  left: 55px;
   transform: translateY(-50%);
   color: #888;
   font-size: 16px;
@@ -94,11 +104,12 @@
   transform: translateY(-50%);
   width: 80px;
   padding-left: 1px;
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 200;
   background-color: var(--header-bg);
   color: var(--all-text);
-  border: 1px solid gray;
-  border-radius: 6px;
+  border: 1px dashed rgb(128, 128, 128);
+  border-radius: 20px;
   z-index: 5;
 }
 
@@ -135,7 +146,6 @@
   border: 1px solid gray;
   border-radius: 0 0 6px 6px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 5px 10px;
@@ -276,4 +286,20 @@ td {
   #aboutus {
     display: none;
   }
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.table-row-animated {
+  opacity: 0;
+  animation: fadeSlideIn 0.4s ease forwards;
 }
