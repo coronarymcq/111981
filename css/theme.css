@@ -80,16 +80,6 @@
   background-color: var(--text-color);
 }
 
-.scroll-btn {
-  color: var(--text-color);
-  border-color: var(--text-color);
-}
-
-#scrollButton:hover {
-  background-color: var(--header-bg);
-  border-color: var(--scrl);
-}
-
 .all-text0,
 .all-text {
   color: var(--all-text);
