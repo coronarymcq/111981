@@ -161,7 +161,7 @@
   border-width: 2px;
   border-style: dashed;
   border-color: gray;
-  font-size: 15px;
+  font-size: 18px;
   padding: 15px 20px;
   margin-bottom: 15px;
   cursor: auto;
@@ -191,7 +191,7 @@
 
 .pdf-card button {
   padding: 8px 13px;
-  font-size: 13px;
+  font-size: 15px;
   border: none;
   border-radius: 6px;
   background-color: var(--all-text);
