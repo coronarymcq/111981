@@ -4,16 +4,35 @@
   href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
   rel="stylesheet"
 />
-<h1 id="aboutus">Library</h1>
+<h1 id="aboutus" style="margin-bottom: 70px; margin-top: 20px">Library</h1>
 
 <div class="container">
-  <h1>📚 My Work Library</h1>
-
   <!-- Search Bar -->
-  <input type="text" id="searchInput" placeholder="Search by name or tag..." />
+  <div class="search-container">
+    <i class="fa fa-search"></i>
+    <!-- Left search icon -->
 
-  <!-- Tag Filter Buttons -->
-  <div id="tagFilters"></div>
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Search by names, or tags..."
+    />
+
+    <i class="fa fa-times clear-icon" title="Clear Search and filters"></i>
+    <!-- RIGHT clear icon -->
+
+    <div id="tagDropdownContainer" class="multi-select">
+      <div class="multi-select-display">
+        <span
+          class="selected-label"
+          style="padding-left: 2px; padding-bottom: 2px"
+          >Filter</span
+        >
+        <i class="fa fa-caret-down"></i>
+      </div>
+      <div class="multi-select-options hidden" id="tagOptions"></div>
+    </div>
+  </div>
 
   <!-- Library Table -->
   <table id="libraryTable">

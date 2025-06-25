@@ -4,8 +4,8 @@
   --text-color: rgb(0, 0, 0); /* General text color */
   --specific-text-color: gray; /* Specific text color variable */
   --header-bg: #ffffff;
-  --link-color: rgb(94, 93, 93);
-  --link-hover-color: rgb(52, 164, 162);
+  --link-color: rgb(0, 0, 0);
+  --link-hover-color: rgb(0, 0, 0);
   --bottom-border-color: gray;
   --footer-text-color: gray;
   --header-shadow: rgba(0, 0, 0, 0.1);
@@ -47,8 +47,8 @@
   ); /* Specific text color for dark theme */
   --quote: black;
   --header-bg: #303030;
-  --link-color: rgb(162, 162, 162);
-  --link-hover-color: rgb(44, 201, 199);
+  --link-color: rgb(255, 255, 255);
+  --link-hover-color: rgb(255, 255, 255);
   --bottom-border-color: rgb(255, 255, 255);
   --header-shadow: rgba(0, 0, 0, 0.15);
   --header-border: 1px solid #50c7c700;
