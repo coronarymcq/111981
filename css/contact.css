@@ -93,7 +93,8 @@ h2 {
 
 .desc1 {
   font-size: 20px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Nunito", sans-serif;
+  padding-left: 20px;
   margin-bottom: 20px;
 }
 
@@ -120,9 +121,9 @@ h2 {
 }
 
 #section1 {
-  margin-bottom: 100px;
-  padding-left: 80px;
-  padding-right: 60px;
+  margin-bottom: 50px;
+  padding-left: 100px;
+  padding-right: 100px;
 }
 
 #info0,

@@ -1,4 +1,4 @@
-# UPDATES (current version: 1.15)
+# UPDATES (current AND last version: 1.16)
 
 ---
 
@@ -185,3 +185,28 @@ Big changes have taken place in this new version, including the following:
 
 7. A **timeline** section has been added where the user can switch between semesters and years smoothly. The work completed in each academic period appears under a dedicated mini container.
    ![alt text](legal/images/home4.png) ![alt text](legal/images/home5.png) ![alt text](legal/images/home6.png) ![alt text](legal/images/home7.png) ![alt text](legal/images/home8.png)
+
+---
+
+**Version 1.16 | June the 27th**
+
+This update marks the completion of a project that began a year ago. With this release, I’ve introduced several key improvements:
+
+1. A brand new **Library page**, featuring a large, organized table with tag-based filtering, a powerful search bar, and a dynamic filter mechanism to help users quickly find what they need.
+   ![alt text](image.png)
+
+2. The **search and filter logic** has gone through multiple iterations and refinements in JavaScript to ensure optimal performance and usability.
+   ![alt text](image-1.png)
+   ![alt text](image-2.png)
+   ![alt text](image-3.png)
+   ![alt text](image-4.png)
+   ![alt text](image-5.png)
+   ![alt text](image-6.png)
+
+3. **Numerous bugs have been resolved**, alongside several minor UI improvements and design tweaks to enhance the overall user experience.
+
+4. The project is now **fully complete**, stable, and ready for users to interact with and benefit from.
+
+---
+
+This marks the end of the journey. One key takeaway is that consistent, small improvements lead to significant progress over time. Patience is essential throughout the process.
