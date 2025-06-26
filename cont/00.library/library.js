@@ -100,116 +100,215 @@
       {
         title: "Anatomy GIS Lab Checklist, Part 1",
         url: "GIS ANATOMY CHECK LIST LAB 1.pdf",
+        tags: ["Anatomy", "GIS", "Lab", "Sheet", "Final"],
       },
       {
         title: "Anatomy GIS Lab Checklist, Part 2",
         url: "GIS ANATOMY CHECK LIST LAB 2.pdf",
+        tags: ["Anatomy", "GIS", "Lab", "Sheet", "Final"],
       },
-      { title: "Anatomy GIS Lab Sheet", url: "GIS ANATOMY LAB (2) 2024.pdf" },
-      { title: "Histology GIS Lab Sheet", url: "GIS HISTOLOGY LAB 2024.pdf" },
+
+      {
+        title: "Anatomy GIS Lab Sheet",
+        url: "GIS ANATOMY LAB (2) 2024.pdf",
+        tags: ["Anatomy", "GIS", "Lab", "Sheet", "Final"],
+      },
+      {
+        title: "Histology GIS Lab Sheet",
+        url: "GIS HISTOLOGY LAB 2024.pdf",
+        tags: ["Histology", "GIS", "Lab", "Sheet", "Final"],
+      },
     ],
     "Second Year<br>Summer Semester": [
       {
         title: "Coronary Batch Final Public Health Exam",
         url: "CORONARY FINAL PUBLIC HEALTH.pdf",
+        tags: ["Public Health", "Exam", "Final", "QBank"],
       },
       {
         title: "Coronary Batch Final Biostatisics Exam",
         url: "CORONARY FINAL EPIDEMIOLOGY.pdf",
+        tags: ["Biostatisics", "Exam", "Final", "QBank"],
       },
-      { title: "Biostatisics SPSS Program Sheet", url: "SPSS.pdf" },
+      {
+        title: "Biostatisics SPSS Program Sheet",
+        url: "SPSS.pdf",
+        tags: ["Biostatisics", "Sheet", "Final"],
+      },
     ],
     "Third Year<br>First Semester": [
       {
         title: "Coronary Batch Midterm RS Exam",
         url: "CORONARY MIDTERM RS.pdf",
+        tags: ["RS", "Exam", "Midterm", "QBank"],
       },
-      { title: "Coronary Batch Final RS Exam", url: "CORONARY FINAL RS.pdf" },
+      {
+        title: "Coronary Batch Final RS Exam",
+        url: "CORONARY FINAL RS.pdf",
+        tags: ["RS", "Exam", "Final", "QBank"],
+      },
       {
         title: "RS Past Papers QBank",
         url: "https://drive.google.com/drive/folders/1LA00tdwJ0YT0U7xFaZe0AvnYWuv-Fsv5?usp=drive_link",
+        tags: ["RS", "Past papers", "QBank"],
       },
       {
         title: "Coronary Batch Midterm MSS Exam",
         url: "CORONARY MIDTERM MSS.pdf",
+        tags: ["MSS", "Exam", "Midterm", "QBank"],
       },
       {
         title: "Coronary Batch Final MSS Exam",
         url: "https://t.me/coronarymcq/2500",
+        tags: ["MSS", "Exam", "Final", "QBank"],
       },
       {
         title: "Coronary Batch Midterm Immunology Exam",
         url: "Midterm Exam 2023-2024 student - official key answers.docx.pdf",
+        tags: ["Immunology", "Exam", "Midterm", "QBank"],
       },
       {
         title: "Immunology Past Papers QBank",
         url: "Final Immunology تجميع.pdf",
+        tags: ["Immunology", "Past papers", "QBank"],
       },
       {
         title: "Coronary Batch Midterm ES Exam",
         url: "CORONARY MIDTERM ES.pdf",
+        tags: ["ES", "Exam", "Midterm", "QBank"],
       },
       {
         title: "Coronary Batch Final ES Exam",
         url: "https://t.me/coronarymcqgc/4105",
+        tags: ["ES", "Exam", "Final", "QBank"],
       },
       {
         title: "ES Past Papers QBank",
         url: "https://drive.google.com/drive/folders/101pwUCbBA7Qit5wiUxy4X_T44DFN7R_b?usp=drive_link",
+        tags: ["ES", "Past papers", "QBank"],
       },
     ],
     "Third Year<br>Second Semester": [
       {
         title: "Coronary Batch Midterm UGS Exam",
         url: "CORONARY MIDTERM UGS.pdf",
+        tags: ["UGS", "Exam", "Midterm", "QBank"],
       },
       {
         title: "Coronary Batch Final UGS Exam",
         url: "https://t.me/coronarymcqgc/5880",
+        tags: ["UGS", "Exam", "Final", "QBank"],
       },
       {
         title: "Development of Placental Circulation Anatomy Sheet",
         url: "Anatomy last lecture final sheet.pdf",
+        tags: ["Anatomy", "UGS", "Sheet", "Final"],
       },
-      { title: "Histology UGS Summary Table", url: "Histology table.pdf" },
-      { title: "Microbiology UGS Lab Sheet", url: "UGS-Microbiology.html" },
+      {
+        title: "Histology UGS Summary Table",
+        url: "Histology table.pdf",
+        tags: ["Histology", "UGS", "Summary", "Final"],
+      },
+      {
+        title: "Microbiology UGS Lab Sheet",
+        url: "UGS-Microbiology.html",
+        tags: ["Microbiology", "UGS", "Sheet", "Lab", "Final"],
+      },
       {
         title: "Microbiology UGS Lecture 5 Sheet",
         url: "MICROBIOLOGY-GUS-5 (1).html",
+        tags: ["Microbiology", "UGS", "Sheet", "Final"],
       },
-      { title: "Vulva Pathologies Summary", url: "Vulva.pdf" },
-      { title: "Vagina Pathologies Summary", url: "Vagina.pdf" },
-      { title: "Uterus Pathologies Summary", url: "Uterus.pdf" },
-      { title: "Testes Pathologies Summary", url: "Testes.pdf" },
-      { title: "Prostate Pathologies Summary", url: "Prostate.pdf" },
-      { title: "Ovaries Pathologies Summary", url: "Ovaries.pdf" },
-      { title: "Pathology Mutations UGS Summary", url: "Mutations.pdf" },
-      { title: "Cervix Pathologies Summary", url: "Cervix.pdf" },
-      { title: "Breast Pathologies Summary", url: "Breast.pdf" },
+      {
+        title: "Vulva Pathologies Summary",
+        url: "Vulva.pdf",
+        tags: ["Pathology", "UGS", "Summary", "USMLE", "Final"],
+      },
+      {
+        title: "Vagina Pathologies Summary",
+        url: "Vagina.pdf",
+        tags: ["Pathology", "UGS", "Summary", "USMLE", "Final"],
+      },
+      {
+        title: "Uterus Pathologies Summary",
+        url: "Uterus.pdf",
+        tags: ["Pathology", "UGS", "Summary", "USMLE", "Final"],
+      },
+      {
+        title: "Testes Pathologies Summary",
+        url: "Testes.pdf",
+        tags: ["Pathology", "UGS", "Summary", "USMLE", "Final"],
+      },
+      {
+        title: "Prostate Pathologies Summary",
+        url: "Prostate.pdf",
+        tags: ["Pathology", "UGS", "Summary", "USMLE", "Final"],
+      },
+      {
+        title: "Ovaries Pathologies Summary",
+        url: "Ovaries.pdf",
+        tags: ["Pathology", "UGS", "Summary", "USMLE", "Final"],
+      },
+      {
+        title: "Pathology Mutations UGS Summary",
+        url: "Mutations.pdf",
+        tags: ["Pathology", "UGS", "Summary", "USMLE", "Final"],
+      },
+      {
+        title: "Cervix Pathologies Summary",
+        url: "Cervix.pdf",
+        tags: ["Pathology", "UGS", "Summary", "USMLE", "Final"],
+      },
+      {
+        title: "Breast Pathologies Summary",
+        url: "Breast.pdf",
+        tags: ["Pathology", "UGS", "Summary", "USMLE", "Final"],
+      },
       {
         title: "BS Past Papers QBank",
         url: "https://drive.google.com/drive/folders/11D2Z_EBdm-eoMvbZI4VdNrVeUs-m0noH?usp=drive_link",
+        tags: ["BS", "Past papers", "QBank"],
       },
       {
         title: "Coronary Batch Final BS Exam",
         url: "https://t.me/coronarymcqgc/6290",
+        tags: ["BS", "Exam", "Final", "QBank"],
       },
       {
         title: "Coronary Batch Midterm HE Exam",
         url: "https://t.me/coronarymcqgc/5551",
+        tags: ["BS", "Exam", "Midterm", "QBank"],
       },
       {
         title: "Coronary Batch Final HE Exam",
         url: "https://t.me/coronarymcqgc/6376",
+        tags: ["BS", "Exam", "Final", "QBank"],
       },
-      { title: "Coronary Batch Final NS Exam", url: "CORONARY FINAL NS.pdf" },
+      {
+        title: "Coronary Batch Final NS Exam",
+        url: "CORONARY FINAL NS.pdf",
+        tags: ["NS", "Exam", "Final", "QBank"],
+      },
       {
         title: "Coronary Batch Midterm NS Exam",
         url: "CORONARY MIDTERM NS.pdf",
+        tags: ["NS", "Exam", "Midterm", "QBank"],
       },
-      { title: "Anatomy NS Lab 1 Sheet", url: "Anatomy lab 1.pdf" },
-      { title: "Anatomy NS Lab 2 Sheet", url: "Anatomy lab 2.pdf" },
-      { title: "Anatomy NS Lab 4 Sheet", url: "Anatomy lab 4.pdf" },
+      {
+        title: "Anatomy NS Lab 1 Sheet",
+        url: "Anatomy lab 1.pdf",
+        tags: ["Anatomy", "NS", "Sheet", "Lab", "Final"],
+      },
+      {
+        title: "Anatomy NS Lab 2 Sheet",
+        url: "Anatomy lab 2.pdf",
+        tags: ["Anatomy", "NS", "Sheet", "Lab", "Final"],
+      },
+      {
+        title: "Anatomy NS Lab 4 Sheet",
+        url: "Anatomy lab 4.pdf",
+        tags: ["Anatomy", "NS", "Sheet", "Lab", "Final"],
+      },
     ],
   };
 
@@ -247,8 +346,10 @@
     "HIS",
     "CVS",
     "GIS",
+    "UGS",
     "Genetics",
     "Immunology",
+    "Microbiology",
     "Quiz",
     "QBank",
     "Summary",
@@ -261,6 +362,7 @@
     "Public health",
     "Biostatisics",
     "Exam",
+    "Past papers",
   ];
 
   const clearIcon = document.querySelector(".search-container > .clear-icon");
@@ -282,50 +384,97 @@
   }
 
   function populateDropdown() {
-    const allTags = new Set();
-    libraryData.forEach((item) => item.tags.forEach((tag) => allTags.add(tag)));
-    extraTags.forEach((tag) => allTags.add(tag));
+    const timelineTags = ["Y1S2", "Y2S2", "Y2S3", "Y3S1", "Y3S2"];
+    const systemTags = ["RS", "ES", "NS", "UGS", "CVS", "GIS", "MSS"];
+    const subjectTags = [
+      "Anatomy",
+      "Physiology",
+      "Histology",
+      "Pathology",
+      "Microbiology",
+      "Immunology",
+      "Genetics",
+      "Public health",
+      "Biostatisics",
+      "HCM",
+      "HIS",
+      "BS",
+    ];
+    const otherTags = [
+      "Past papers",
+      "USMLE",
+      "Quiz",
+      "QBank",
+      "Summary",
+      "Sheet",
+      "Lab",
+      "Midterm",
+      "Final",
+      "Exam",
+    ];
 
     const tagOptions = document.getElementById("tagOptions");
     tagOptions.innerHTML = "";
 
-    [...allTags].sort().forEach((tag) => {
-      const label = document.createElement("label");
-      const checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.value = tag;
+    const renderGroup = (title, tags) => {
+      const group = document.createElement("div");
+      group.className = "tag-group";
 
-      checkbox.addEventListener("change", () => {
-        if (checkbox.checked) {
-          if (!selectedTagsOrder.includes(tag)) {
-            selectedTagsOrder.push(tag);
+      const heading = document.createElement("div");
+      heading.className = "tag-heading";
+      heading.textContent = title;
+      group.appendChild(heading);
+
+      tags.forEach((tag) => {
+        const label = document.createElement("label");
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.value = tag;
+
+        checkbox.addEventListener("change", () => {
+          if (checkbox.checked) {
+            if (!selectedTagsOrder.includes(tag)) {
+              selectedTagsOrder.push(tag);
+            }
+          } else {
+            const index = selectedTagsOrder.indexOf(tag);
+            if (index > -1) {
+              selectedTagsOrder.splice(index, 1);
+            }
           }
-        } else {
-          const index = selectedTagsOrder.indexOf(tag);
-          if (index > -1) {
-            selectedTagsOrder.splice(index, 1);
-          }
-        }
-        renderTable();
-        updateFilterLabel();
-        updateClearIconVisibility();
+          renderTable();
+          updateFilterLabel();
+          updateClearIconVisibility();
+        });
+
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(tag));
+        group.appendChild(label);
       });
 
-      label.appendChild(checkbox);
-      label.appendChild(document.createTextNode(tag));
-      tagOptions.appendChild(label);
-    });
+      tagOptions.appendChild(group);
+    };
+
+    renderGroup("Timeline", timelineTags);
+    renderGroup("System", systemTags);
+    renderGroup("Subject", subjectTags);
+    renderGroup("Others", otherTags);
 
     const dropdown = document.querySelector(".multi-select");
     const display = dropdown.querySelector(".multi-select-display");
 
-    display.addEventListener("click", () => {
-      tagOptions.classList.toggle("hidden");
-      display.classList.toggle("active");
+    let isDropdownOpen = false;
+
+    display.addEventListener("click", (e) => {
+      e.stopPropagation(); // Prevent bubbling to document
+      isDropdownOpen = !isDropdownOpen;
+      tagOptions.classList.toggle("hidden", !isDropdownOpen);
+      display.classList.toggle("active", isDropdownOpen);
     });
 
     document.addEventListener("click", (e) => {
-      if (!dropdown.contains(e.target) && e.target !== clearIcon) {
+      if (isDropdownOpen && !dropdown.contains(e.target)) {
+        isDropdownOpen = false;
         tagOptions.classList.add("hidden");
         display.classList.remove("active");
       }
@@ -339,7 +488,7 @@
     e.preventDefault();
     e.stopPropagation();
     selectedTagsOrder.length = 0;
-    searchInput.value = ""; // Clear the search bar input
+    searchInput.value = "";
 
     document
       .querySelectorAll("#tagOptions input[type=checkbox]")
@@ -354,18 +503,17 @@
     const searchQuery = searchInput.value.toLowerCase();
     libraryBody.innerHTML = "";
 
-    const lastSelectedTag =
-      selectedTagsOrder.length > 0
-        ? selectedTagsOrder[selectedTagsOrder.length - 1]
-        : null;
-
     const filteredData = libraryData.filter((item) => {
-      const matchesTag =
-        !lastSelectedTag || item.tags.includes(lastSelectedTag);
+      // OR logic for tag filtering:
+      const matchesTags =
+        selectedTagsOrder.length === 0 ||
+        selectedTagsOrder.every((tag) => item.tags.includes(tag));
+
       const matchesSearch =
         item.name.toLowerCase().includes(searchQuery) ||
         item.tags.some((tag) => tag.toLowerCase().includes(searchQuery));
-      return matchesTag && matchesSearch;
+
+      return matchesTags && matchesSearch;
     });
 
     if (filteredData.length === 0) {
@@ -377,7 +525,7 @@
     filteredData.forEach((item, index) => {
       const row = document.createElement("tr");
       row.classList.add("table-row-animated");
-      row.style.animationDelay = `${index * 60}ms`; // staggered animation delay
+      row.style.animationDelay = `${index * 60}ms`;
 
       const nameCell = document.createElement("td");
       const link = document.createElement("a");
@@ -389,7 +537,14 @@
       nameCell.appendChild(link);
 
       const tagsCell = document.createElement("td");
-      item.tags.forEach((tag) => {
+
+      // Show only the selected tags if filtering by tags, else show all tags
+      const tagsToShow =
+        selectedTagsOrder.length > 0
+          ? item.tags.filter((tag) => selectedTagsOrder.includes(tag))
+          : item.tags;
+
+      tagsToShow.forEach((tag) => {
         const tagDiv = document.createElement("div");
         tagDiv.className = "tag-badge";
         tagDiv.textContent = tag;

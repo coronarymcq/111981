@@ -139,7 +139,7 @@
   top: 100%;
   right: 0;
   left: 0; /* Remove if you want to control width more precisely */
-  width: 300px; /* or 100%, or any fixed width you want */
+  width: 329px; /* or 100%, or any fixed width you want */
   max-height: 300px; /* Increase max-height so more rows visible */
   overflow-y: auto; /* Keep scroll for overflow */
   background-color: var(--header-bg);
@@ -151,6 +151,18 @@
   gap: 5px 10px;
   padding: 10px;
   box-sizing: border-box;
+}
+
+#helpicon {
+  font-size: 24px;
+  color: gray;
+  padding-bottom: 30px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+#helpicon:hover {
+  color: rgb(72, 201, 176);
 }
 
 .multi-select-options label {
@@ -240,7 +252,7 @@ td {
 
 .tag-badge {
   display: inline-block;
-  background-color: rgb(29, 185, 182); /* your primary color */
+  background-color: rgb(72, 201, 176); /* your primary color */
   color: white;
   border-radius: 9px;
   padding: 2px 8px;
@@ -250,6 +262,36 @@ td {
   user-select: none;
   white-space: nowrap;
 }
+
+#tagOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+#tagOptions.hidden {
+  display: none;
+}
+
+.tag-group {
+  min-width: 130px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tag-heading {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: var(--text-color, #444);
+  font-size: 14px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 3px;
+}
+
 .help-popout {
   position: fixed;
   top: 110px;
