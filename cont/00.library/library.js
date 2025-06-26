@@ -503,8 +503,14 @@
     const searchQuery = searchInput.value.toLowerCase();
     libraryBody.innerHTML = "";
 
-    const filteredData = libraryData.filter((item) => {
-      // OR logic for tag filtering:
+    // Prioritize "Coronary" entries to show first
+    const sortedData = [...libraryData].sort((a, b) => {
+      const aIsCoronary = a.name.toLowerCase().includes("coronary") ? 1 : 0;
+      const bIsCoronary = b.name.toLowerCase().includes("coronary") ? 1 : 0;
+      return bIsCoronary - aIsCoronary; // move coronary (1) to top
+    });
+
+    const filteredData = sortedData.filter((item) => {
       const matchesTags =
         selectedTagsOrder.length === 0 ||
         selectedTagsOrder.every((tag) => item.tags.includes(tag));
@@ -533,20 +539,16 @@
       const fileNameSpan = document.createElement("span");
       fileNameSpan.textContent = item.name;
 
-      // Create the button
       const viewButton = document.createElement("a");
       viewButton.textContent = "View";
       viewButton.href = item.url;
       viewButton.target = "_blank";
       viewButton.className = "view-button";
 
-      // Append both
       nameCell.appendChild(fileNameSpan);
       nameCell.appendChild(viewButton);
 
       const tagsCell = document.createElement("td");
-
-      // Show only the selected tags if filtering by tags, else show all tags
       const tagsToShow =
         selectedTagsOrder.length > 0
           ? item.tags.filter((tag) => selectedTagsOrder.includes(tag))
