@@ -215,11 +215,13 @@
 
 .timeline-header {
   display: grid;
-  grid-template-columns: auto 1fr auto; /* buttons take only needed space */
+  grid-template-columns: auto auto auto; /* shrink-wrap all items */
   align-items: center;
-  width: 100vw; /* full viewport width */
-  max-width: 100%; /* prevent overflow */
-  padding: 0 10px; /* optional padding so buttons aren’t stuck to screen edges */
+  justify-content: center; /* center the whole group */
+  gap: 130px; /* controls spacing between items */
+  width: 100vw;
+  max-width: 100%;
+  padding: 0 10px;
   box-sizing: border-box;
 }
 
