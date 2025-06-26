@@ -4,8 +4,27 @@
   href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
   rel="stylesheet"
 />
-<h1 id="aboutus" style="margin-bottom: 70px; margin-top: 20px">Library</h1>
-<div style="max-width: 40%; margin: auto">
+<h1 id="aboutus" style="margin-bottom: 30px; margin-top: 20px">Library</h1>
+<div
+  style="
+    max-width: 100%;
+    margin: auto;
+    margin-bottom: 50px;
+    text-align: center;
+    font-size: 20px;
+  "
+  class="para"
+></div>
+
+<div
+  style="
+    max-width: 40%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  "
+>
   <div class="search-container">
     <i class="fa fa-search"></i>
     <!-- Left search icon -->
@@ -25,6 +44,76 @@
         <i class="fa fa-caret-down"></i>
       </div>
       <div class="multi-select-options hidden" id="tagOptions"></div>
+    </div>
+  </div>
+  <!-- Help Icon Button -->
+  <button
+    id="helpButton"
+    class="btnhelp"
+    style="background-color: transparent; border: none"
+    title="Help"
+  >
+    <i style="font-size: 24px; color: gray; padding-bottom: 30px" class="fa"
+      >&#xf059;</i
+    >
+  </button>
+
+  <!-- Help Popout -->
+  <div id="helpPopout" class="help-popout">
+    <button
+      id="closeHelpPopout"
+      class="close-btn"
+      style="color: var(--all-text)"
+      title="Close"
+    >
+      &times;
+    </button>
+
+    <div class="help-content">
+      <div class="help-slide" style="color: var(--all-text)">
+        Click on the file name in the table to view it. You can download it
+        directly from the opened viewer.
+      </div>
+      <div class="help-slide" style="color: var(--all-text)">
+        The filter dropdown menu is scrollable. <br />
+        Browse through the list and select the tags you need.
+      </div>
+      <div class="help-slide active" style="color: var(--all-text)">
+        You can search below by name or tag using the search bar, or use the
+        filter to browse by a specific tag.
+      </div>
+      <div class="help-slide" style="color: var(--all-text)">
+        USMLE: United States Medical Licensing Examination. <br />
+        RS: Respiratory System. <br />
+        ES: Endocrine System. <br />
+        NS: Nervous Science. <br />
+        BS: Behavioral Science. <br />
+        HE: Health Economics. <br />
+        MSS: Musculoskeletal System. <br />
+        HCM: Health Care Management. <br />
+        HIS: Health Informatics. <br />
+        CVS: Cardiovascular System. <br />
+        GIS: Gastrointestinal System. <br />
+      </div>
+    </div>
+
+    <div class="arrow-controls">
+      <button
+        id="prevHelp"
+        class="arrow-btn"
+        style="color: var(--all-text)"
+        title="Prev"
+      >
+        &#x276E;
+      </button>
+      <button
+        id="nextHelp"
+        class="arrow-btn"
+        style="color: var(--all-text)"
+        title="Next"
+      >
+        &#x276F;
+      </button>
     </div>
   </div>
 </div>
