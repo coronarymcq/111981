@@ -574,60 +574,62 @@
   renderTable();
 })();
 
-const helpButton = document.getElementById("helpButton");
-const helpPopout = document.getElementById("helpPopout");
-const closeHelpPopout = document.getElementById("closeHelpPopout");
-const helpSlides = document.querySelectorAll(".help-slide");
-const nextHelp = document.getElementById("nextHelp");
-const prevHelp = document.getElementById("prevHelp");
+(() => {
+  const helpButton = document.getElementById("helpButton");
+  const helpPopout = document.getElementById("helpPopout");
+  const closeHelpPopout = document.getElementById("closeHelpPopout");
+  const helpSlides = document.querySelectorAll(".help-slide");
+  const nextHelp = document.getElementById("nextHelp");
+  const prevHelp = document.getElementById("prevHelp");
 
-let helpTimeout;
-let currentSlide = 0;
+  let helpTimeout;
+  let currentSlide = 0;
 
-function showSlide(index) {
-  helpSlides.forEach((slide, i) => {
-    slide.classList.toggle("active", i === index);
+  function showSlide(index) {
+    helpSlides.forEach((slide, i) => {
+      slide.classList.toggle("active", i === index);
+    });
+  }
+
+  function resetHelpTimeout() {
+    clearTimeout(helpTimeout);
+    helpTimeout = setTimeout(() => {
+      hidePopout();
+    }, 15000); //
+  }
+
+  function showPopout() {
+    clearTimeout(helpTimeout);
+    helpPopout.classList.remove("hiding");
+    helpPopout.classList.add("visible");
+    resetHelpTimeout();
+  }
+
+  function hidePopout() {
+    helpPopout.classList.remove("visible");
+    helpPopout.classList.add("hiding");
+  }
+
+  helpButton.addEventListener("click", () => {
+    currentSlide = 0;
+    showSlide(currentSlide);
+    showPopout();
   });
-}
 
-function resetHelpTimeout() {
-  clearTimeout(helpTimeout);
-  helpTimeout = setTimeout(() => {
+  closeHelpPopout.addEventListener("click", () => {
     hidePopout();
-  }, 15000); //
-}
+    clearTimeout(helpTimeout);
+  });
 
-function showPopout() {
-  clearTimeout(helpTimeout);
-  helpPopout.classList.remove("hiding");
-  helpPopout.classList.add("visible");
-  resetHelpTimeout();
-}
+  nextHelp.addEventListener("click", () => {
+    currentSlide = (currentSlide + 1) % helpSlides.length;
+    showSlide(currentSlide);
+    resetHelpTimeout();
+  });
 
-function hidePopout() {
-  helpPopout.classList.remove("visible");
-  helpPopout.classList.add("hiding");
-}
-
-helpButton.addEventListener("click", () => {
-  currentSlide = 0;
-  showSlide(currentSlide);
-  showPopout();
-});
-
-closeHelpPopout.addEventListener("click", () => {
-  hidePopout();
-  clearTimeout(helpTimeout);
-});
-
-nextHelp.addEventListener("click", () => {
-  currentSlide = (currentSlide + 1) % helpSlides.length;
-  showSlide(currentSlide);
-  resetHelpTimeout();
-});
-
-prevHelp.addEventListener("click", () => {
-  currentSlide = (currentSlide - 1 + helpSlides.length) % helpSlides.length;
-  showSlide(currentSlide);
-  resetHelpTimeout();
-});
+  prevHelp.addEventListener("click", () => {
+    currentSlide = (currentSlide - 1 + helpSlides.length) % helpSlides.length;
+    showSlide(currentSlide);
+    resetHelpTimeout();
+  });
+})();
