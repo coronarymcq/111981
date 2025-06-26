@@ -193,7 +193,7 @@
   padding: 8px 13px;
   font-size: 15px;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   background-color: var(--all-text);
   color: var(--scrl);
   cursor: pointer;
@@ -202,7 +202,7 @@
 }
 
 .pdf-card button:hover {
-  background-color: rgb(52, 164, 162);
+  background-color: rgb(72, 201, 176);
   color: white;
 }
 

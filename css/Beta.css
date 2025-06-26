@@ -50,9 +50,6 @@ footer {
   text-align: left;
   margin-top: 0px;
   margin-bottom: 0px;
-  a:visited {
-    color: inherit; /* Keeps the original color */
-  }
 
   a {
     text-decoration: none;

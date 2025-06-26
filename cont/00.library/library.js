@@ -528,13 +528,21 @@
       row.style.animationDelay = `${index * 60}ms`;
 
       const nameCell = document.createElement("td");
-      const link = document.createElement("a");
-      link.textContent = item.name;
-      link.href = item.url;
-      link.target = "_blank";
-      link.style.color = "var(--all-text)";
-      link.style.textDecoration = "none";
-      nameCell.appendChild(link);
+      nameCell.classList.add("name-cell");
+
+      const fileNameSpan = document.createElement("span");
+      fileNameSpan.textContent = item.name;
+
+      // Create the button
+      const viewButton = document.createElement("a");
+      viewButton.textContent = "View";
+      viewButton.href = item.url;
+      viewButton.target = "_blank";
+      viewButton.className = "view-button";
+
+      // Append both
+      nameCell.appendChild(fileNameSpan);
+      nameCell.appendChild(viewButton);
 
       const tagsCell = document.createElement("td");
 

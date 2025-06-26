@@ -134,6 +134,30 @@
   gap: 6px;
 }
 
+.view-button {
+  padding: 5px 10px;
+  font-size: 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--all-text);
+  color: var(--scrl);
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.view-button:hover {
+  background-color: rgb(72, 201, 176);
+  color: white;
+}
+
+.name-cell {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
 .multi-select-options {
   position: absolute;
   top: 100%;
