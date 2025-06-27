@@ -639,3 +639,7 @@
     resetHelpTimeout();
   });
 })();
+
+document.getElementById("aboutus").addEventListener("click", function () {
+  location.reload(); // Reloads the current page
+});
