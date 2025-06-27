@@ -359,7 +359,7 @@
     "Physiology",
     "Histology",
     "Pathology",
-    "Public health",
+    "Public Health",
     "Biostatisics",
     "Exam",
     "Past papers",
