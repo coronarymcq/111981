@@ -96,7 +96,11 @@
         url: "CVS HISTOLOGY LAB 2024.pdf",
         tags: ["Histology", "CVS", "Lab", "Sheet", "Final"],
       },
-      { title: "Anatomy CVS Quiz", url: "CVS ANATOMY SUGGESTED MCQ’S.pdf" },
+      {
+        title: "Anatomy CVS Quiz",
+        url: "CVS ANATOMY SUGGESTED MCQ’S.pdf",
+        tags: ["Anatomy", "CVS", "Quiz", "Midterm"],
+      },
       {
         title: "Anatomy GIS Lab Checklist, Part 1",
         url: "GIS ANATOMY CHECK LIST LAB 1.pdf",
@@ -394,7 +398,7 @@
       "Microbiology",
       "Immunology",
       "Genetics",
-      "Public health",
+      "Public Health",
       "Biostatisics",
       "HCM",
       "HIS",
