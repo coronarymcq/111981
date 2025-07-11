@@ -1,202 +1,96 @@
-<div class="view">
-  <h1 class="BAUTitle">Al balqa applied university</h1>
-  <h1 class="OurUNI">Our university</h1>
-  <div class="all-container">
-    <div class="info-container">
-      <div class="QS" data-target="1201">#0</div>
-      <div class="FA" data-target="23">0</div>
-      <div class="ST" data-target="63152">0+</div>
-    </div>
-    <div class="label-container">
-      <div class="QS">QS Ranking</div>
-      <div class="FA">Faculties</div>
-      <div class="ST">Students</div>
-    </div>
+<p style="text-align: center; padding-top: 100px">
+  This is test number 1. Version 1.
+</p>
+
+<style>
+  #ai-wrapper {
+    font-family: sans-serif;
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    background: #f9f9f9;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+  }
+
+  #ai-wrapper h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+    color: #333;
+  }
+
+  #ai-file-input {
+    display: block;
+    margin: 0 auto 20px;
+  }
+
+  #ai-status {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #444;
+  }
+
+  #ai-question-container h3 {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+
+  #ai-question-container ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  #ai-question-container li {
+    padding: 8px;
+    border: 1px solid #ccc;
+    margin: 5px 0;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  #ai-question-container input[type="radio"] {
+    margin-right: 10px;
+  }
+
+  #ai-question-container li:hover {
+    background-color: #eef;
+  }
+
+  #progress-bar-container {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 20px;
+    margin: 10px auto;
+    max-width: 700px;
+  }
+
+  #progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #4caf50;
+    transition: width 0.3s ease;
+  }
+
+  #progress-text {
+    text-align: center;
+    margin-top: 5px;
+    font-weight: bold;
+    color: #333;
+  }
+</style>
+
+<div id="ai-wrapper">
+  <h2>Upload Your Medical File</h2>
+  <input type="file" id="ai-file-input" />
+  <div id="ai-status">Upload your file..</div>
+  <div id="progress-bar-container" style="display: none">
+    <div id="progress-bar"></div>
   </div>
-</div>
-
-<h1 class="BAUTitle">BAU Student Services</h1>
-<h1 class="OurUNI">The links</h1>
-<div class="button-container">
-  <div class="button-wrapper">
-    <a href="https://www.bau.edu.jo" target="_blank" class="button-link">
-      <button class="buttons">
-        <img src="icons/search.png" class="bauweb" />
-      </button>
-    </a>
-    <span class="button-text">BAU Website</span>
-  </div>
-
-  <div class="button-wrapper">
-    <a
-      href="https://app2.bau.edu.jo:7799/reg_new/index.jsp"
-      target="_blank"
-      class="button-link"
-    >
-      <button class="buttons">
-        <img src="icons/Student.png" />
-      </button>
-    </a>
-    <span class="button-text"> Student Portal</span>
-  </div>
-
-  <div class="button-wrapper">
-    <button class="buttons">
-      <img src="icons/Student.png" />
-    </button>
-    <span class="button-text">Option 2</span>
-  </div>
-
-  <div class="button-wrapper">
-    <button class="buttons">
-      <img src="icons/Student.png" />
-    </button>
-    <span class="button-text">Option 3</span>
-  </div>
-
-  <div class="button-wrapper">
-    <button class="buttons">
-      <img src="icons/Student.png" />
-    </button>
-    <span class="button-text">Option 4</span>
-  </div>
-
-  <div class="button-wrapper">
-    <button class="buttons">
-      <img src="icons/Student.png" />
-    </button>
-    <span class="button-text">Option 5</span>
-  </div>
-
-  <div class="button-wrapper">
-    <button class="buttons">
-      <img src="icons/Student.png" />
-    </button>
-    <span class="button-text">Option 6</span>
-  </div>
-
-  <div class="button-wrapper">
-    <button class="buttons">
-      <img src="icons/Student.png" />
-    </button>
-    <span class="button-text">Option 7</span>
-  </div>
-
-  <div class="button-wrapper">
-    <button class="buttons">
-      <img src="icons/Student.png" />
-    </button>
-    <span class="button-text">Option 8</span>
-  </div>
-</div>
-
-<!--
-<div class="contect">
-    <li>
-      The offical website for BAU:
-      <a href="https://www.bau.edu.jo" target="_blank"
-        ><span class="Clickhere">Click here</span></a
-      >
-    </li>
-    <li>
-     
-    </li>
-    <li>
-      The Course Schedules:
-      <a href="https://app2.bau.edu.jo:7799/courses/index.jsp" target="_blank"
-        ><span class="Clickhere">Click here</span></a
-      >
-    </li>
-    <li>
-      The E-Learning portal:
-      <a
-        href="https://s1.ebalqa.courses/ncentermoodle/login/index.php"
-        target="_blank"
-        ><span class="Clickhere">Click here</span></a
-      >
-    </li>
-    <li>
-      Medical Excuse Submission Portal:
-      <a href="http://app3.bau.edu.jo:7777/obligation/login.jsp" target="_blank"
-        ><span class="Clickhere">Click here</span></a
-      >
-    </li>
-    <li>
-      The Student Guide:
-      <a
-        href="https://www.bau.edu.jo/media/dalel2/mobile/index.html"
-        target="_blank"
-        ><span class="Clickhere">Click here</span></a
-      >
-    </li>
-    <li>
-      The Regulations, Instructions, and Laws:
-      <a
-        href="https://www.bau.edu.jo/lows/low_search.aspx?fbclid=IwAR3612KFdJWCqERPFjUI1btGk80suFyJAxsLgm693rDDSMbq7UeZkErnt24"
-        target="_blank"
-        ><span class="Clickhere">Click here</span></a
-      >
-    </li>
-
-    <li>
-      The GPA Calculator:
-      <a
-        href="https://app2.bau.edu.jo:7799/courses/index.jsp?param=1"
-        target="_blank"
-        ><span class="Clickhere">Click here</span></a
-      >
-    </li>
-    <li>
-      The Other services:
-      <a href="https://www.bau.edu.jo/Services/sServices.aspx" target="_blank"
-        ><span class="Clickhere">Click here</span></a
-      >
-    </li>
-    <div class="TORdiv">
-      <p class="TOR">
-        This website is developed by a student in the Faculty of Medicine at
-        Al-Balqa Applied University, aimed at supporting fellow students by
-        providing useful resources. The links to BAU direct users to content and
-        services that are the intellectual property of their respective owners.
-        I do not claim any ownership or affiliation with BAU or its programs. By
-        utilizing these services, users agree to comply with BAU's terms and
-        conditions. The primary goal is to make it easier to access essential
-        information in one convenient location. Any opinions or materials
-        accessed through these links are solely those of their respective owners
-        and do not reflect the views or policies of this website. So, Users are
-        advised to review BAU's official copyright policy and terms of service
-        for details about the usage and rights related to their content.
-        Additionally, to access and review the BAU's data protection and privacy
-        policy, please click
-        <a href="https://www.bau.edu.jo/media/ar1.pdf"
-          ><strong><span class="Clickhere">[here]</span></strong></a
-        >. For information on restrictions and regulations, click
-        <a href="https://www.bau.edu.jo/lows/low_search.aspx"
-          ><strong><span class="Clickhere">[here]</span></strong></a
-        >.
-      </p>
-      <p style="text-align: left; margin-bottom: 0">
-        2012 &#169; Al-Balqa' Applied University. All rights reserved.
-      </p>
-      <p style="text-align: left; margin-top: 0">
-        Al-Salt, Jordan Tel: (+962-5) 3491111 Fax: (+962-5) 3491111 P.O.Box:
-        Al-Salt 19117, Jordan E-Mail: info@bau.edu.jo.
-      </p>
-      <p></p>
-    </div>
-  </div>
--->
-
-<div class="error">
-  <p>
-    Oops! <br />
-    Seems like this page is not supported on this screen size! <br />
-    Maximize your screen to view the page
-  </p>
-  <img
-    id="diagnosis-icon"
-    src="icons/diagnosis.png"
-    alt="Diagnosis Icon"
-    style="width: 50px; margin-top: 30px; margin-left: 15px; opacity: 0.9"
-  />
+  <div id="progress-text"></div>
+  <div id="ai-question-container"></div>
 </div>
