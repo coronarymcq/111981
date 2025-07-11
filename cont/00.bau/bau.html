@@ -3,34 +3,85 @@
 </p>
 
 <style>
-  #ai-wrapper {
+  body {
     font-family: sans-serif;
+    background: #f0f2f5;
+    padding: 40px 0;
+  }
+
+  #ai-wrapper {
     max-width: 700px;
-    margin: 40px auto;
+    margin: 0 auto;
     padding: 20px;
+    background: #fff;
     border: 2px solid #ddd;
     border-radius: 12px;
-    background: #f9f9f9;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
   }
 
   #ai-wrapper h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
     text-align: center;
     color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
   }
 
-  #ai-file-input {
+  #ai-text-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    resize: vertical;
+  }
+
+  #ai-generate-btn {
     display: block;
-    margin: 0 auto 20px;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+  }
+
+  #ai-generate-btn:hover {
+    background-color: #43a047;
   }
 
   #ai-status {
     font-weight: bold;
     text-align: center;
-    margin-bottom: 20px;
+    margin: 20px 0;
     color: #444;
+  }
+
+  #progress-bar-container {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 20px;
+    margin: 10px auto;
+    max-width: 700px;
+    display: none;
+  }
+
+  #progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #4caf50;
+    transition: width 0.3s ease;
+  }
+
+  #progress-text {
+    text-align: center;
+    margin-top: 5px;
+    font-weight: bold;
+    color: #333;
   }
 
   #ai-question-container h3 {
@@ -59,36 +110,26 @@
     background-color: #eef;
   }
 
-  #progress-bar-container {
-    width: 100%;
-    background-color: #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    height: 20px;
-    margin: 10px auto;
-    max-width: 700px;
-  }
-
-  #progress-bar {
-    height: 100%;
-    width: 0%;
-    background-color: #4caf50;
-    transition: width 0.3s ease;
-  }
-
-  #progress-text {
-    text-align: center;
-    margin-top: 5px;
-    font-weight: bold;
-    color: #333;
+  .explanation {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    background: #f1f1f1;
+    border-left: 4px solid #2196f3;
+    border-radius: 4px;
   }
 </style>
 
 <div id="ai-wrapper">
-  <h2>Upload Your Medical File</h2>
-  <input type="file" id="ai-file-input" />
-  <div id="ai-status">Upload your file..</div>
-  <div id="progress-bar-container" style="display: none">
+  <h2>Enter a Medical Topic</h2>
+  <textarea
+    id="ai-text-input"
+    rows="6"
+    placeholder="e.g. Differential diagnosis of GI bleeding, management of chest pain, etc..."
+  ></textarea>
+  <button id="ai-generate-btn">Generate Questions</button>
+  <div id="ai-status">Type a medical topic and click "Generate Questions"</div>
+  <div id="progress-bar-container">
     <div id="progress-bar"></div>
   </div>
   <div id="progress-text"></div>
