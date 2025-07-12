@@ -1,18 +1,9 @@
-<p style="text-align: center; padding-top: 100px">
-  This is test number 1. Version 1.
-</p>
-
 <style>
-  body {
-    font-family: sans-serif;
-    background: #f0f2f5;
-    padding: 40px 0;
-  }
-
   #ai-wrapper {
     max-width: 700px;
     margin: 0 auto;
     padding: 20px;
+    margin-bottom: 100px;
     background: #fff;
     border: 2px solid #ddd;
     border-radius: 12px;
@@ -43,7 +34,7 @@
     font-size: 16px;
     border: none;
     border-radius: 6px;
-    background-color: #4caf50;
+    background-color: rgb(72, 201, 176);
     color: white;
     cursor: pointer;
   }
@@ -120,6 +111,19 @@
   }
 </style>
 
+<!--
+<p
+  style="
+    text-align: center;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    font-weight: 700;
+    font-size: 20px;
+  "
+  class="aiVersion"
+>
+  This is test number 1. Version 1.
+</p>
 <div id="ai-wrapper">
   <h2>Enter a Medical Topic</h2>
   <textarea
@@ -134,4 +138,260 @@
   </div>
   <div id="progress-text"></div>
   <div id="ai-question-container"></div>
+</div>
+-->
+
+<div
+  class="qscon"
+  style="
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 100px;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding-left: 50px;
+    padding-right: 50px;
+  "
+>
+  <h3>
+    Q1: What is the MOST likely reason why patient safety is now seen as more
+    than just preventing errors?
+  </h3>
+  <div>
+    <input type="radio" name="q1" /> (A) Errors are rare in modern clinical
+    practice
+  </div>
+  <div>
+    <input type="radio" name="q1" /> (B) Not all patient harm is caused by
+    errors
+  </div>
+  <div>
+    <input type="radio" name="q1" /> (C) Most errors are always preventable
+  </div>
+  <div>
+    <input type="radio" name="q1" /> (D) Harm only occurs due to negligence
+  </div>
+  <p class="explanation" style="display: none">
+    <strong>Correct Answer: (B)</strong><br />
+    (A) Incorrect – Errors are still common.<br />
+    (B) Correct – Harm can occur even without errors (e.g., complications,
+    nosocomial infections).<br />
+    (C) Incorrect – Many errors are not preventable.<br />
+    (D) Incorrect – Harm is not always linked to negligence.
+  </p>
+
+  <h3>
+    Q2: A retrospective review of medical records finds frequent adverse drug
+    events in outpatients. What percentage of these events are typically
+    classified as SERIOUS?
+  </h3>
+  <div><input type="radio" name="q2" /> (A) 1%</div>
+  <div><input type="radio" name="q2" /> (B) 6%</div>
+  <div><input type="radio" name="q2" /> (C) 15%</div>
+  <div><input type="radio" name="q2" /> (D) 25%</div>
+  <p class="explanation" style="display: none">
+    <strong>Correct Answer: (B)</strong><br />
+    (A) Incorrect – Too low.<br />
+    (B) Correct – 6% of patients experienced serious drug-related events like
+    bradycardia or GI bleeding.<br />
+    (C) & (D) Incorrect – Overestimate the actual figure.
+  </p>
+
+  <h3>
+    Q3: Which of the following best describes an adverse event in the healthcare
+    system?
+  </h3>
+  <div>
+    <input type="radio" name="q3" /> (A) Any unexpected clinical deterioration
+  </div>
+  <div>
+    <input type="radio" name="q3" /> (B) Unintended injury caused by medical
+    management rather than disease
+  </div>
+  <div>
+    <input type="radio" name="q3" /> (C) Harm caused solely by hospital-acquired
+    infections
+  </div>
+  <div>
+    <input type="radio" name="q3" /> (D) Complication that results in
+    readmission
+  </div>
+  <p class="explanation" style="display: none">
+    <strong>Correct Answer: (B)</strong><br />
+    (A) Incorrect – Too vague.<br />
+    (B) Correct – This is the formal definition of an adverse event.<br />
+    (C) Incorrect – Too narrow; not all adverse events are infections.<br />
+    (D) Incorrect – Not all readmissions are adverse events.
+  </p>
+
+  <h3>
+    Q4: Which component is NOT one of the "three pillars" of patient safety?
+  </h3>
+  <div><input type="radio" name="q4" /> (A) Avoidance</div>
+  <div><input type="radio" name="q4" /> (B) Prevention</div>
+  <div><input type="radio" name="q4" /> (C) Compliance</div>
+  <div><input type="radio" name="q4" /> (D) Amelioration</div>
+  <p class="explanation" style="display: none">
+    <strong>Correct Answer: (C)</strong><br />
+    (A), (B), (D) – All are true pillars.<br />
+    (C) Incorrect – While important, compliance is not one of the foundational
+    concepts of patient safety.
+  </p>
+
+  <h3>
+    Q5: Which factor makes defining harm in healthcare particularly difficult
+    compared to other industries?
+  </h3>
+  <div>
+    <input type="radio" name="q5" /> (A) Harm can arise from treatment or the
+    disease itself
+  </div>
+  <div><input type="radio" name="q5" /> (B) Errors are rarely documented</div>
+  <div>
+    <input type="radio" name="q5" /> (C) There is no existing reporting
+    infrastructure
+  </div>
+  <div>
+    <input type="radio" name="q5" /> (D) Most adverse events occur outside the
+    hospital
+  </div>
+  <p class="explanation" style="display: none">
+    <strong>Correct Answer: (A)</strong><br />
+    (A) Correct – It's difficult to separate harm due to healthcare from disease
+    itself.<br />
+    (B) Incorrect – Errors are reported, but harm can occur without errors.<br />
+    (C) Incorrect – Reporting systems exist but vary.<br />
+    (D) Incorrect – Many events occur within the hospital.
+  </p>
+
+  <h3>
+    Q6: A patient was readmitted 5 days after discharge due to bleeding from an
+    anticoagulant. This is an example of:
+  </h3>
+  <div><input type="radio" name="q6" /> (A) Adverse drug event</div>
+  <div><input type="radio" name="q6" /> (B) Nosocomial infection</div>
+  <div><input type="radio" name="q6" /> (C) Preventable complication</div>
+  <div><input type="radio" name="q6" /> (D) Surgical site infection</div>
+  <p class="explanation" style="display: none">
+    <strong>Correct Answer: (A)</strong><br />
+    (A) Correct – This is a classic adverse drug event (ADE).<br />
+    (B) Incorrect – Not an infection.<br />
+    (C) Incorrect – Could be preventable, but it’s better classified as ADE.<br />
+    (D) Incorrect – No surgery involved.
+  </p>
+
+  <h3>
+    Q7: Which of the following is a strength of regional or national reporting
+    systems?
+  </h3>
+  <div>
+    <input type="radio" name="q7" /> (A) Provides rapid feedback to bedside
+    clinicians
+  </div>
+  <div>
+    <input type="radio" name="q7" /> (B) Efficient for analyzing single
+    incidents in depth
+  </div>
+  <div>
+    <input type="radio" name="q7" /> (C) Detects patterns of rare incidents
+    across institutions
+  </div>
+  <div>
+    <input type="radio" name="q7" /> (D) Avoids the need for written reports
+  </div>
+  <p class="explanation" style="display: none">
+    <strong>Correct Answer: (C)</strong><br />
+    (A) & (B) Incorrect – Local systems are better for rapid feedback and deep
+    analysis.<br />
+    (C) Correct – Regional/national systems detect trends across many
+    institutions.<br />
+    (D) Incorrect – Written reports are essential for data collection.
+  </p>
+
+  <h3>
+    Q8: Which of the following is the BEST example of a system-level change
+    proposed by Lucian Leape?
+  </h3>
+  <div>
+    <input type="radio" name="q8" /> (A) Disciplining physicians who make errors
+  </div>
+  <div>
+    <input type="radio" name="q8" /> (B) Redesigning work environments to reduce
+    error
+  </div>
+  <div>
+    <input type="radio" name="q8" /> (C) Increasing the workload to improve
+    vigilance
+  </div>
+  <div>
+    <input type="radio" name="q8" /> (D) Mandating perfect performance through
+    training
+  </div>
+  <p class="explanation" style="display: none">
+    <strong>Correct Answer: (B)</strong><br />
+    (A) & (D) – These rely on outdated "perfectibility model."<br />
+    (B) Correct – Leape promoted system changes like better workflow and
+    environment.<br />
+    (C) Incorrect – Higher workload increases, not reduces, errors.
+  </p>
+
+  <h3>
+    Q9: A surgical patient in the UK develops complications, but survives. What
+    proportion of such complications are believed to be avoidable?
+  </h3>
+  <div><input type="radio" name="q9" /> (A) 10–15%</div>
+  <div><input type="radio" name="q9" /> (B) 20–30%</div>
+  <div><input type="radio" name="q9" /> (C) 30–50%</div>
+  <div><input type="radio" name="q9" /> (D) 60–75%</div>
+  <p class="explanation" style="display: none">
+    <strong>Correct Answer: (C)</strong><br />
+    (A) & (B) – Underestimate the reality.<br />
+    (C) Correct – Studies show 30–50% of surgical complications are
+    avoidable.<br />
+    (D) – Overestimate.
+  </p>
+
+  <h3>
+    Q10: Why are elderly patients more vulnerable to harm in hospitals compared
+    to younger patients?
+  </h3>
+  <div>
+    <input type="radio" name="q10" /> (A) Elderly patients do not respond to
+    treatment
+  </div>
+  <div>
+    <input type="radio" name="q10" /> (B) Elderly patients receive fewer
+    interventions
+  </div>
+  <div>
+    <input type="radio" name="q10" /> (C) They have multiple comorbidities and
+    decreased physiological reserve
+  </div>
+  <div><input type="radio" name="q10" /> (D) They are usually misdiagnosed</div>
+  <p class="explanation" style="display: none">
+    <strong>Correct Answer: (C)</strong><br />
+    (A) Incorrect – Many elderly respond well to treatment.<br />
+    (B) Incorrect – They often receive multiple interventions.<br />
+    (C) Correct – Their physiologic fragility and polypharmacy increase risk.<br />
+    (D) Incorrect – Misdiagnosis is not the primary vulnerability factor.
+  </p>
+</div>
+
+<div class="error">
+  <p>
+    Oops! <br />
+    Seems like this page is not supported on this screen size! <br />
+    Maximize your screen to view the page
+  </p>
+  <img
+    id="diagnosis-icon"
+    src="icons/diagnosis.png"
+    alt="Diagnosis Icon"
+    style="width: 50px; margin-top: 30px; margin-left: 15px; opacity: 0.9"
+  />
 </div>
