@@ -1,398 +1,515 @@
-<style>
-  #ai-wrapper {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 20px;
-    margin-bottom: 100px;
-    background: #fff;
-    border: 2px solid #ddd;
-    border-radius: 12px;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
-  }
+<div id="history-form-container" class="form-wrapper">
+  <h2
+    style="
+      font-weight: 600;
+      border-bottom: 1px solid var(--all-text);
+      padding-bottom: 40px;
+      padding-top: 10px;
+      margin-bottom: 60px;
+    "
+  >
+    Clinical History Taking Form
+  </h2>
 
-  #ai-wrapper h2 {
-    text-align: center;
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
+  <!-- Student Info at the Top -->
+  <div class="form-section flex-row">
+    <div class="form-subsection">
+      <label for="student-name">Student Name</label>
+      <input type="text" id="student-name" />
+    </div>
 
-  #ai-text-input {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    margin-bottom: 10px;
-    resize: vertical;
-  }
-
-  #ai-generate-btn {
-    display: block;
-    margin: 10px auto;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 6px;
-    background-color: rgb(72, 201, 176);
-    color: white;
-    cursor: pointer;
-  }
-
-  #ai-generate-btn:hover {
-    background-color: #43a047;
-  }
-
-  #ai-status {
-    font-weight: bold;
-    text-align: center;
-    margin: 20px 0;
-    color: #444;
-  }
-
-  #progress-bar-container {
-    width: 100%;
-    background-color: #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    height: 20px;
-    margin: 10px auto;
-    max-width: 700px;
-    display: none;
-  }
-
-  #progress-bar {
-    height: 100%;
-    width: 0%;
-    background-color: #4caf50;
-    transition: width 0.3s ease;
-  }
-
-  #progress-text {
-    text-align: center;
-    margin-top: 5px;
-    font-weight: bold;
-    color: #333;
-  }
-
-  #ai-question-container h3 {
-    margin-top: 20px;
-    font-size: 18px;
-  }
-
-  #ai-question-container ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  #ai-question-container li {
-    padding: 8px;
-    border: 1px solid #ccc;
-    margin: 5px 0;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-
-  #ai-question-container input[type="radio"] {
-    margin-right: 10px;
-  }
-
-  #ai-question-container li:hover {
-    background-color: #eef;
-  }
-
-  .explanation {
-    display: none;
-    margin-top: 10px;
-    padding: 10px;
-    background: #f1f1f1;
-    border-left: 4px solid #2196f3;
-    border-radius: 4px;
-  }
-</style>
-
-<!--
-<p
-  style="
-    text-align: center;
-    padding-top: 100px;
-    padding-bottom: 100px;
-    font-weight: 700;
-    font-size: 20px;
-  "
-  class="aiVersion"
->
-  This is test number 1. Version 1.
-</p>
-<div id="ai-wrapper">
-  <h2>Enter a Medical Topic</h2>
-  <textarea
-    id="ai-text-input"
-    rows="6"
-    placeholder="e.g. Differential diagnosis of GI bleeding, management of chest pain, etc..."
-  ></textarea>
-  <button id="ai-generate-btn">Generate Questions</button>
-  <div id="ai-status">Type a medical topic and click "Generate Questions"</div>
-  <div id="progress-bar-container">
-    <div id="progress-bar"></div>
+    <div class="form-subsection">
+      <label for="group-number">Group Number</label>
+      <input type="text" id="group-number" />
+    </div>
   </div>
-  <div id="progress-text"></div>
-  <div id="ai-question-container"></div>
-</div>
--->
+  <!-- Patient Info in One Row -->
+  <div class="form-section flex-row">
+    <div class="form-subsection">
+      <label for="patient-name">Patient Name</label>
+      <input type="text" id="patient-name" />
+    </div>
 
-<div
-  class="qscon"
-  style="
-    background-color: var(bg-color);
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 20px;
-    max-width: 1000px;
-    margin: auto;
-    margin-top: 100px;
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    padding-left: 50px;
-    padding-right: 50px;
-    color: var(--all-text);
-  "
->
-  <h3>
-    Q1: What is the MOST likely reason why patient safety is now seen as more
-    than just preventing errors?
-  </h3>
-  <div>
-    <input type="radio" name="q1" /> (A) Errors are rare in modern clinical
-    practice
-  </div>
-  <div>
-    <input type="radio" name="q1" /> (B) Not all patient harm is caused by
-    errors
-  </div>
-  <div>
-    <input type="radio" name="q1" /> (C) Most errors are always preventable
-  </div>
-  <div>
-    <input type="radio" name="q1" /> (D) Harm only occurs due to negligence
-  </div>
-  <p class="explanation" style="display: none">
-    <strong>Correct Answer: (B)</strong><br />
-    (A) Incorrect – Errors are still common.<br />
-    (B) Correct – Harm can occur even without errors (e.g., complications,
-    nosocomial infections).<br />
-    (C) Incorrect – Many errors are not preventable.<br />
-    (D) Incorrect – Harm is not always linked to negligence.
-  </p>
+    <div class="form-subsection">
+      <label for="date">Date</label>
+      <input type="date" id="date" />
+    </div>
 
-  <h3>
-    Q2: A retrospective review of medical records finds frequent adverse drug
-    events in outpatients. What percentage of these events are typically
-    classified as SERIOUS?
-  </h3>
-  <div><input type="radio" name="q2" /> (A) 1%</div>
-  <div><input type="radio" name="q2" /> (B) 6%</div>
-  <div><input type="radio" name="q2" /> (C) 15%</div>
-  <div><input type="radio" name="q2" /> (D) 25%</div>
-  <p class="explanation" style="display: none">
-    <strong>Correct Answer: (B)</strong><br />
-    (A) Incorrect – Too low.<br />
-    (B) Correct – 6% of patients experienced serious drug-related events like
-    bradycardia or GI bleeding.<br />
-    (C) & (D) Incorrect – Overestimate the actual figure.
-  </p>
+    <div class="form-subsection">
+      <label for="age">Age</label>
+      <input type="number" id="age" />
+    </div>
+  </div>
 
-  <h3>
-    Q3: Which of the following best describes an adverse event in the healthcare
-    system?
-  </h3>
-  <div>
-    <input type="radio" name="q3" /> (A) Any unexpected clinical deterioration
+  <!-- Gender -->
+  <div class="form-section">
+    <label for="gender">Gender</label>
+    <select id="gender">
+      <option value="" disabled selected>Select</option>
+      <option>Male</option>
+      <option>Female</option>
+      <option>Other</option>
+    </select>
   </div>
-  <div>
-    <input type="radio" name="q3" /> (B) Unintended injury caused by medical
-    management rather than disease
-  </div>
-  <div>
-    <input type="radio" name="q3" /> (C) Harm caused solely by hospital-acquired
-    infections
-  </div>
-  <div>
-    <input type="radio" name="q3" /> (D) Complication that results in
-    readmission
-  </div>
-  <p class="explanation" style="display: none">
-    <strong>Correct Answer: (B)</strong><br />
-    (A) Incorrect – Too vague.<br />
-    (B) Correct – This is the formal definition of an adverse event.<br />
-    (C) Incorrect – Too narrow; not all adverse events are infections.<br />
-    (D) Incorrect – Not all readmissions are adverse events.
-  </p>
 
-  <h3>
-    Q4: Which component is NOT one of the "three pillars" of patient safety?
-  </h3>
-  <div><input type="radio" name="q4" /> (A) Avoidance</div>
-  <div><input type="radio" name="q4" /> (B) Prevention</div>
-  <div><input type="radio" name="q4" /> (C) Compliance</div>
-  <div><input type="radio" name="q4" /> (D) Amelioration</div>
-  <p class="explanation" style="display: none">
-    <strong>Correct Answer: (C)</strong><br />
-    (A), (B), (D) – All are true pillars.<br />
-    (C) Incorrect – While important, compliance is not one of the foundational
-    concepts of patient safety.
-  </p>
+  <!-- CC -->
+  <div class="form-section">
+    <label for="chief-complaint">Chief Complaint (CC)</label>
+    <textarea id="chief-complaint"></textarea>
+  </div>
 
-  <h3>
-    Q5: Which factor makes defining harm in healthcare particularly difficult
-    compared to other industries?
-  </h3>
-  <div>
-    <input type="radio" name="q5" /> (A) Harm can arise from treatment or the
-    disease itself
+  <!-- SOCRATES Expanded -->
+  <div class="form-section">
+    <label>HPC – SOCRATES</label>
+    <div id="socrates-wrapper">
+      <div class="form-subsection">
+        <label for="site">Site</label><input type="text" id="site" />
+      </div>
+      <div class="form-subsection">
+        <label for="onset">Onset</label><input type="text" id="onset" />
+      </div>
+      <div class="form-subsection">
+        <label for="character">Character</label
+        ><input type="text" id="character" />
+      </div>
+      <div class="form-subsection">
+        <label for="radiation">Radiation</label
+        ><input type="text" id="radiation" />
+      </div>
+      <div class="form-subsection">
+        <label for="associated">Associated Symptoms</label
+        ><input type="text" id="associated" />
+      </div>
+      <div class="form-subsection">
+        <label for="timing">Timing</label><input type="text" id="timing" />
+      </div>
+      <div class="form-subsection">
+        <label for="exacerbating">Exacerbating/Relieving</label
+        ><input type="text" id="exacerbating" />
+      </div>
+      <div class="form-subsection">
+        <label for="severity">Severity (0–10)</label
+        ><select id="severity">
+          <option value="" disabled selected>Select severity</option>
+          <option value="0">0 – No pain</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5 – Moderate</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10 – Worst imaginable</option>
+        </select>
+      </div>
+    </div>
   </div>
-  <div><input type="radio" name="q5" /> (B) Errors are rarely documented</div>
-  <div>
-    <input type="radio" name="q5" /> (C) There is no existing reporting
-    infrastructure
-  </div>
-  <div>
-    <input type="radio" name="q5" /> (D) Most adverse events occur outside the
-    hospital
-  </div>
-  <p class="explanation" style="display: none">
-    <strong>Correct Answer: (A)</strong><br />
-    (A) Correct – It's difficult to separate harm due to healthcare from disease
-    itself.<br />
-    (B) Incorrect – Errors are reported, but harm can occur without errors.<br />
-    (C) Incorrect – Reporting systems exist but vary.<br />
-    (D) Incorrect – Many events occur within the hospital.
-  </p>
 
-  <h3>
-    Q6: A patient was readmitted 5 days after discharge due to bleeding from an
-    anticoagulant. This is an example of:
-  </h3>
-  <div><input type="radio" name="q6" /> (A) Adverse drug event</div>
-  <div><input type="radio" name="q6" /> (B) Nosocomial infection</div>
-  <div><input type="radio" name="q6" /> (C) Preventable complication</div>
-  <div><input type="radio" name="q6" /> (D) Surgical site infection</div>
-  <p class="explanation" style="display: none">
-    <strong>Correct Answer: (A)</strong><br />
-    (A) Correct – This is a classic adverse drug event (ADE).<br />
-    (B) Incorrect – Not an infection.<br />
-    (C) Incorrect – Could be preventable, but it’s better classified as ADE.<br />
-    (D) Incorrect – No surgery involved.
-  </p>
+  <!-- PMH / PSH -->
+  <div class="form-section">
+    <label for="past-medical">Past Medical History (PMH)</label>
+    <textarea id="past-medical"></textarea>
+  </div>
 
-  <h3>
-    Q7: Which of the following is a strength of regional or national reporting
-    systems?
-  </h3>
-  <div>
-    <input type="radio" name="q7" /> (A) Provides rapid feedback to bedside
-    clinicians
+  <div class="form-section">
+    <label for="past-surgical">Past Surgical History (PSH)</label>
+    <textarea id="past-surgical"></textarea>
   </div>
-  <div>
-    <input type="radio" name="q7" /> (B) Efficient for analyzing single
-    incidents in depth
-  </div>
-  <div>
-    <input type="radio" name="q7" /> (C) Detects patterns of rare incidents
-    across institutions
-  </div>
-  <div>
-    <input type="radio" name="q7" /> (D) Avoids the need for written reports
-  </div>
-  <p class="explanation" style="display: none">
-    <strong>Correct Answer: (C)</strong><br />
-    (A) & (B) Incorrect – Local systems are better for rapid feedback and deep
-    analysis.<br />
-    (C) Correct – Regional/national systems detect trends across many
-    institutions.<br />
-    (D) Incorrect – Written reports are essential for data collection.
-  </p>
 
-  <h3>
-    Q8: Which of the following is the BEST example of a system-level change
-    proposed by Lucian Leape?
-  </h3>
-  <div>
-    <input type="radio" name="q8" /> (A) Disciplining physicians who make errors
+  <!-- Drug History Expanded -->
+  <div class="form-section">
+    <label>Drug History (DH)</label>
+    <div class="boxed-section">
+      <div class="form-subsection">
+        <label for="regular-meds">Regular Medications</label>
+        <textarea id="regular-meds"></textarea>
+      </div>
+      <div class="form-subsection">
+        <label for="otc">OTC / Herbal / Supplements</label>
+        <textarea id="otc"></textarea>
+      </div>
+      <div class="form-subsection">
+        <label for="drug-allergies">Drug Allergies (with reactions)</label>
+        <textarea id="drug-allergies"></textarea>
+      </div>
+    </div>
   </div>
-  <div>
-    <input type="radio" name="q8" /> (B) Redesigning work environments to reduce
-    error
-  </div>
-  <div>
-    <input type="radio" name="q8" /> (C) Increasing the workload to improve
-    vigilance
-  </div>
-  <div>
-    <input type="radio" name="q8" /> (D) Mandating perfect performance through
-    training
-  </div>
-  <p class="explanation" style="display: none">
-    <strong>Correct Answer: (B)</strong><br />
-    (A) & (D) – These rely on outdated "perfectibility model."<br />
-    (B) Correct – Leape promoted system changes like better workflow and
-    environment.<br />
-    (C) Incorrect – Higher workload increases, not reduces, errors.
-  </p>
 
-  <h3>
-    Q9: A surgical patient in the UK develops complications, but survives. What
-    proportion of such complications are believed to be avoidable?
-  </h3>
-  <div><input type="radio" name="q9" /> (A) 10–15%</div>
-  <div><input type="radio" name="q9" /> (B) 20–30%</div>
-  <div><input type="radio" name="q9" /> (C) 30–50%</div>
-  <div><input type="radio" name="q9" /> (D) 60–75%</div>
-  <p class="explanation" style="display: none">
-    <strong>Correct Answer: (C)</strong><br />
-    (A) & (B) – Underestimate the reality.<br />
-    (C) Correct – Studies show 30–50% of surgical complications are
-    avoidable.<br />
-    (D) – Overestimate.
-  </p>
+  <!-- Family -->
+  <div class="form-section">
+    <label for="family-history">Family History (FH)</label>
+    <textarea id="family-history"></textarea>
+  </div>
 
-  <h3>
-    Q10: Why are elderly patients more vulnerable to harm in hospitals compared
-    to younger patients?
-  </h3>
-  <div>
-    <input type="radio" name="q10" /> (A) Elderly patients do not respond to
-    treatment
+  <!-- Social History Expanded -->
+  <div class="form-section">
+    <label>Social History (SH)</label>
+    <div class="boxed-section">
+      <div class="form-subsection">
+        <label for="smoking">Smoking (Pack-years)</label>
+        <input type="text" id="smoking" />
+      </div>
+      <div class="form-subsection">
+        <label for="alcohol">Alcohol Use</label>
+        <input type="text" id="alcohol" />
+      </div>
+      <div class="form-subsection">
+        <label for="occupation">Occupation</label>
+        <input type="text" id="occupation" />
+      </div>
+      <div class="form-subsection">
+        <label for="living">Living Situation & Support</label>
+        <textarea id="living"></textarea>
+      </div>
+      <div class="form-subsection">
+        <label for="travel">Recent Travel</label>
+        <input type="text" id="travel" />
+      </div>
+    </div>
   </div>
-  <div>
-    <input type="radio" name="q10" /> (B) Elderly patients receive fewer
-    interventions
-  </div>
-  <div>
-    <input type="radio" name="q10" /> (C) They have multiple comorbidities and
-    decreased physiological reserve
-  </div>
-  <div><input type="radio" name="q10" /> (D) They are usually misdiagnosed</div>
-  <p class="explanation" style="display: none">
-    <strong>Correct Answer: (C)</strong><br />
-    (A) Incorrect – Many elderly respond well to treatment.<br />
-    (B) Incorrect – They often receive multiple interventions.<br />
-    (C) Correct – Their physiologic fragility and polypharmacy increase risk.<br />
-    (D) Incorrect – Misdiagnosis is not the primary vulnerability factor.
-  </p>
-</div>
 
-<div class="error">
-  <p>
-    Oops! <br />
-    Seems like this page is not supported on this screen size! <br />
-    Maximize your screen to view the page
-  </p>
-  <img
-    id="diagnosis-icon"
-    src="icons/diagnosis.png"
-    alt="Diagnosis Icon"
-    style="width: 50px; margin-top: 30px; margin-left: 15px; opacity: 0.9"
-  />
+  <!-- ROS -->
+  <div class="form-section">
+    <label>Systemic Enquiry (Review of Systems)</label>
+    <div class="checkbox-group">
+      <strong>General</strong>
+      <div class="checkbox-line">
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="General"
+            value="Weight loss"
+          />
+          Weight loss</label
+        >
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="General"
+            value="Fatigue"
+          />
+          Fatigue</label
+        >
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="General"
+            value="Fever"
+          />
+          Fever</label
+        >
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="General"
+            value="Night sweats"
+          />
+          Night sweats</label
+        >
+      </div>
+
+      <strong>Cardiovascular</strong>
+      <div class="checkbox-line">
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="CV"
+            value="Chest pain"
+          />
+          Chest pain</label
+        >
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="CV"
+            value="Palpitations"
+          />
+          Palpitations</label
+        >
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="CV"
+            value="Orthopnoea"
+          />
+          Orthopnoea</label
+        >
+        <label
+          ><input type="checkbox" class="ros" data-system="CV" value="PND" />
+          PND</label
+        >
+      </div>
+
+      <strong>Respiratory</strong>
+      <div class="checkbox-line">
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="Resp"
+            value="Cough"
+          />
+          Cough</label
+        >
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="Resp"
+            value="Sputum"
+          />
+          Sputum</label
+        >
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="Resp"
+            value="Haemoptysis"
+          />
+          Haemoptysis</label
+        >
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="Resp"
+            value="Dyspnoea"
+          />
+          Dyspnoea</label
+        >
+      </div>
+
+      <strong>Gastrointestinal</strong>
+      <div class="checkbox-line">
+        <label
+          ><input type="checkbox" class="ros" data-system="GI" value="Nausea" />
+          Nausea</label
+        >
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="GI"
+            value="Vomiting"
+          />
+          Vomiting</label
+        >
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="GI"
+            value="Diarrhea"
+          />
+          Diarrhea</label
+        >
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="GI"
+            value="Constipation"
+          />
+          Constipation</label
+        >
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="GI"
+            value="Bleeding"
+          />
+          Bleeding</label
+        >
+      </div>
+
+      <strong>Genitourinary</strong>
+      <div class="checkbox-line">
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="GU"
+            value="Dysuria"
+          />
+          Dysuria</label
+        >
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="GU"
+            value="Nocturia"
+          />
+          Nocturia</label
+        >
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="GU"
+            value="Haematuria"
+          />
+          Haematuria</label
+        >
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="GU"
+            value="Incontinence"
+          />
+          Incontinence</label
+        >
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="GU"
+            value="Discharge"
+          />
+          Discharge</label
+        >
+      </div>
+
+      <strong>CNS</strong>
+      <div class="checkbox-line">
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="CNS"
+            value="Headache"
+          />
+          Headache</label
+        >
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="CNS"
+            value="Weakness"
+          />
+          Weakness</label
+        >
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="CNS"
+            value="Numbness"
+          />
+          Numbness</label
+        >
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="CNS"
+            value="Seizures"
+          />
+          Seizures</label
+        >
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="CNS"
+            value="Memory loss"
+          />
+          Memory</label
+        >
+      </div>
+
+      <strong>MSK</strong>
+      <div class="checkbox-line">
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="MSK"
+            value="Joint pain"
+          />
+          Joint pain</label
+        >
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="MSK"
+            value="Stiffness"
+          />
+          Stiffness</label
+        >
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="MSK"
+            value="Swelling"
+          />
+          Swelling</label
+        >
+      </div>
+
+      <strong>Endocrine</strong>
+      <div class="checkbox-line">
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="Endocrine"
+            value="Heat intolerance"
+          />
+          Heat intolerance</label
+        >
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="Endocrine"
+            value="Cold intolerance"
+          />
+          Cold intolerance</label
+        >
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="Endocrine"
+            value="Polyuria"
+          />
+          Polyuria</label
+        >
+        <label
+          ><input
+            type="checkbox"
+            class="ros"
+            data-system="Endocrine"
+            value="Polydipsia"
+          />
+          Polydipsia</label
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- ICE -->
+  <div class="form-section">
+    <label for="ice">ICE (Ideas, Concerns, Expectations)</label>
+    <textarea id="ice"></textarea>
+  </div>
+
+  <!-- Submit -->
+  <button id="submit-and-download">Submit & Download PDF</button>
 </div>

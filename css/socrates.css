@@ -1,0 +1,132 @@
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.form-section {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid gray;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.form-wrapper {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+  margin-top: 100px;
+  background: var(bg-color);
+  color: var(all-text);
+  border-radius: 12px;
+  border-color: gray;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", sans-serif;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.form-section {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* Group inputs on the same row */
+.flex-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.flex-row > .form-subsection {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* SOCRATES specific layout */
+#socrates-wrapper {
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: var(--header-bg);
+
+  margin-top: 10px;
+}
+
+#socrates-wrapper .form-subsection {
+  margin-bottom: 10px;
+}
+
+/* Horizontal layout for checkbox groups */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.checkbox-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* For boxed sections like SOCRATES, Drug, Social */
+.boxed-section {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: var(--header-bg);
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Fix layout of inputs in horizontal rows */
+.form-subsection {
+  display: flex;
+  flex-direction: column;
+}
