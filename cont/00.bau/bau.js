@@ -327,3 +327,59 @@ document.getElementById("submit-and-download").addEventListener("click", () => {
       .padStart(2, "0")}${now.getMinutes().toString().padStart(2, "0")}.pdf`
   );
 });
+
+window.addEventListener("load", () => {
+  const sections = document.querySelectorAll(".form-section.animate-on-load");
+  sections.forEach((el, i) => {
+    el.style.animationDelay = `${i * 0.2}s`;
+  });
+});
+
+/**---------------- */
+
+// Call this function every time you inject the history form HTML
+function animateHistoryForm() {
+  const container = document.getElementById("history-form-container");
+  if (!container) return;
+
+  const elementsToAnimate = [
+    container.querySelector("h2"),
+    ...container.querySelectorAll(".form-section"),
+  ].filter(Boolean);
+
+  // Reset animation state
+  elementsToAnimate.forEach((el) => {
+    el.classList.remove("animate-on-load");
+    el.style.opacity = "0";
+    el.style.animationDelay = "";
+  });
+
+  // Trigger animation with staggered delays
+  elementsToAnimate.forEach((el, i) => {
+    setTimeout(() => {
+      el.classList.add("animate-on-load");
+      el.style.animationDelay = `${i * 0.1}s`;
+    }, 50);
+  });
+}
+
+// Call this to bind event listeners after injecting HTML
+function setupHistoryFormEvents() {
+  const btn = document.getElementById("submit-and-download");
+  if (!btn) return;
+
+  btn.onclick = () => {
+    // Your PDF generation code here, or call your existing function
+    console.log("Submit & Download clicked");
+  };
+}
+
+// Example: call this after you inject the history form HTML into the DOM
+function onHistoryFormInjected() {
+  animateHistoryForm();
+  setupHistoryFormEvents();
+}
+
+// Example usage:
+// After injecting your HTML dynamically, call:
+onHistoryFormInjected();

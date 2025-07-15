@@ -1,5 +1,4 @@
 h2 {
-  text-align: center;
   margin-bottom: 20px;
   font-weight: bold;
 }
@@ -17,7 +16,6 @@ label {
 input,
 select,
 textarea {
-  width: 100%;
   padding: 10px;
   border-radius: 8px;
   border: 1px solid gray;
@@ -31,20 +29,21 @@ textarea {
 }
 
 .form-wrapper {
-  max-width: 1000px;
+  max-width: 85%;
   margin: auto;
   padding: 20px;
   margin-top: 100px;
-  background: var(bg-color);
-  color: var(all-text);
+  background: var(
+    --header-bg
+  ); /* Make sure the custom property is defined with two dashes */
+  color: var(--all-text); /* Same here */
   border-radius: 12px;
-  border-color: gray;
+  border: 1px solid gray; /* ✅ Full border shorthand: width, style, and color */
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
   font-family: "Segoe UI", sans-serif;
 }
 
 h2 {
-  text-align: center;
   margin-bottom: 20px;
   font-weight: bold;
 }
@@ -62,7 +61,6 @@ label {
 input,
 select,
 textarea {
-  width: 100%;
   padding: 10px;
   border-radius: 8px;
   font-size: 14px;
@@ -100,19 +98,6 @@ textarea {
   margin-bottom: 10px;
 }
 
-/* Horizontal layout for checkbox groups */
-.checkbox-group {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.checkbox-line {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
 /* For boxed sections like SOCRATES, Drug, Social */
 .boxed-section {
   border: 1px solid #ccc;
@@ -129,4 +114,58 @@ textarea {
 .form-subsection {
   display: flex;
   flex-direction: column;
+}
+
+.error {
+  text-align: center;
+  overflow: hidden;
+  max-height: 0; /* Hidden height = no space taken */
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: max-height 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+}
+
+/* Show on small screens */
+@media (max-width: 1000px) {
+  #contact-container {
+    display: none;
+  }
+
+  .error {
+    max-height: 300px; /* Enough to show full content */
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    padding: 10px;
+    margin-top: 65px;
+  }
+
+  .form-wrapper {
+    display: none;
+  }
+}
+
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-on-load {
+  opacity: 0;
+  animation-name: fadeSlideIn;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s; /* current duration */
+  animation-timing-function: ease-out;
+}
+
+#history-form-container h2,
+#history-form-container .form-section {
+  opacity: 0;
 }
