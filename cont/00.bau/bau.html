@@ -26,20 +26,21 @@
   rel="stylesheet"
 />
 
-<h1 id="aboutus">Socrates</h1>
-<div id="history-form-container" class="form-wrapper">
+<h1 id="aboutus" style="margin-bottom: 70px">Socrates</h1>
+
+<div id="history-form-container" class="form-wrapper" style="width: 70%">
   <h2
     style="
       font-weight: 600;
       border-bottom: 1px solid gray;
       margin-left: 0; /* optional */
-      padding-bottom: 40px;
+      padding-bottom: 30px;
       padding-top: 25px;
-      margin-bottom: 60px;
+      margin-bottom: 40px;
       text-align: center;
     "
   >
-    Clinical History Taking Form
+    Practical History Taking Form
   </h2>
 
   <!-- Student Info at the Top -->
@@ -49,21 +50,48 @@
       <input type="text" id="student-name" />
     </div>
 
+    <div class="form-section">
+      <label for="student-number">Student Number</label>
+      <input
+        type="text"
+        id="student-number"
+        name="student-number"
+        placeholder="Enter your student number"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 11px;
+          font-size: 14px;
+        "
+      />
+    </div>
+
+    <div class="form-section">
+      <label for="rotation">Rotation</label>
+      <input
+        type="text"
+        id="rotation"
+        name="rotation"
+        placeholder="Enter your rotation"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 11px;
+          font-size: 14px;
+        "
+      />
+    </div>
     <div class="form-subsection">
       <label for="group-number">Group Number</label>
       <input type="text" id="group-number" />
     </div>
   </div>
+
   <!-- Patient Info in One Row -->
   <div class="form-section flex-row">
     <div class="form-subsection">
       <label for="patient-name">Patient Name</label>
       <input type="text" id="patient-name" />
-    </div>
-
-    <div class="form-subsection">
-      <label for="date">Date</label>
-      <input type="date" id="date" />
     </div>
 
     <div class="form-subsection">
@@ -75,18 +103,20 @@
   <!-- Gender -->
   <div class="form-section">
     <label for="gender">Gender</label>
-    <select id="gender">
-      <option value="" disabled selected>Select</option>
+    <select id="gender" style="width: 100%; box-sizing: border-box">
+      <option value="" disabled selected style="color: gray">Select</option>
       <option>Male</option>
       <option>Female</option>
-      <option>Other</option>
     </select>
   </div>
 
   <!-- CC -->
   <div class="form-section">
     <label for="chief-complaint">Chief Complaint (CC)</label>
-    <textarea id="chief-complaint"></textarea>
+    <textarea
+      id="chief-complaint"
+      style="width: 100%; box-sizing: border-box; padding: 8px; font-size: 14px"
+    ></textarea>
   </div>
 
   <!-- SOCRATES Expanded -->
@@ -121,7 +151,8 @@
       <div class="form-subsection">
         <label for="severity">Severity (0–10)</label
         ><select id="severity">
-          <option value="" disabled selected>Select severity</option>
+          <option value="" disabled>Select severity</option>
+          <option value="unknown" selected>Unknown</option>
           <option value="0">0 – No pain</option>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -141,12 +172,18 @@
   <!-- PMH / PSH -->
   <div class="form-section">
     <label for="past-medical">Past Medical History (PMH)</label>
-    <textarea id="past-medical"></textarea>
+    <textarea
+      id="past-medical"
+      style="width: 100%; box-sizing: border-box; padding: 8px; font-size: 14px"
+    ></textarea>
   </div>
 
   <div class="form-section">
     <label for="past-surgical">Past Surgical History (PSH)</label>
-    <textarea id="past-surgical"></textarea>
+    <textarea
+      id="past-surgical"
+      style="width: 100%; box-sizing: border-box; padding: 8px; font-size: 14px"
+    ></textarea>
   </div>
 
   <!-- Drug History Expanded -->
@@ -171,7 +208,10 @@
   <!-- Family -->
   <div class="form-section">
     <label for="family-history">Family History (FH)</label>
-    <textarea id="family-history"></textarea>
+    <textarea
+      id="family-history"
+      style="width: 100%; box-sizing: border-box; padding: 8px; font-size: 14px"
+    ></textarea>
   </div>
 
   <!-- Social History Expanded -->
@@ -200,349 +240,500 @@
       </div>
     </div>
   </div>
+  <div
+    style="
+      border: 1px solid gray;
+      border-radius: 10px;
+      padding: 10px;
+      display: inline-block;
+      width: 100%;
+    "
+  >
+    <table
+      style="
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        border: 1px solid gray;
+      "
+    >
+      <thead>
+        <tr>
+          <th
+            style="
+              text-align: left;
+              padding: 8px;
+              border-bottom: 2px solid gray;
+            "
+          >
+            System
+          </th>
+          <th
+            style="
+              text-align: left;
+              padding: 8px;
+              border-bottom: 2px solid gray;
+            "
+          >
+            Symptoms
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            style="
+              vertical-align: top;
+              padding: 8px;
+              font-weight: bold;
+              border-bottom: 1px solid gray;
+            "
+          >
+            General
+          </td>
+          <td style="padding: 8px; border-bottom: 1px solid gray">
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="General"
+                value="Weight loss"
+              />
+              Weight loss</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="General"
+                value="Fatigue"
+              />
+              Fatigue</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="General"
+                value="Fever"
+              />
+              Fever</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="General"
+                value="Night sweats"
+              />
+              Night sweats</label
+            >
+          </td>
+        </tr>
 
-  <!-- ROS -->
-  <div class="form-section">
-    <label>Systemic Enquiry (Review of Systems)</label>
-    <div class="checkbox-group">
-      <strong>General</strong>
-      <div class="checkbox-line">
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="General"
-            value="Weight loss"
-          />
-          Weight loss</label
-        >
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="General"
-            value="Fatigue"
-          />
-          Fatigue</label
-        >
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="General"
-            value="Fever"
-          />
-          Fever</label
-        >
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="General"
-            value="Night sweats"
-          />
-          Night sweats</label
-        >
-      </div>
+        <tr>
+          <td
+            style="
+              vertical-align: top;
+              padding: 8px;
+              font-weight: bold;
+              border-bottom: 1px solid gray;
+            "
+          >
+            Cardiovascular
+          </td>
+          <td style="padding: 8px; border-bottom: 1px solid gray">
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="CV"
+                value="Chest pain"
+              />
+              Chest pain</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="CV"
+                value="Palpitations"
+              />
+              Palpitations</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="CV"
+                value="Orthopnoea"
+              />
+              Orthopnoea</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="CV"
+                value="PND"
+              />
+              PND</label
+            >
+          </td>
+        </tr>
 
-      <strong>Cardiovascular</strong>
-      <div class="checkbox-line">
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="CV"
-            value="Chest pain"
-          />
-          Chest pain</label
-        >
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="CV"
-            value="Palpitations"
-          />
-          Palpitations</label
-        >
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="CV"
-            value="Orthopnoea"
-          />
-          Orthopnoea</label
-        >
-        <label
-          ><input type="checkbox" class="ros" data-system="CV" value="PND" />
-          PND</label
-        >
-      </div>
+        <tr>
+          <td
+            style="
+              vertical-align: top;
+              padding: 8px;
+              font-weight: bold;
+              border-bottom: 1px solid gray;
+            "
+          >
+            Respiratory
+          </td>
+          <td style="padding: 8px; border-bottom: 1px solid gray">
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="Resp"
+                value="Cough"
+              />
+              Cough</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="Resp"
+                value="Sputum"
+              />
+              Sputum</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="Resp"
+                value="Haemoptysis"
+              />
+              Haemoptysis</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="Resp"
+                value="Dyspnoea"
+              />
+              Dyspnoea</label
+            >
+          </td>
+        </tr>
 
-      <strong>Respiratory</strong>
-      <div class="checkbox-line">
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="Resp"
-            value="Cough"
-          />
-          Cough</label
-        >
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="Resp"
-            value="Sputum"
-          />
-          Sputum</label
-        >
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="Resp"
-            value="Haemoptysis"
-          />
-          Haemoptysis</label
-        >
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="Resp"
-            value="Dyspnoea"
-          />
-          Dyspnoea</label
-        >
-      </div>
+        <tr>
+          <td
+            style="
+              vertical-align: top;
+              padding: 8px;
+              font-weight: bold;
+              border-bottom: 1px solid gray;
+            "
+          >
+            Gastrointestinal
+          </td>
+          <td style="padding: 8px; border-bottom: 1px solid gray">
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="GI"
+                value="Nausea"
+              />
+              Nausea</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="GI"
+                value="Vomiting"
+              />
+              Vomiting</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="GI"
+                value="Diarrhea"
+              />
+              Diarrhea</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="GI"
+                value="Constipation"
+              />
+              Constipation</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="GI"
+                value="Bleeding"
+              />
+              Bleeding</label
+            >
+          </td>
+        </tr>
 
-      <strong>Gastrointestinal</strong>
-      <div class="checkbox-line">
-        <label
-          ><input type="checkbox" class="ros" data-system="GI" value="Nausea" />
-          Nausea</label
-        >
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="GI"
-            value="Vomiting"
-          />
-          Vomiting</label
-        >
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="GI"
-            value="Diarrhea"
-          />
-          Diarrhea</label
-        >
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="GI"
-            value="Constipation"
-          />
-          Constipation</label
-        >
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="GI"
-            value="Bleeding"
-          />
-          Bleeding</label
-        >
-      </div>
+        <tr>
+          <td
+            style="
+              vertical-align: top;
+              padding: 8px;
+              font-weight: bold;
+              border-bottom: 1px solid gray;
+            "
+          >
+            Genitourinary
+          </td>
+          <td style="padding: 8px; border-bottom: 1px solid gray">
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="GU"
+                value="Dysuria"
+              />
+              Dysuria</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="GU"
+                value="Nocturia"
+              />
+              Nocturia</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="GU"
+                value="Haematuria"
+              />
+              Haematuria</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="GU"
+                value="Incontinence"
+              />
+              Incontinence</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="GU"
+                value="Discharge"
+              />
+              Discharge</label
+            >
+          </td>
+        </tr>
 
-      <strong>Genitourinary</strong>
-      <div class="checkbox-line">
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="GU"
-            value="Dysuria"
-          />
-          Dysuria</label
-        >
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="GU"
-            value="Nocturia"
-          />
-          Nocturia</label
-        >
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="GU"
-            value="Haematuria"
-          />
-          Haematuria</label
-        >
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="GU"
-            value="Incontinence"
-          />
-          Incontinence</label
-        >
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="GU"
-            value="Discharge"
-          />
-          Discharge</label
-        >
-      </div>
+        <tr>
+          <td
+            style="
+              vertical-align: top;
+              padding: 8px;
+              font-weight: bold;
+              border-bottom: 1px solid gray;
+            "
+          >
+            CNS
+          </td>
+          <td style="padding: 8px; border-bottom: 1px solid gray">
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="CNS"
+                value="Headache"
+              />
+              Headache</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="CNS"
+                value="Weakness"
+              />
+              Weakness</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="CNS"
+                value="Numbness"
+              />
+              Numbness</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="CNS"
+                value="Seizures"
+              />
+              Seizures</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="CNS"
+                value="Memory loss"
+              />
+              Memory loss</label
+            >
+          </td>
+        </tr>
 
-      <strong>CNS</strong>
-      <div class="checkbox-line">
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="CNS"
-            value="Headache"
-          />
-          Headache</label
-        >
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="CNS"
-            value="Weakness"
-          />
-          Weakness</label
-        >
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="CNS"
-            value="Numbness"
-          />
-          Numbness</label
-        >
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="CNS"
-            value="Seizures"
-          />
-          Seizures</label
-        >
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="CNS"
-            value="Memory loss"
-          />
-          Memory</label
-        >
-      </div>
+        <tr>
+          <td
+            style="
+              vertical-align: top;
+              padding: 8px;
+              font-weight: bold;
+              border-bottom: 1px solid gray;
+            "
+          >
+            MSK
+          </td>
+          <td style="padding: 8px; border-bottom: 1px solid gray">
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="MSK"
+                value="Joint pain"
+              />
+              Joint pain</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="MSK"
+                value="Stiffness"
+              />
+              Stiffness</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="MSK"
+                value="Swelling"
+              />
+              Swelling</label
+            >
+          </td>
+        </tr>
 
-      <strong>MSK</strong>
-      <div class="checkbox-line">
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="MSK"
-            value="Joint pain"
-          />
-          Joint pain</label
-        >
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="MSK"
-            value="Stiffness"
-          />
-          Stiffness</label
-        >
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="MSK"
-            value="Swelling"
-          />
-          Swelling</label
-        >
-      </div>
-
-      <strong>Endocrine</strong>
-      <div class="checkbox-line">
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="Endocrine"
-            value="Heat intolerance"
-          />
-          Heat intolerance</label
-        >
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="Endocrine"
-            value="Cold intolerance"
-          />
-          Cold intolerance</label
-        >
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="Endocrine"
-            value="Polyuria"
-          />
-          Polyuria</label
-        >
-        <label
-          ><input
-            type="checkbox"
-            class="ros"
-            data-system="Endocrine"
-            value="Polydipsia"
-          />
-          Polydipsia</label
-        >
-      </div>
-    </div>
+        <tr>
+          <td style="vertical-align: top; padding: 8px; font-weight: bold">
+            Endocrine
+          </td>
+          <td style="padding: 8px">
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="Endocrine"
+                value="Heat intolerance"
+              />
+              Heat intolerance</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="Endocrine"
+                value="Cold intolerance"
+              />
+              Cold intolerance</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="Endocrine"
+                value="Polyuria"
+              />
+              Polyuria</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                class="ros"
+                data-system="Endocrine"
+                value="Polydipsia"
+              />
+              Polydipsia</label
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <!-- ICE -->
-  <div class="form-section">
+  <div class="form-section" style="margin-top: 20px">
     <label for="ice">ICE (Ideas, Concerns, Expectations)</label>
-    <textarea id="ice"></textarea>
+    <textarea
+      id="ice"
+      style="width: 100%; box-sizing: border-box; padding: 8px; font-size: 14px"
+    ></textarea>
   </div>
-
   <!-- Submit -->
-  <button type="button" id="submit-and-download">Submit & Download PDF</button>
+  <div style="text-align: center; margin-top: 20px">
+    <button
+      type="button"
+      id="submit-and-download"
+      style="
+        background-color: rgb(44, 201, 199);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        font-weight: 600;
+        min-width: 200px;
+      "
+      onmouseover="this.style.backgroundColor='rgb(35, 160, 160)'; "
+      onmouseout="this.style.backgroundColor='rgb(44, 201, 199)';"
+    >
+      Submit & Download PDF
+    </button>
+  </div>
 </div>
 
 <div class="error">

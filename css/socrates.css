@@ -23,6 +23,19 @@ textarea {
   font-size: 14px;
 }
 
+textarea,
+select,
+input {
+  background-color: var(--bg-color);
+  color: var(--all-text);
+}
+
+#student-number::placeholder,
+#rotation::placeholder {
+  color: gray;
+  opacity: 1; /* ensure it's visible in all browsers */
+}
+
 textarea {
   resize: vertical;
   min-height: 60px;
@@ -32,15 +45,15 @@ textarea {
   max-width: 85%;
   margin: auto;
   padding: 20px;
-  margin-top: 100px;
+  margin-top: 20px;
   background: var(
     --header-bg
   ); /* Make sure the custom property is defined with two dashes */
   color: var(--all-text); /* Same here */
-  border-radius: 12px;
+  border-radius: 20px;
   border: 1px solid gray; /* ✅ Full border shorthand: width, style, and color */
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-  font-family: "Segoe UI", sans-serif;
+  font-family: Nunito, Arial;
 }
 
 h2 {

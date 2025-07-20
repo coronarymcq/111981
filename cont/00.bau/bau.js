@@ -30,9 +30,9 @@ document.getElementById("submit-and-download").addEventListener("click", () => {
   const pageHeight = doc.internal.pageSize.height;
   const margin = 15;
   const baseLineHeight = 10;
-  let y = margin;
+  let y = margin + 10; // Increase 10 to add top padding before title
 
-  const blueColor = [30, 144, 255]; // DodgerBlue
+  const blueColor = [44, 201, 199]; // rgb(44, 201, 199)
 
   // Current date/time for header
   const now = new Date();
@@ -46,22 +46,26 @@ document.getElementById("submit-and-download").addEventListener("click", () => {
   doc.text("Clinical History Report", pageWidth / 2, y, { align: "center" });
   y += 15;
 
-  // Student info centered below title
+  // Only show student name centered below title
   const studentName =
     document.getElementById("student-name")?.value || "Unknown Student";
-  const rotation =
-    document.getElementById("rotation")?.value || "Unknown Rotation";
+
   const groupNumber =
     document.getElementById("group-number")?.value || "Unknown Group";
+
+  const rotation =
+    document.getElementById("rotation")?.value || "Unknown Rotation";
 
   doc.setFontSize(12);
   doc.setFont("helvetica", "normal");
   doc.setTextColor(0);
 
-  const studentInfoText = `Student: ${studentName}    Rotation: ${rotation}    Group: ${groupNumber}`;
-  doc.text(studentInfoText, pageWidth / 2, y + 10, { align: "center" });
+  doc.text(`Student Name: ${studentName}`, pageWidth / 2, y + 5, {
+    // reduce from 10 to 5
+    align: "center",
+  });
 
-  y += 30;
+  y += 15; // reduce from 30 to 15
 
   // Horizontal blue line after header info
   doc.setDrawColor(...blueColor);
@@ -82,9 +86,15 @@ document.getElementById("submit-and-download").addEventListener("click", () => {
     align: "right",
   });
 
-  // Reset font size and color for the rest of the page content
-  doc.setFontSize(12);
-  doc.setTextColor(0);
+  // Top-left corner: Student Number & Group Number
+  const studentNumber =
+    document.getElementById("student-number")?.value.trim() || "Unknown Number";
+
+  const leftX = margin;
+  doc.setFontSize(8);
+  doc.setTextColor(100);
+  doc.text(`STDNT::${studentNumber}`, leftX, 10);
+  doc.text(`GRP::${groupNumber}`, leftX, 10 + lineSpacing); // reuse existing groupNumber
 
   // Sections array
   const sections = [
@@ -94,7 +104,7 @@ document.getElementById("submit-and-download").addEventListener("click", () => {
     },
     { title: "Chief Complaint", fields: ["chief-complaint"] },
     {
-      title: "HPC – SOCRATES",
+      title: "Socrates",
       fields: [
         "site",
         "onset",
@@ -144,8 +154,11 @@ document.getElementById("submit-and-download").addEventListener("click", () => {
     doc.rect(margin, y, pageWidth - margin * 2, headerHeight, "F");
     doc.setTextColor(255);
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(16);
-    doc.text(text, margin + 5, y + 11);
+    doc.setFontSize(14);
+    const rectMiddleY = y + headerHeight / 2 + 2; // no extra padding
+
+    doc.text(text, pageWidth / 2, rectMiddleY, { align: "center" });
+
     y += headerHeight + 10;
     doc.setTextColor(0);
     doc.setFontSize(11);
@@ -155,7 +168,7 @@ document.getElementById("submit-and-download").addEventListener("click", () => {
   function writeField(label, value) {
     const labelX = margin;
     const valueX = margin + 80;
-    const valueFontSize = 10;
+    const valueFontSize = 12;
 
     const splitValue = doc.splitTextToSize(value, pageWidth - valueX - margin);
 
@@ -189,43 +202,55 @@ document.getElementById("submit-and-download").addEventListener("click", () => {
     return rosBySystem;
   }
 
+  // Custom smart wrapper to avoid breaking words mid-line
+  function smartSplitTextToSize(text, maxWidth) {
+    const words = text.split(" ");
+    let lines = [];
+    let currentLine = "";
+
+    words.forEach((word) => {
+      const testLine = currentLine ? currentLine + " " + word : word;
+      const testWidth = doc.getTextWidth(testLine);
+      if (testWidth > maxWidth && currentLine) {
+        lines.push(currentLine);
+        currentLine = word;
+      } else {
+        currentLine = testLine;
+      }
+    });
+    if (currentLine) lines.push(currentLine);
+    return lines;
+  }
+
   // Draw table for ROS symptoms with wrapped text and dynamic row height
   function drawROSTable(rosBySystem) {
     const systems = Object.keys(rosBySystem);
     if (systems.length === 0) return;
 
-    // Table dimensions
     const colWidth = (pageWidth - 2 * margin) / systems.length;
-    const paddingX = 5;
-    const paddingY = 3;
+    const paddingX = 8; // padding inside cells
+    const paddingY = 4;
     const lineHeight = 7;
 
-    // Find max number of symptoms in any system for number of rows
     let maxRows = 0;
     systems.forEach((sys) => {
       if (rosBySystem[sys].length > maxRows) maxRows = rosBySystem[sys].length;
     });
 
-    // Prepare wrapped symptoms per cell to calculate max height per row
+    // Wrap text for each cell using smartSplitTextToSize
     const wrappedSymptoms = [];
     for (let row = 0; row < maxRows; row++) {
       wrappedSymptoms[row] = [];
       for (let i = 0; i < systems.length; i++) {
         const sys = systems[i];
         const symptom = rosBySystem[sys][row] || "";
-        if (symptom) {
-          // wrap text inside cell width minus padding
-          wrappedSymptoms[row][i] = doc.splitTextToSize(
-            `• ${symptom}`,
-            colWidth - paddingX * 2
-          );
-        } else {
-          wrappedSymptoms[row][i] = [];
-        }
+        wrappedSymptoms[row][i] = symptom
+          ? smartSplitTextToSize(`• ${symptom}`, colWidth - paddingX * 2)
+          : [];
       }
     }
 
-    // Calculate height for each row (based on max wrapped lines in that row)
+    // Calculate row heights based on max wrapped lines per row
     const rowHeights = wrappedSymptoms.map((row) => {
       let maxLines = 1;
       row.forEach((cell) => {
@@ -234,40 +259,77 @@ document.getElementById("submit-and-download").addEventListener("click", () => {
       return maxLines * lineHeight + paddingY * 2;
     });
 
-    // Check page break for table header + rows
+    const headerHeight = lineHeight + paddingY * 2;
     const totalTableHeight =
-      rowHeights.reduce((a, b) => a + b, 0) + lineHeight + 10;
+      rowHeights.reduce((a, b) => a + b, 0) + headerHeight + 10;
+
+    // Page break if not enough space
     if (y + totalTableHeight > pageHeight - margin) {
       doc.addPage();
       y = margin;
     }
 
-    // Draw header background
+    // Draw header
     doc.setFillColor(...blueColor);
     doc.setDrawColor(...blueColor);
-    const headerHeight = lineHeight + paddingY * 2;
+    doc.setLineWidth(1);
     doc.rect(margin, y, pageWidth - margin * 2, headerHeight, "F");
 
-    // Header text
+    const tableTop = y;
+    const tableLeft = margin;
+    const tableWidth = pageWidth - margin * 2;
+
+    // Header text with smaller font size (10 instead of 12)
     doc.setTextColor(255);
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(12);
+    doc.setFontSize(10);
     systems.forEach((sys, i) => {
       const x = margin + i * colWidth + paddingX;
-      doc.text(sys, x, y + headerHeight - paddingY - 1);
+      const textY = y + headerHeight / 2 + 3;
+      doc.text(sys, x, textY);
     });
-
     y += headerHeight;
 
     doc.setTextColor(0);
     doc.setFont("helvetica", "normal");
     doc.setFontSize(10);
 
-    // Draw rows with wrapped text
     for (let row = 0; row < maxRows; row++) {
       if (y + rowHeights[row] > pageHeight - margin) {
+        // Draw outer border before page break
+        doc.setDrawColor(...blueColor);
+        doc.setLineWidth(1);
+        doc.rect(tableLeft, tableTop, tableWidth, y - tableTop);
+
         doc.addPage();
         y = margin;
+
+        // Redraw header with smaller font size (10)
+        doc.setFillColor(...blueColor);
+        doc.setDrawColor(...blueColor);
+        doc.setLineWidth(1);
+        doc.rect(margin, y, pageWidth - margin * 2, headerHeight, "F");
+
+        doc.setTextColor(255);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(10);
+        systems.forEach((sys, i) => {
+          const x = margin + i * colWidth + paddingX;
+          const textY = y + headerHeight / 2 + 3;
+          doc.text(sys, x, textY);
+        });
+
+        y += headerHeight;
+
+        doc.setTextColor(0);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(10);
+      }
+
+      // Zebra stripe background
+      if (row % 2 === 1) {
+        doc.setFillColor(230, 245, 245);
+        doc.rect(margin, y, pageWidth - margin * 2, rowHeights[row], "F");
       }
 
       // Draw horizontal line above row
@@ -275,12 +337,16 @@ document.getElementById("submit-and-download").addEventListener("click", () => {
       doc.setLineWidth(0.5);
       doc.line(margin, y, pageWidth - margin, y);
 
-      // Draw each cell text
+      // Draw each cell text with smaller font size
       for (let i = 0; i < systems.length; i++) {
         const x = margin + i * colWidth + paddingX;
         const cellLines = wrappedSymptoms[row][i];
         if (cellLines.length > 0) {
-          doc.text(cellLines, x, y + paddingY + lineHeight - 2);
+          const textY = y + paddingY + lineHeight - 2;
+
+          doc.setFontSize(8); // smaller font inside cells
+          doc.text(cellLines, x, textY);
+          doc.setFontSize(10); // reset font size
         }
       }
 
@@ -290,16 +356,38 @@ document.getElementById("submit-and-download").addEventListener("click", () => {
       doc.line(margin, y, pageWidth - margin, y);
     }
 
-    // Draw vertical lines between columns
+    // Draw vertical lines and outer border
+    doc.setDrawColor(...blueColor);
+    doc.setLineWidth(1);
     for (let i = 0; i <= systems.length; i++) {
       const x = margin + i * colWidth;
-      doc.line(x, y - totalTableHeight, x, y);
+      doc.line(x, tableTop, x, y);
     }
   }
 
-  // Loop all sections except ROS
-  sections.forEach((section) => {
-    if (section.title === "Review of Systems") return; // skip ROS here
+  sections.forEach((section, index) => {
+    // Skip ICE and ROS here — we will add them together at the end on same page
+    if (
+      section.title === "Review of Systems" ||
+      section.title === "ICE (Ideas, Concerns, Expectations)"
+    )
+      return;
+
+    // Add page breaks before specific sections
+    if (index === 1) {
+      // Before HPC – SOCRATES
+      doc.addPage();
+      y = margin;
+    } else if (index === 3) {
+      // Before Past Medical & Surgical History
+      doc.addPage();
+      y = margin;
+    } else if (index === 6) {
+      // Before Social History
+      doc.addPage();
+      y = margin;
+    }
+
     drawSectionHeader(section.title);
     section.fields.forEach((fieldId) => {
       const val = getElementValue(fieldId);
@@ -308,10 +396,23 @@ document.getElementById("submit-and-download").addEventListener("click", () => {
     });
   });
 
-  // Now draw single Review of Systems section with table
-  drawSectionHeader("Review of Systems");
+  // Add a page before ICE + ROS to ensure they are on the last page
+  doc.addPage();
+  y = margin;
+
+  // Draw ICE section
+  const iceVal = getElementValue("ice");
+  if (iceVal.trim() !== "") {
+    drawSectionHeader("ICE (Ideas, Concerns, Expectations)");
+    writeField("ICE", iceVal);
+  }
+
+  // Draw Review of Systems section immediately after ICE
   const rosBySystem = getROSGrouped();
-  drawROSTable(rosBySystem);
+  if (Object.keys(rosBySystem).length > 0) {
+    drawSectionHeader("Review of Systems");
+    drawROSTable(rosBySystem);
+  }
 
   // Save file
   let patientName =
