@@ -414,10 +414,364 @@ document.getElementById("submit-and-download").addEventListener("click", () => {
     drawROSTable(rosBySystem);
   }
 
+  // === ADD NEW PAGE BEFORE SUMMARY AND DDx ===
+  doc.addPage();
+  y = margin;
+
+  // Your generateSummaryParagraph(), draw summary header, write summary text, suggestDDx(), draw ddx header and list code here (see full snippet from previous message)
+
   // Save file
   let patientName =
     document.getElementById("patient-name")?.value.trim() || "Unknown";
   patientName = patientName.replace(/\s+/g, "_").replace(/[^\w\-]/g, "");
+
+  // ----------- Generate Summary Paragraph -----------
+  function generateSummaryParagraph() {
+    const patientName = getElementValue("patient-name") || "The patient";
+    const age = getElementValue("age");
+    const gender = getElementValue("gender");
+    const cc = getElementValue("chief-complaint");
+
+    const site = getElementValue("site");
+    const onset = getElementValue("onset");
+    const character = getElementValue("character");
+    const radiation = getElementValue("radiation");
+    const associated = getElementValue("associated");
+    const timing = getElementValue("timing");
+    const exacerbating = getElementValue("exacerbating");
+    const severity = getElementValue("severity");
+
+    const pmh = getElementValue("past-medical");
+    const psh = getElementValue("past-surgical");
+    const meds = getElementValue("regular-meds");
+    const allergies = getElementValue("drug-allergies");
+    const family = getElementValue("family-history");
+
+    const smoking = getElementValue("smoking");
+    const alcohol = getElementValue("alcohol");
+    const occupation = getElementValue("occupation");
+    const living = getElementValue("living");
+    const travel = getElementValue("travel");
+
+    const ice = getElementValue("ice");
+
+    const rosBySystem = getROSGrouped();
+    // Flatten ROS without headings, just list all symptoms separated by commas
+    const rosSymptoms = [];
+    Object.values(rosBySystem).forEach((symptoms) => {
+      rosSymptoms.push(...symptoms);
+    });
+    const rosSummary = rosSymptoms.join(", ");
+
+    // Start building the paragraph
+    let paragraph = patientName;
+
+    if (age && gender) {
+      paragraph += ` is a ${age}-year-old ${gender}`;
+    } else if (age) {
+      paragraph += ` is a ${age}-year-old`;
+    } else if (gender) {
+      paragraph += ` is a ${gender}`;
+    }
+
+    if (cc) {
+      paragraph += ` presenting with ${cc}`;
+    }
+
+    // SOCRATES details
+    const socratesParts = [];
+    if (site) socratesParts.push(`located at the ${site}`);
+    if (onset) socratesParts.push(`with an onset of ${onset}`);
+    if (character) socratesParts.push(`characterized as ${character}`);
+    if (radiation) socratesParts.push(`radiating to ${radiation}`);
+    if (associated) socratesParts.push(`associated with ${associated}`);
+    if (timing) socratesParts.push(`occurring ${timing}`);
+    if (exacerbating) socratesParts.push(`exacerbated by ${exacerbating}`);
+    if (severity) socratesParts.push(`with a severity rated as ${severity}`);
+
+    if (socratesParts.length > 0) {
+      paragraph += `, ${socratesParts.join(", ")}`;
+    }
+
+    paragraph += ".";
+
+    if (pmh) paragraph += ` Past medical history is significant for ${pmh}.`;
+    if (psh) paragraph += ` Surgical history includes ${psh}.`;
+    if (meds) paragraph += ` Current medications include ${meds}.`;
+    if (allergies) paragraph += ` Known drug allergies are ${allergies}.`;
+    if (family) paragraph += ` Family history reveals ${family}.`;
+
+    // Social history parts
+    const socialParts = [];
+    if (smoking) socialParts.push(`smokes ${smoking}`);
+    if (alcohol) socialParts.push(`consumes alcohol ${alcohol}`);
+    if (occupation) socialParts.push(`works as a(n) ${occupation}`);
+    if (living) socialParts.push(`lives in ${living}`);
+    if (travel) socialParts.push(`recent travel history includes ${travel}`);
+
+    if (socialParts.length > 0) {
+      paragraph += ` Social history shows that the patient ${socialParts.join(
+        ", "
+      )}.`;
+    }
+
+    if (rosSummary) paragraph += ` Review of systems reveals ${rosSummary}.`;
+    if (ice) {
+      const iceLower = ice.trim().toLowerCase();
+      if (
+        iceLower.startsWith("patient") ||
+        iceLower.startsWith("the patient")
+      ) {
+        paragraph += ` ICE summary: ${ice.trim()}.`;
+      } else {
+        paragraph += ` ICE summary: ${ice.trim()}.`;
+      }
+    }
+
+    return paragraph;
+  }
+
+  // ----------- Append Summary to PDF -----------
+  drawSectionHeader("History Summary");
+  const summaryParagraph = generateSummaryParagraph();
+  const summaryLines = smartSplitTextToSize(
+    summaryParagraph,
+    pageWidth - 2 * margin
+  );
+  doc.text(summaryLines, margin, y);
+  y += summaryLines.length * baseLineHeight; // remove +10 or make it smaller like +3
+
+  function suggestDDx(chiefComplaint, summaryParagraph) {
+    const text = (chiefComplaint + " " + summaryParagraph).toLowerCase();
+
+    function containsAny(words) {
+      return words.some((word) => new RegExp(`\\b${word}\\b`, "i").test(text));
+    }
+
+    // Map of symptom keywords to their differential diagnosis arrays
+    const ddxMap = [
+      {
+        keys: [
+          "chest pain",
+          "pain in chest",
+          "angina",
+          "tightness in chest",
+          "shortness of breath",
+          "dyspnea",
+          "palpitations",
+        ],
+        ddx: [
+          "Acute coronary syndrome, including unstable angina and myocardial infarction",
+          "Pericarditis and pericardial effusion",
+          "Pulmonary embolism presenting with pleuritic chest pain",
+          "Aortic dissection with sudden severe chest pain",
+          "Gastroesophageal reflux disease causing heartburn",
+          "Costochondritis and musculoskeletal chest wall pain",
+          "Pneumothorax causing sudden chest pain and respiratory distress",
+        ],
+      },
+      {
+        keys: [
+          "fever",
+          "pyrexia",
+          "chills",
+          "cough",
+          "productive cough",
+          "sputum",
+          "shortness of breath",
+          "dyspnea",
+          "difficulty breathing",
+        ],
+        ddx: [
+          "Community-acquired bacterial pneumonia",
+          "Viral pneumonitis including COVID-19 and influenza",
+          "Acute bronchitis",
+          "Pulmonary tuberculosis",
+          "Exacerbation of chronic obstructive pulmonary disease",
+          "Asthma exacerbation",
+          "Interstitial lung disease",
+        ],
+      },
+      {
+        keys: [
+          "abdominal pain",
+          "pain in abdomen",
+          "right upper quadrant pain",
+          "right lower quadrant pain",
+          "epigastric pain",
+          "periumbilical pain",
+          "colicky pain",
+        ],
+        ddx: [
+          "Acute appendicitis",
+          "Acute cholecystitis or biliary colic",
+          "Acute pancreatitis",
+          "Peptic ulcer disease with possible perforation",
+          "Small or large bowel obstruction",
+          "Inflammatory bowel disease such as Crohn's disease or ulcerative colitis",
+          "Diverticulitis",
+          "Ectopic pregnancy in women of childbearing age",
+        ],
+      },
+      {
+        keys: [
+          "weight loss",
+          "unintentional weight loss",
+          "night sweats",
+          "profuse sweating at night",
+          "fatigue",
+          "tiredness",
+        ],
+        ddx: [
+          "Lymphoma including Hodgkin and non-Hodgkin types",
+          "Pulmonary tuberculosis",
+          "Chronic infections such as HIV/AIDS",
+          "Malignancies including lung, gastrointestinal, or hematologic cancers",
+          "Hyperthyroidism",
+          "Systemic autoimmune diseases such as systemic lupus erythematosus",
+        ],
+      },
+      {
+        keys: [
+          "headache",
+          "head pain",
+          "migraine",
+          "cluster headache",
+          "head pressure",
+        ],
+        ddx: [
+          "Migraine headache with or without aura",
+          "Tension-type headache",
+          "Cluster headache",
+          "Sinusitis",
+          "Intracranial mass lesions including tumors or abscess",
+          "Temporal arteritis in patients over 50 years with scalp tenderness",
+          "Subarachnoid hemorrhage presenting with sudden 'thunderclap' headache",
+        ],
+      },
+      {
+        keys: [
+          "joint pain",
+          "arthritis",
+          "swollen joints",
+          "morning stiffness",
+          "joint redness",
+          "joint deformity",
+        ],
+        ddx: [
+          "Osteoarthritis, degenerative joint disease",
+          "Rheumatoid arthritis, autoimmune inflammatory arthritis",
+          "Gout, crystal-induced arthritis",
+          "Systemic lupus erythematosus",
+          "Septic (infectious) arthritis",
+          "Psoriatic arthritis",
+        ],
+      },
+      {
+        keys: [
+          "dizziness",
+          "vertigo",
+          "lightheadedness",
+          "syncope",
+          "fainting",
+          "weakness",
+          "numbness",
+          "paresthesia",
+        ],
+        ddx: [
+          "Orthostatic hypotension causing syncope",
+          "Vasovagal syncope triggered by stress or pain",
+          "Cardiac arrhythmias including atrial fibrillation",
+          "Transient ischemic attack or ischemic stroke",
+          "Peripheral neuropathy",
+          "Multiple sclerosis",
+          "Benign paroxysmal positional vertigo",
+        ],
+      },
+      {
+        keys: ["rash", "skin lesions", "itching", "pruritus", "erythema"],
+        ddx: [
+          "Contact dermatitis due to allergens or irritants",
+          "Psoriasis presenting with plaques and scaling",
+          "Atopic dermatitis (eczema)",
+          "Drug-induced skin eruptions",
+          "Infectious etiologies such as herpes zoster, measles, or fungal infections",
+          "Systemic lupus erythematosus with malar rash",
+        ],
+      },
+      {
+        keys: [
+          "diarrhea",
+          "loose stools",
+          "frequent bowel movements",
+          "constipation",
+          "difficulty passing stool",
+          "nausea",
+          "vomiting",
+        ],
+        ddx: [
+          "Infectious gastroenteritis",
+          "Irritable bowel syndrome",
+          "Inflammatory bowel disease including Crohn's disease and ulcerative colitis",
+          "Colorectal cancer",
+          "Medication side effects such as opioids causing constipation",
+          "Bowel obstruction",
+        ],
+      },
+      {
+        keys: [
+          "dysuria",
+          "painful urination",
+          "frequency",
+          "urgency",
+          "hematuria",
+        ],
+        ddx: [
+          "Urinary tract infection",
+          "Pyelonephritis",
+          "Urolithiasis (kidney stones)",
+          "Bladder cancer in patients with hematuria",
+          "Prostatitis in males",
+          "Interstitial cystitis",
+        ],
+      },
+    ];
+
+    let combinedDDx = [];
+
+    // Check all symptom clusters and combine DDx if matches found
+    for (const cluster of ddxMap) {
+      if (containsAny(cluster.keys)) {
+        combinedDDx = combinedDDx.concat(cluster.ddx);
+      }
+    }
+
+    // Deduplicate entries
+    combinedDDx = [...new Set(combinedDDx)];
+
+    // Limit total DDx to max 10 entries
+    if (combinedDDx.length > 10) {
+      combinedDDx = combinedDDx.slice(0, 10);
+    }
+
+    // If no matches, add a general note
+    if (combinedDDx.length === 0) {
+      combinedDDx.push(
+        "Symptoms are non-specific; further detailed clinical evaluation is necessary to determine diagnosis."
+      );
+    }
+
+    return combinedDDx;
+  }
+
+  drawSectionHeader("Suggested Differential Diagnoses");
+  const ddx = suggestDDx(getElementValue("chief-complaint"), summaryParagraph);
+  doc.text(
+    ddx.map((d, i) => `${i + 1}. ${d}`),
+    margin,
+    y
+  );
+  y += ddx.length * baseLineHeight + 10;
 
   doc.save(
     `${patientName}_History_${now.getFullYear()}${(now.getMonth() + 1)
