@@ -414,10 +414,6 @@
 }
 
 @media (max-width: 1000px) {
-  .all {
-    display: none;
-  }
-
   .containerhome {
     display: none;
   }
@@ -582,6 +578,10 @@
   .aiVersion,
   #ai-wrapper,
   .qscon {
+    display: none;
+  }
+
+  .all {
     display: none;
   }
 

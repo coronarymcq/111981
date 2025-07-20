@@ -57,12 +57,17 @@
       height: 100%;
       width: 100%;
       scroll-behavior: smooth;
+      overscroll-behavior: none;
+      -webkit-overflow-scrolling: touch;
     "
   >
     <header class="header-container">
       <div class="left-section">
         <nav>
-          <button class="nav-button">
+          <button
+            class="nav-button"
+            style="padding-left: 1px; padding-top: 2px"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -75,7 +80,10 @@
             </svg>
           </button>
         </nav>
-        <div class="theme-toggle-container">
+        <div
+          class="theme-toggle-container"
+          style="padding-left: 5px; padding-top: 5px"
+        >
           <button id="themeToggleBtn" onclick="toggleTheme()">
             <img id="themeIcon" src="icons/DMI.svg" alt="Theme Icon" />
           </button>
@@ -89,11 +97,7 @@
           <button class="register-button">Sign Up</button>
         </a>
          -->
-        <button id="backToTopBtn" class="back-to-top" title="Back to the top">
-          <i style="font-size: 19px; color: var(--lang-txt)" class="fas"
-            >&#xf062;</i
-          >
-        </button>
+
         <section class="logo-container">
           <img
             class="header-logo"
@@ -166,6 +170,11 @@
         box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.02);
       "
     >
+      <button id="backToTopBtn" class="back-to-top" title="Back to the top">
+        <i style="font-size: 19px; color: var(--lang-txt)" class="fas"
+          >&#xf062;</i
+        >
+      </button>
       <span style="font-size: 10px"
         >Content shared on this website is intended for educational purposes
         only. All materials are provided free of charge and should never be sold
