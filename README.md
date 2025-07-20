@@ -190,7 +190,7 @@ Big changes have taken place in this new version, including the following:
 
 **Version 1.16 | June the 27th**
 
-This update marks the completion of a project that began a year ago. With this release, I’ve introduced several key improvements:
+With this release, I’ve introduced several key improvements:
 
 1. A brand new **Library page**, featuring a large, organized table with tag-based filtering, a powerful search bar, and a dynamic filter mechanism to help users quickly find what they need.
    ![alt text](image.png)
@@ -208,5 +208,3 @@ This update marks the completion of a project that began a year ago. With this r
 4. The project is now **fully complete**, stable, and ready for users to interact with and benefit from.
 
 ---
-
-This marks the end of the journey. One key takeaway is that consistent, small improvements lead to significant progress over time. Patience is essential throughout the process.
