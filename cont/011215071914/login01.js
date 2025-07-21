@@ -72,7 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /*-----------------------------------------------------------------*/
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import {
   getAuth,
@@ -82,6 +81,7 @@ import {
   signOut,
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
+// ✅ Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyB6e_H-E7l6_x9GbOeJONZ515lsclyoogw",
   authDomain: "coronary-64f63.firebaseapp.com",
@@ -91,27 +91,30 @@ const firebaseConfig = {
   appId: "1:110121771753:web:bad6365385b0a38fa94678",
 };
 
+// ✅ Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-// Helper: Update auth buttons in header
+// ✅ Replace auth buttons with user info if logged in
 function updateAuthUI(user) {
   const authButtonsDiv = document.getElementById("auth-buttons");
   if (!authButtonsDiv) return;
 
   if (user) {
-    // Logged in: Show name + logout
     authButtonsDiv.innerHTML = "";
 
+    // 🔵 Username button
     const userBtn = document.createElement("button");
     userBtn.textContent = user.displayName || user.email;
     userBtn.className = "login-button";
     userBtn.style.cursor = "pointer";
     userBtn.onclick = () => {
-      window.location.href = "../../index.html"; // ✅ Go 2 levels up to reach homepage
+      // Later redirect to dashboard
+      window.location.href = "../../index.html";
     };
 
+    // 🔴 Logout button
     const logoutBtn = document.createElement("button");
     logoutBtn.textContent = "Logout";
     logoutBtn.className = "register-button";
@@ -122,7 +125,7 @@ function updateAuthUI(user) {
     authButtonsDiv.appendChild(userBtn);
     authButtonsDiv.appendChild(logoutBtn);
   } else {
-    // Logged out: Show login/signup buttons
+    // Not logged in: default login/signup
     authButtonsDiv.innerHTML = `
       <a href="cont/011215071914/login01.html"><button class="login-button">Login</button></a>
       <a href="cont/01.signUp/signup.html"><button class="register-button">Sign Up</button></a>
@@ -130,33 +133,28 @@ function updateAuthUI(user) {
   }
 }
 
-// Setup Google login handler
+// ✅ Handle Google login button if present
 function setupGoogleLogin() {
   const googleBtn = document.getElementById("google-login");
-  if (!googleBtn) {
-    console.warn("Google login button not found.");
-    return;
-  }
+  if (!googleBtn) return;
 
   googleBtn.addEventListener("click", async () => {
     try {
       const result = await signInWithPopup(auth, provider);
-      const user = result.user;
-      console.log("Google login successful:", user);
-      window.location.href = "../../index.html"; // ✅ Same here
+      console.log("Google login success:", result.user);
+      window.location.href = "../../index.html";
     } catch (error) {
-      console.error("Google login error:", error);
+      console.error("Login error:", error);
       alert("Login failed: " + error.message);
     }
   });
 }
 
+// ✅ Run when page loads
 window.addEventListener("DOMContentLoaded", () => {
   updateAuthUI(auth.currentUser);
-
   onAuthStateChanged(auth, (user) => {
     updateAuthUI(user);
   });
-
   setupGoogleLogin();
 });
