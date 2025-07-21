@@ -1,3 +1,9 @@
+function goHome() {
+  sessionStorage.clear();
+  window.location.href = "../../index.html";
+}
+window.goHome = goHome;
+
 document.addEventListener("DOMContentLoaded", function () {
   const loginButton = document.getElementById("loginButton");
   const togglePassword = document.getElementById("togglePassword");
@@ -21,66 +27,49 @@ document.addEventListener("DOMContentLoaded", function () {
   // Set initial styles for the show password button
   showPasswordBtn.style.opacity = "0";
   showPasswordBtn.style.transition = "opacity 0.3s ease";
-  showPasswordBtn.style.pointerEvents = "none"; // Prevent interaction when hidden
+  showPasswordBtn.style.pointerEvents = "none";
 
-  // Show button when typing and manage icon visibility
   passwordInput.addEventListener("input", function () {
     const hasValue = passwordInput.value.length > 0;
     showPasswordBtn.style.opacity = hasValue ? "1" : "0";
     showPasswordBtn.style.pointerEvents = hasValue ? "auto" : "none";
 
-    // Manage icon visibility based on input
     if (hasValue) {
-      unlockIcon.style.opacity = "1"; // Hide unlock icon when there's input
-      lockIcon.style.opacity = "1"; // Show lock icon
+      unlockIcon.style.opacity = "1";
+      lockIcon.style.opacity = "1";
     } else {
-      unlockIcon.style.opacity = "1"; // Hide unlock icon when empty
-      lockIcon.style.opacity = "1"; // Show lock icon when empty
-
-      // Reset show button text and type
+      unlockIcon.style.opacity = "1";
+      lockIcon.style.opacity = "1";
       togglePassword.textContent = "Show";
-      passwordInput.setAttribute("type", "password"); // Reset to password type
+      passwordInput.setAttribute("type", "password");
     }
 
-    // Always keep unlock icon visible while password is shown
     if (passwordInput.getAttribute("type") === "text") {
       unlockIcon.style.opacity = "1";
-      lockIcon.style.opacity = "0"; // Hide lock icon when password is shown
+      lockIcon.style.opacity = "0";
     }
   });
 
-  // Toggle password visibility and icon states when button is clicked
   togglePassword.addEventListener("click", function () {
     const type =
       passwordInput.getAttribute("type") === "password" ? "text" : "password";
     passwordInput.setAttribute("type", type);
-
-    // Update the show button text based on current type
     this.textContent = type === "password" ? "Show" : "Hide";
 
-    // Handle icon visibility
     if (type === "text") {
-      lockIcon.style.opacity = "0"; // Hide lock icon smoothly
-      unlockIcon.style.opacity = "1"; // Show unlock icon
+      lockIcon.style.opacity = "0";
+      unlockIcon.style.opacity = "1";
     } else {
-      lockIcon.style.opacity = "1"; // Show lock icon smoothly
-      unlockIcon.style.opacity = "1"; // Hide unlock icon
+      lockIcon.style.opacity = "1";
+      unlockIcon.style.opacity = "1";
     }
   });
+
+  const logo = document.getElementById("main-logo"); // or "hover-logo"
+  if (logo) {
+    logo.onclick = goHome;
+  }
 });
-
-function goHome() {
-  sessionStorage.clear(); // Clear sessionStorage when navigating to home
-  window.location.href = "../../index.html"; // Always go to the main index page
-}
-
-const logo = document.getElementById("main-logo"); // or "hover-logo"
-if (logo) {
-  logo.onclick = function () {
-    goHome();
-    // fetchContent("home"); // Make sure this function exists or comment it out
-  };
-}
 
 /*-----------------------------------------------------------------*/
 
