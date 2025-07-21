@@ -83,6 +83,7 @@ if (logo) {
 }
 
 /*-----------------------------------------------------------------*/
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import {
   getAuth,
@@ -111,19 +112,17 @@ function updateAuthUI(user) {
   if (!authButtonsDiv) return;
 
   if (user) {
-    // User is logged in — show username + logout button
+    // Logged in: Show name + logout
     authButtonsDiv.innerHTML = "";
 
-    // Username button
     const userBtn = document.createElement("button");
     userBtn.textContent = user.displayName || user.email;
     userBtn.className = "login-button";
     userBtn.style.cursor = "pointer";
     userBtn.onclick = () => {
-      window.location.href = "/index.html"; // or wherever dashboard will be
+      window.location.href = "../../index.html"; // ✅ Go 2 levels up to reach homepage
     };
 
-    // Logout button
     const logoutBtn = document.createElement("button");
     logoutBtn.textContent = "Logout";
     logoutBtn.className = "register-button";
@@ -134,7 +133,7 @@ function updateAuthUI(user) {
     authButtonsDiv.appendChild(userBtn);
     authButtonsDiv.appendChild(logoutBtn);
   } else {
-    // User logged out — show Login/Sign Up links
+    // Logged out: Show login/signup buttons
     authButtonsDiv.innerHTML = `
       <a href="cont/011215071914/login01.html"><button class="login-button">Login</button></a>
       <a href="cont/01.signUp/signup.html"><button class="register-button">Sign Up</button></a>
@@ -142,7 +141,7 @@ function updateAuthUI(user) {
   }
 }
 
-// Setup Google login button listener
+// Setup Google login handler
 function setupGoogleLogin() {
   const googleBtn = document.getElementById("google-login");
   if (!googleBtn) {
@@ -155,8 +154,7 @@ function setupGoogleLogin() {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
       console.log("Google login successful:", user);
-      // Redirect to homepage after login
-      window.location.href = "/index.html";
+      window.location.href = "../../index.html"; // ✅ Same here
     } catch (error) {
       console.error("Google login error:", error);
       alert("Login failed: " + error.message);
@@ -165,10 +163,8 @@ function setupGoogleLogin() {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  // Update UI initially (in case user is logged in)
   updateAuthUI(auth.currentUser);
 
-  // Listen for auth state changes (login/logout)
   onAuthStateChanged(auth, (user) => {
     updateAuthUI(user);
   });
