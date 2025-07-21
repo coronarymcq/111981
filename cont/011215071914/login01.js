@@ -83,13 +83,13 @@ if (logo) {
 }
 
 /*-----------------------------------------------------------------*/
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import {
   getAuth,
   signInWithPopup,
   GoogleAuthProvider,
   onAuthStateChanged,
+  signOut,
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
 const firebaseConfig = {
@@ -105,43 +105,73 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-window.addEventListener("DOMContentLoaded", () => {
-  console.log("DOM fully loaded - attaching Google login handler");
+// Helper: Update auth buttons in header
+function updateAuthUI(user) {
+  const authButtonsDiv = document.getElementById("auth-buttons");
+  if (!authButtonsDiv) return;
 
+  if (user) {
+    // User is logged in — show username + logout button
+    authButtonsDiv.innerHTML = "";
+
+    // Username button
+    const userBtn = document.createElement("button");
+    userBtn.textContent = user.displayName || user.email;
+    userBtn.className = "login-button";
+    userBtn.style.cursor = "pointer";
+    userBtn.onclick = () => {
+      window.location.href = "/index.html"; // or wherever dashboard will be
+    };
+
+    // Logout button
+    const logoutBtn = document.createElement("button");
+    logoutBtn.textContent = "Logout";
+    logoutBtn.className = "register-button";
+    logoutBtn.onclick = () => {
+      signOut(auth);
+    };
+
+    authButtonsDiv.appendChild(userBtn);
+    authButtonsDiv.appendChild(logoutBtn);
+  } else {
+    // User logged out — show Login/Sign Up links
+    authButtonsDiv.innerHTML = `
+      <a href="cont/011215071914/login01.html"><button class="login-button">Login</button></a>
+      <a href="cont/01.signUp/signup.html"><button class="register-button">Sign Up</button></a>
+    `;
+  }
+}
+
+// Setup Google login button listener
+function setupGoogleLogin() {
   const googleBtn = document.getElementById("google-login");
   if (!googleBtn) {
-    console.error("Google login button not found!");
+    console.warn("Google login button not found.");
     return;
   }
 
   googleBtn.addEventListener("click", async () => {
-    console.log("Google login button clicked");
-
     try {
       const result = await signInWithPopup(auth, provider);
-      console.log("signInWithPopup result:", result);
-
       const user = result.user;
-      console.log("User info:", {
-        uid: user.uid,
-        email: user.email,
-        displayName: user.displayName,
-        photoURL: user.photoURL,
-      });
-
-      // Navigate or update UI here
-      window.location.href = "/dashboard.html";
+      console.log("Google login successful:", user);
+      // Redirect to homepage after login
+      window.location.href = "/index.html";
     } catch (error) {
-      console.error("Error during signInWithPopup:", error);
+      console.error("Google login error:", error);
       alert("Login failed: " + error.message);
     }
   });
-});
+}
 
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    console.log("Auth state changed: user is logged in", user.displayName);
-  } else {
-    console.log("Auth state changed: no user is logged in");
-  }
+window.addEventListener("DOMContentLoaded", () => {
+  // Update UI initially (in case user is logged in)
+  updateAuthUI(auth.currentUser);
+
+  // Listen for auth state changes (login/logout)
+  onAuthStateChanged(auth, (user) => {
+    updateAuthUI(user);
+  });
+
+  setupGoogleLogin();
 });
