@@ -232,17 +232,20 @@
       }
     </script>
     <script>
-      fetch("home.html")
-        .then((res) => res.text())
+      fetch("../cont/00.home/home.html")
+        .then((res) => {
+          if (!res.ok)
+            throw new Error("Failed to fetch home.html: " + res.status);
+          return res.text();
+        })
         .then((html) => {
           document.getElementById("mainContainer").innerHTML = html;
 
-          // MutationObserver to wait for scrollButton to appear
           const observer = new MutationObserver((mutations, obs) => {
             if (document.getElementById("scrollButton")) {
               console.log("🟢 scrollButton found by observer");
               window.initHomeScroll();
-              obs.disconnect(); // Stop observing after found
+              obs.disconnect();
             }
           });
 
@@ -250,6 +253,9 @@
             childList: true,
             subtree: true,
           });
+        })
+        .catch((error) => {
+          console.error(error);
         });
     </script>
   </body>
