@@ -285,19 +285,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-
-const loadingBar = document.getElementById("pageLoadingBar");
-
-// Loading bar animation omitted for brevity (same as your code)
-loadingBar.style.width = "20%";
-setTimeout(() => (loadingBar.style.width = "50%"), 200);
-setTimeout(() => (loadingBar.style.width = "80%"), 500);
-window.addEventListener("load", () => {
-  loadingBar.style.width = "100%";
-  setTimeout(() => {
-    loadingBar.style.opacity = "0";
-    setTimeout(() => {
-      loadingBar.remove();
-    }, 800);
-  }, 400);
-});
