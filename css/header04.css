@@ -82,9 +82,18 @@ nav {
   transition: background-color 0.3s;
 }
 
+.right-section {
+  display: flex;
+  justify-content: space-between; /* distributes space evenly */
+  gap: 25px; /* optional: adds uniform spacing between buttons */
+}
+
 .right-section button {
   white-space: nowrap;
   touch-action: manipulation;
+  border: none;
+  font-size: 14px;
+  padding-top: 5px;
 }
 
 .lang-button:focus,

@@ -218,6 +218,10 @@ footer {
   .TORdiv {
     font-size: 4px;
   }
+
+  .right-section button {
+    display: none;
+  }
 }
 
 @media (max-width: 260px) {
