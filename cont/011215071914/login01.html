@@ -69,7 +69,8 @@
           </div>
 
           <div class="content">
-            <h1 class="h1">Welcome Back!</h1>
+            <h1 class="h1" style="font-weight: 500">Hello Doctor!</h1>
+            <!--
             <h1
               class="h1"
               style="
@@ -83,10 +84,8 @@
             >
               THIS LOGIN SYSTEM IS NOT YET READY
             </h1>
-          </div>
-          <div class="card">
-            <section class="auth-card">
-              <div class="input">
+
+            <div class="input">
                 <section class="container-1">
                   <input
                     class="input1"
@@ -127,9 +126,7 @@
                   </section>
                 </div>
               </div>
-              <button class="login-in-button" type="submit">Login</button>
-              <button id="google-login">Sign in with Google</button>
-
+              
               <div
                 style="
                   display: flex;
@@ -139,6 +136,22 @@
               >
                 <p style="font-size: 12px" class="sit0">Forgot password?</p>
               </div>
+              <button class="login-in-button" type="submit">Login</button>
+
+            -->
+          </div>
+          <div class="card">
+            <section class="auth-card">
+              <div class="google-login-wrapper">
+                <button id="google-login">
+                  <img
+                    src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+                    alt="Google"
+                    style="width: 20px; height: 20px"
+                  />
+                  Sign in with Google
+                </button>
+              </div>
               <div
                 style="
                   display: flex;
@@ -146,16 +159,11 @@
                   justify-content: center;
                 "
               >
-                <p style="margin-top: 0">
-                  <span class="alr"
-                    >Don't have an account?
-                    <span class="sit">
-                      <a href="../01.signUp/signup.html">Create one!</a>
-                    </span></span
-                  >
+                <p style="margin-top: 0; font-weight: 100">
+                  Sign in quickly using your Google account. <br />
+                  Your accounts info are protected by Google.
                 </p>
               </div>
-
               <p class="right00" style="font-size: 12px">
                 © 2024 Coronary Academic MCQs. All rights reserved.
               </p>
