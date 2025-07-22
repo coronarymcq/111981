@@ -72,7 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /*-----------------------------------------------------------------*/
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import {
   getAuth,
@@ -120,7 +119,7 @@ function updateAuthUI(user) {
     userBtn.style.cursor = "pointer";
     userBtn.onclick = () => {
       console.log("[DEBUG] Username button clicked - redirecting to dashboard");
-      window.location.href = "../../dashboard.html"; // change to your dashboard path
+      window.location.href = "../../dashboard.html"; // ✅ Adjust if your structure differs
     };
 
     // 🔴 Logout button
@@ -155,7 +154,7 @@ function setupGoogleLogin() {
     try {
       const result = await signInWithPopup(auth, provider);
       console.log("[DEBUG] Google login success:", result.user);
-      window.location.href = "../../index.html"; // keep redirect here as you want
+      window.location.href = "../../dashboard.html"; // ✅ Go to dashboard after login
     } catch (error) {
       console.error("[DEBUG] Login error:", error);
       alert("Login failed: " + error.message);
@@ -163,14 +162,23 @@ function setupGoogleLogin() {
   });
 }
 
+// ✅ Main entry point
 window.addEventListener("DOMContentLoaded", () => {
   console.log("[DEBUG] DOMContentLoaded fired");
   setupGoogleLogin();
 
   onAuthStateChanged(auth, (user) => {
     console.log("[DEBUG] onAuthStateChanged triggered", user);
-    updateAuthUI(user);
+
+    // ✅ Redirect to dashboard if already logged in and currently on index.html
+    if (user && window.location.pathname.endsWith("index.html")) {
+      console.log(
+        "[DEBUG] Logged-in user is on index → redirecting to dashboard"
+      );
+      window.location.href = "../../dashboard.html"; // ✅ Adjust path if needed
+      return;
+    }
+
+    updateAuthUI(user); // ✅ Update buttons based on login state
   });
 });
-
-/*VERSION 0*/
