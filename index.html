@@ -24,6 +24,10 @@
       href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
     <style>
       .arabic-font {
@@ -292,6 +296,113 @@
         .catch((error) => {
           console.error(error);
         });
+    </script>
+    <script type="module">
+      console.log("[INDEX] Debug script running");
+
+      const authButtonsDiv = document.getElementById("auth-buttons");
+      if (authButtonsDiv) {
+        console.log("[INDEX] Found auth-buttons div:", authButtonsDiv);
+      } else {
+        console.warn("[INDEX] auth-buttons div NOT found!");
+      }
+
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyB6e_H-E7l6_x9GbOeJONZ515lsclyoogw",
+        authDomain: "coronary-64f63.firebaseapp.com",
+        projectId: "coronary-64f63",
+        storageBucket: "coronary-64f63.firebasestorage.app",
+        messagingSenderId: "110121771753",
+        appId: "1:110121771753:web:bad6365385b0a38fa94678",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      function restoreAccountButton() {
+        console.log("[INDEX] restoreAccountButton called");
+        if (!authButtonsDiv) {
+          console.warn(
+            "[INDEX] auth-buttons div NOT found in restoreAccountButton"
+          );
+          return;
+        }
+        authButtonsDiv.innerHTML = `
+      <a href="cont/011215071914/login01.html">
+        <button class="login-button" style="margin-top: 8px; margin-right: 10px">
+          Account
+          <i style="font-size: 17px; padding-left: 10px" class="fa">&#xf007;</i>
+        </button>
+      </a>
+    `;
+        console.log("[INDEX] Account button restored");
+      }
+
+      function updateAuthUI(user) {
+        console.log("[INDEX] updateAuthUI called with user:", user);
+        if (!authButtonsDiv) {
+          console.warn("[INDEX] auth-buttons div NOT found in updateAuthUI");
+          return;
+        }
+
+        if (user) {
+          console.log("[INDEX] User logged in. Updating UI...");
+          authButtonsDiv.innerHTML = "";
+
+          const userBtn = document.createElement("button");
+          const displayName = user.displayName || user.email || "Unknown User";
+          console.log("[INDEX] Setting username button text to:", displayName);
+          userBtn.textContent = displayName;
+          userBtn.className = "login-button";
+          userBtn.style.cursor = "pointer";
+          userBtn.onclick = () => {
+            console.log("[INDEX] Username button clicked");
+            alert("You clicked your username. Add dashboard logic here.");
+          };
+
+          const logoutBtn = document.createElement("button");
+          logoutBtn.textContent = "Logout";
+          logoutBtn.className = "register-button";
+          logoutBtn.onclick = () => {
+            console.log("[INDEX] Logout clicked");
+            signOut(auth)
+              .then(() => {
+                console.log("[INDEX] Signed out successfully");
+                restoreAccountButton();
+              })
+              .catch((err) => {
+                console.error("[INDEX] Sign out error:", err);
+              });
+          };
+
+          authButtonsDiv.appendChild(userBtn);
+          authButtonsDiv.appendChild(logoutBtn);
+          console.log("[INDEX] User and logout buttons appended");
+        } else {
+          console.log("[INDEX] No user logged in, restoring Account button");
+          restoreAccountButton();
+        }
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        console.log("[INDEX] DOMContentLoaded fired");
+
+        onAuthStateChanged(auth, (user) => {
+          console.log("[INDEX] onAuthStateChanged fired. User:", user);
+          if (user) {
+            updateAuthUI(user);
+          } else {
+            restoreAccountButton();
+          }
+        });
+      });
     </script>
   </body>
 </html>

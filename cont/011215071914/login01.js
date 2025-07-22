@@ -72,6 +72,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /*-----------------------------------------------------------------*/
+/*----------------------------------*/
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import {
   getAuth,
@@ -81,7 +83,6 @@ import {
   signOut,
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
-// ✅ Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyB6e_H-E7l6_x9GbOeJONZ515lsclyoogw",
   authDomain: "coronary-64f63.firebaseapp.com",
@@ -91,58 +92,82 @@ const firebaseConfig = {
   appId: "1:110121771753:web:bad6365385b0a38fa94678",
 };
 
-// ✅ Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-// ✅ Replace auth buttons with user info if logged in
+function restoreAccountButton() {
+  const authButtonsDiv = document.getElementById("auth-buttons");
+  console.log("[DEBUG] restoreAccountButton called");
+  if (!authButtonsDiv) {
+    console.warn("[DEBUG] auth-buttons div NOT found in restoreAccountButton");
+    return;
+  }
+  authButtonsDiv.innerHTML = `
+    <a href="cont/011215071914/login01.html">
+      <button class="login-button" style="margin-top: 8px; margin-right: 10px">
+        Account
+        <i style="font-size: 17px; padding-left: 10px" class="fa">&#xf007;</i>
+      </button>
+    </a>
+  `;
+  console.log("[DEBUG] Account button restored");
+}
+
 function updateAuthUI(user) {
+  console.log("[INDEX] updateAuthUI called with user:", user);
+
   const authButtonsDiv = document.getElementById("auth-buttons");
   if (!authButtonsDiv) {
-    console.warn("[DEBUG] auth-buttons div NOT found");
+    console.log("[INDEX] auth-buttons div NOT found — skipping UI update.");
     return;
   }
 
-  console.log("[DEBUG] updateAuthUI called. User:", user);
-
   if (user) {
-    console.log(
-      "[DEBUG] User logged in, updating UI with username and logout button"
-    );
+    console.log("[INDEX] User logged in. Updating UI...");
+
+    // Remove old login button
     authButtonsDiv.innerHTML = "";
 
-    // 🔵 Username button
+    // Create new user button
     const userBtn = document.createElement("button");
-    userBtn.textContent = user.displayName || user.email;
     userBtn.className = "login-button";
-    userBtn.style.cursor = "pointer";
-    userBtn.onclick = () => {
-      console.log("[DEBUG] Username button clicked - redirecting to dashboard");
-      window.location.href = "../../dashboard.html"; // ✅ Adjust if your structure differs
-    };
+    userBtn.style.marginTop = "8px";
+    userBtn.style.marginRight = "10px";
+    userBtn.textContent = user.displayName || "User";
 
-    // 🔴 Logout button
+    console.log("[INDEX] Setting username button text to:", user.displayName);
+
+    // Create <i> icon
+    const iconElem = document.createElement("i");
+    iconElem.className = "fa fa-user";
+    iconElem.style.fontSize = "17px";
+    iconElem.style.paddingLeft = "10px";
+
+    console.log("[DEBUG] iconElem created:", iconElem);
+    console.log("[DEBUG] iconElem.outerHTML:", iconElem.outerHTML);
+
+    userBtn.appendChild(iconElem);
+
+    console.log("[DEBUG] Final userBtn HTML:", userBtn.outerHTML);
+
+    // Append the new user button
+    authButtonsDiv.appendChild(userBtn);
+
+    // Add logout button
     const logoutBtn = document.createElement("button");
     logoutBtn.textContent = "Logout";
-    logoutBtn.className = "register-button";
-    logoutBtn.onclick = () => {
-      console.log("[DEBUG] Logout button clicked");
-      signOut(auth);
-    };
-
-    authButtonsDiv.appendChild(userBtn);
+    logoutBtn.className = "login-button";
+    logoutBtn.style.marginTop = "8px";
+    logoutBtn.onclick = () => signOut(auth);
     authButtonsDiv.appendChild(logoutBtn);
+
+    console.log("[INDEX] User and logout buttons appended");
   } else {
-    console.log("[DEBUG] No user logged in, showing login/signup buttons");
-    authButtonsDiv.innerHTML = `
-      <a href="cont/011215071914/login01.html"><button class="login-button">Login</button></a>
-      <a href="cont/01.signUp/signup.html"><button class="register-button">Sign Up</button></a>
-    `;
+    console.log("[INDEX] No user, showing login link");
   }
 }
 
-// ✅ Handle Google login button if present
 function setupGoogleLogin() {
   const googleBtn = document.getElementById("google-login");
   if (!googleBtn) {
@@ -152,33 +177,49 @@ function setupGoogleLogin() {
 
   googleBtn.addEventListener("click", async () => {
     try {
+      console.log("[DEBUG] Google login button clicked");
       const result = await signInWithPopup(auth, provider);
       console.log("[DEBUG] Google login success:", result.user);
-      window.location.href = "../../dashboard.html"; // ✅ Go to dashboard after login
+      sessionStorage.setItem("justLoggedIn", "true"); // Mark fresh login
+      window.location.href = "../../index.html"; // Redirect after login
     } catch (error) {
-      console.error("[DEBUG] Login error:", error);
+      console.error("[DEBUG] Login failed:", error);
       alert("Login failed: " + error.message);
     }
   });
 }
 
-// ✅ Main entry point
 window.addEventListener("DOMContentLoaded", () => {
   console.log("[DEBUG] DOMContentLoaded fired");
   setupGoogleLogin();
 
   onAuthStateChanged(auth, (user) => {
-    console.log("[DEBUG] onAuthStateChanged triggered", user);
-
-    // ✅ Redirect to dashboard if already logged in and currently on index.html
-    if (user && window.location.pathname.endsWith("index.html")) {
-      console.log(
-        "[DEBUG] Logged-in user is on index → redirecting to dashboard"
-      );
-      window.location.href = "../../dashboard.html"; // ✅ Adjust path if needed
-      return;
+    console.log("[DEBUG] onAuthStateChanged fired. User:", user);
+    if (user) {
+      if (sessionStorage.getItem("justLoggedIn")) {
+        console.log("[DEBUG] Fresh login detected, redirecting to index.html");
+        sessionStorage.removeItem("justLoggedIn");
+        window.location.href = "../../index.html"; // Redirect only after fresh login
+      } else {
+        console.log("[DEBUG] Existing session, updating UI");
+        // Only update UI if auth-buttons div exists on this page
+        if (document.getElementById("auth-buttons")) {
+          updateAuthUI(user);
+        } else {
+          console.log(
+            "[DEBUG] No auth-buttons div on this page, skipping UI update"
+          );
+        }
+      }
+    } else {
+      console.log("[DEBUG] No user logged in");
+      if (document.getElementById("auth-buttons")) {
+        restoreAccountButton();
+      } else {
+        console.log(
+          "[DEBUG] No auth-buttons div on this page, skipping restoreAccountButton"
+        );
+      }
     }
-
-    updateAuthUI(user); // ✅ Update buttons based on login state
   });
 });
