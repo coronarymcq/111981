@@ -93,8 +93,8 @@ document.getElementById("submit-and-download").addEventListener("click", () => {
   const leftX = margin;
   doc.setFontSize(8);
   doc.setTextColor(100);
-  doc.text(`STDNT::${studentNumber}`, leftX, 10);
-  doc.text(`GRP::${groupNumber}`, leftX, 10 + lineSpacing); // reuse existing groupNumber
+  doc.text(`${studentNumber}`, leftX, 10);
+  doc.text(`${groupNumber}`, leftX, 10 + lineSpacing); // reuse existing groupNumber
 
   // Sections array
   const sections = [

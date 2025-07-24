@@ -130,6 +130,8 @@ function goHome() {
 }
 
 function loadContent(page) {
+  console.log(`loadContent called with page: ${page}`);
+
   const mainContent = document.querySelector(".main");
   let filePath = "";
   let scriptPath = "";
@@ -152,38 +154,51 @@ function loadContent(page) {
       scriptPath = "cont/00.library/library.js";
       break;
     default:
+      console.error(`Unknown page requested: ${page}`);
       return Promise.reject("Unknown page");
   }
 
+  console.log(`Fetching file: ${filePath}`);
+
   return fetch(filePath)
-    .then((response) =>
-      response.ok ? response.text() : Promise.reject("Failed to load")
-    )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to load " + filePath);
+      }
+      return response.text();
+    })
     .then((data) => {
       mainContent.innerHTML = data;
-
-      if (page === "bau") {
-        const counters = document.querySelectorAll(
-          ".info-container div.counter"
-        );
-        resetCounters(counters);
-        startCounting();
-      }
-
       sessionStorage.setItem("currentPage", page);
 
+      // Remove any previously loaded page scripts from DOM to avoid conflicts:
+      const oldScript = document.querySelector(
+        `script[data-page-script="true"]`
+      );
+      if (oldScript) oldScript.remove();
+
       if (scriptPath) {
-        return new Promise((resolve) => {
-          loadScript(scriptPath, () => {
+        return new Promise((resolve, reject) => {
+          const scriptElement = document.createElement("script");
+          scriptElement.src = scriptPath;
+          scriptElement.dataset.pageScript = "true"; // mark script to identify
+          scriptElement.onload = () => {
+            console.log(`✅ ${scriptPath} loaded`);
+            // Call page-specific init functions if needed
             if (page === "main" && typeof initHomeScroll === "function") {
               initHomeScroll();
             }
             resolve();
-          });
+          };
+          scriptElement.onerror = () => {
+            console.error(`❌ Failed to load script: ${scriptPath}`);
+            reject(new Error(`Failed to load script: ${scriptPath}`));
+          };
+          document.body.appendChild(scriptElement);
         });
+      } else {
+        return Promise.resolve();
       }
-
-      return Promise.resolve();
     })
     .catch((error) => {
       console.error("Error loading content:", error);
@@ -192,14 +207,22 @@ function loadContent(page) {
 }
 
 function loadScript(scriptPath, callback) {
+  // Prevent duplicate script loading
+  const existingScript = document.querySelector(`script[src="${scriptPath}"]`);
+  if (existingScript) {
+    console.log(`⚠️ Script already loaded: ${scriptPath}`);
+    if (typeof callback === "function") callback();
+    return;
+  }
+
   const scriptElement = document.createElement("script");
   scriptElement.src = scriptPath;
   scriptElement.onload = function () {
-    console.log(`${scriptPath} loaded successfully.`);
+    console.log(`✅ ${scriptPath} loaded successfully.`);
     if (typeof callback === "function") callback();
   };
   scriptElement.onerror = function () {
-    console.error(`Error loading ${scriptPath}`);
+    console.error(`❌ Failed to load script: ${scriptPath}`);
   };
   document.body.appendChild(scriptElement);
 }
