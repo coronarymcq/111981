@@ -310,20 +310,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const storedPage = sessionStorage.getItem("currentPage") || "main";
   loadContent(storedPage).then(() => {
-    // On page load, make sure correct active states are set
-    document
-      .querySelectorAll(".nav-bar, .nav-bar5, .nav-bar6")
-      .forEach((btn) => btn.classList.remove("active"));
-
-    if (storedPage === "library") {
-      const sidebarLibBtn = document.getElementById("nav-bar2");
-      if (sidebarLibBtn) sidebarLibBtn.classList.add("active");
-    } else {
-      // Find nav button matching storedPage and add active
-      const activeBtn = document.querySelector(
-        `.nav-bar[data-page="${storedPage}"], .nav-bar5[data-page="${storedPage}"], .nav-bar6[data-page="${storedPage}"]`
-      );
-      if (activeBtn) activeBtn.classList.add("active");
-    }
+    updateNavActiveState(storedPage);
   });
 });

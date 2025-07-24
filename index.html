@@ -412,7 +412,9 @@
               .then(() => {
                 console.log("[INDEX] Signed out successfully");
                 restoreAccountButton();
-                loadDefaultPage();
+                loadDefaultPage().then(() => {
+                  updateNavActiveState("main");
+                });
               })
               .catch((err) => {
                 console.error("[INDEX] Sign out error:", err);
