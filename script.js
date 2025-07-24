@@ -133,6 +133,10 @@ function loadContent(page) {
   console.log(`loadContent called with page: ${page}`);
 
   const mainContent = document.querySelector(".main");
+  if (!mainContent) {
+    return Promise.reject("Main container not found");
+  }
+
   let filePath = "";
   let scriptPath = "";
 
@@ -153,6 +157,10 @@ function loadContent(page) {
       filePath = "cont/00.library/library.html";
       scriptPath = "cont/00.library/library.js";
       break;
+    case "dashboard":
+      filePath = "cont/00.dashboard/dashboard.html";
+      scriptPath = "cont/00.dashboard/dashboard.js";
+      break;
     default:
       console.error(`Unknown page requested: ${page}`);
       return Promise.reject("Unknown page");
@@ -167,11 +175,11 @@ function loadContent(page) {
       }
       return response.text();
     })
-    .then((data) => {
-      mainContent.innerHTML = data;
+    .then((html) => {
+      mainContent.innerHTML = html;
       sessionStorage.setItem("currentPage", page);
 
-      // Remove any previously loaded page scripts from DOM to avoid conflicts:
+      // Remove previous page script to avoid duplicates
       const oldScript = document.querySelector(
         `script[data-page-script="true"]`
       );
@@ -181,13 +189,24 @@ function loadContent(page) {
         return new Promise((resolve, reject) => {
           const scriptElement = document.createElement("script");
           scriptElement.src = scriptPath;
-          scriptElement.dataset.pageScript = "true"; // mark script to identify
+          scriptElement.dataset.pageScript = "true";
           scriptElement.onload = () => {
             console.log(`✅ ${scriptPath} loaded`);
-            // Call page-specific init functions if needed
-            if (page === "main" && typeof initHomeScroll === "function") {
-              initHomeScroll();
+
+            // Automatically call init<Page>() if defined
+            const capitalized = page.charAt(0).toUpperCase() + page.slice(1);
+            const initFnName = `init${capitalized}`;
+            if (typeof window[initFnName] === "function") {
+              console.log(`🚀 Calling ${initFnName}()`);
+              try {
+                window[initFnName]();
+              } catch (err) {
+                console.error(`⚠️ Error calling ${initFnName}():`, err);
+              }
+            } else {
+              console.warn(`🧩 No initializer function found: ${initFnName}()`);
             }
+
             resolve();
           };
           scriptElement.onerror = () => {

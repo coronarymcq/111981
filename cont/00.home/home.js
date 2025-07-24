@@ -450,8 +450,12 @@
   };
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", renderSemester);
+    document.addEventListener("DOMContentLoaded", () => {
+      renderSemester();
+      window.initHomeScroll(); // ✅ Add this here
+    });
   } else {
     renderSemester();
+    window.initHomeScroll(); // ✅ Add this here too
   }
 })();

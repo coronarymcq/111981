@@ -262,68 +262,7 @@
         }, 2500); // Wait for the complete transition duration before hiding
       }
     </script>
-    <script>
-      fetch("cont/00.home/home.html")
-        .then((res) => {
-          if (!res.ok)
-            throw new Error("Failed to fetch home.html: " + res.status);
-          return res.text();
-        })
-        .then((html) => {
-          document.getElementById("mainContainer").innerHTML = html;
 
-          // Delay slightly to allow DOM rendering
-          setTimeout(() => {
-            loadScript("cont/00.home/home.js")
-              .then(() => {
-                console.log("✅ home.js loaded");
-
-                const observer = new MutationObserver((mutations, obs) => {
-                  const scrollButton = document.getElementById("scrollButton");
-                  if (scrollButton) {
-                    console.log("🟢 scrollButton found by observer");
-                    if (typeof window.initHomeScroll === "function") {
-                      window.initHomeScroll();
-                    } else {
-                      console.warn("⚠️ initHomeScroll is not defined");
-                    }
-                    obs.disconnect();
-                  }
-                });
-
-                observer.observe(document.getElementById("mainContainer"), {
-                  childList: true,
-                  subtree: true,
-                });
-              })
-              .catch((err) => {
-                console.error("❌ Failed to load home.js:", err);
-              });
-          }, 0); // Allows DOM paint to complete
-        })
-        .then(() => {
-          // Now the script is loaded and initHomeScroll should be defined
-          const observer = new MutationObserver((mutations, obs) => {
-            if (document.getElementById("scrollButton")) {
-              console.log("🟢 scrollButton found by observer");
-              if (typeof window.initHomeScroll === "function") {
-                window.initHomeScroll();
-              } else {
-                console.warn("initHomeScroll function not found");
-              }
-              obs.disconnect();
-            }
-          });
-
-          observer.observe(document.getElementById("mainContainer"), {
-            childList: true,
-            subtree: true,
-          });
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    </script>
     <script type="module">
       console.log("[INDEX] Debug script running");
 
@@ -353,6 +292,76 @@
       const app = initializeApp(firebaseConfig);
       const auth = getAuth(app);
 
+      // Helper to dynamically load dashboard.js as a module and cache it
+      async function loadDashboardScript() {
+        try {
+          if (!sessionStorage.getItem("dashboardScriptLoaded")) {
+            console.log("[INDEX] Fetching and loading dashboard.js...");
+            // Fetch dashboard.js text
+            const response = await fetch("cont/00.dashboard/dashboard.js");
+            if (!response.ok) throw new Error("Failed to fetch dashboard.js");
+            const jsText = await response.text();
+
+            // Create a new script element and evaluate the JS code as a module
+            const blob = new Blob([jsText], { type: "text/javascript" });
+            const url = URL.createObjectURL(blob);
+            await import(url);
+            URL.revokeObjectURL(url);
+
+            sessionStorage.setItem("dashboardScriptLoaded", "true");
+            console.log("[INDEX] dashboard.js loaded and applied successfully");
+          } else {
+            console.log(
+              "[INDEX] dashboard.js already loaded from sessionStorage"
+            );
+          }
+        } catch (error) {
+          console.error("[INDEX] Error loading dashboard.js:", error);
+        }
+      }
+
+      async function loadDashboard() {
+        const mainContainer = document.querySelector(".main");
+        if (!mainContainer) {
+          console.error("[INDEX] Main container not found");
+          return;
+        }
+
+        try {
+          const response = await fetch("cont/00.dashboard/dashboard.html");
+          if (!response.ok) throw new Error("Failed to load dashboard.html");
+          const html = await response.text();
+
+          mainContainer.innerHTML = html;
+          console.log("[INDEX] Dashboard HTML loaded successfully");
+
+          await loadDashboardScript();
+
+          // If your dashboard.js exposes an init function, call it here
+          if (typeof window.initDashboard === "function") {
+            window.initDashboard();
+            console.log("[INDEX] initDashboard() called");
+          }
+
+          sessionStorage.setItem("currentPage", "dashboard"); // Save current page state
+        } catch (err) {
+          console.error("[INDEX] Error loading dashboard:", err);
+        }
+      }
+
+      function loadDefaultPage() {
+        return loadContent("main")
+          .then(() => console.log("Default page loaded"))
+          .catch((err) => {
+            console.error("Failed to load default page:", err);
+            const mainContainer = document.querySelector(".main");
+            if (mainContainer) {
+              mainContainer.innerHTML =
+                "<p>Welcome! Please login to continue.</p>";
+            }
+          });
+      }
+
       function restoreAccountButton() {
         console.log("[INDEX] restoreAccountButton called");
         if (!authButtonsDiv) {
@@ -370,39 +379,6 @@
       </a>
     `;
         console.log("[INDEX] Account button restored");
-      }
-
-      function loadDashboard() {
-        const mainContainer = document.querySelector(".main");
-        if (!mainContainer) {
-          console.error("[INDEX] Main container not found");
-          return;
-        }
-
-        fetch("cont/00.dashboard/dashboard.html")
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Failed to load dashboard.html");
-            }
-            return response.text();
-          })
-          .then((html) => {
-            mainContainer.innerHTML = html;
-            console.log("[INDEX] Dashboard loaded successfully");
-            sessionStorage.setItem("currentPage", "dashboard"); // Save state
-          })
-          .catch((err) => {
-            console.error("[INDEX] Error loading dashboard:", err);
-          });
-      }
-
-      function loadDefaultPage() {
-        // You can modify this to load your default page or leave empty
-        const mainContainer = document.querySelector(".main");
-        if (mainContainer) {
-          mainContainer.innerHTML = "<p>Welcome! Please login to continue.</p>";
-        }
-        sessionStorage.removeItem("currentPage");
       }
 
       function updateAuthUI(user) {
@@ -454,23 +430,27 @@
       }
 
       window.addEventListener("DOMContentLoaded", () => {
-        console.log("[INDEX] DOMContentLoaded fired");
-
         onAuthStateChanged(auth, (user) => {
-          console.log("[INDEX] onAuthStateChanged fired. User:", user);
           if (user) {
             updateAuthUI(user);
 
-            // Load saved page if any (e.g. dashboard)
-            const savedPage = sessionStorage.getItem("currentPage");
+            // Load saved page from sessionStorage or default to main
+            const savedPage = sessionStorage.getItem("currentPage") || "main";
+
             if (savedPage === "dashboard") {
-              console.log("[INDEX] Loading saved dashboard page");
               loadDashboard();
+            } else {
+              loadContent(savedPage).catch((err) => {
+                console.error("Failed to load saved page:", err);
+                loadDefaultPage();
+              });
             }
-            // Add more savedPage conditions here if you have multiple pages to restore
           } else {
             restoreAccountButton();
-            loadDefaultPage();
+
+            // If no user, load saved page or default main page
+            const savedPage = sessionStorage.getItem("currentPage") || "main";
+            loadContent(savedPage).catch(() => loadDefaultPage());
           }
         });
       });
