@@ -372,6 +372,39 @@
         console.log("[INDEX] Account button restored");
       }
 
+      function loadDashboard() {
+        const mainContainer = document.querySelector(".main");
+        if (!mainContainer) {
+          console.error("[INDEX] Main container not found");
+          return;
+        }
+
+        fetch("cont/00.dashboard/dashboard.html")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Failed to load dashboard.html");
+            }
+            return response.text();
+          })
+          .then((html) => {
+            mainContainer.innerHTML = html;
+            console.log("[INDEX] Dashboard loaded successfully");
+            sessionStorage.setItem("currentPage", "dashboard"); // Save state
+          })
+          .catch((err) => {
+            console.error("[INDEX] Error loading dashboard:", err);
+          });
+      }
+
+      function loadDefaultPage() {
+        // You can modify this to load your default page or leave empty
+        const mainContainer = document.querySelector(".main");
+        if (mainContainer) {
+          mainContainer.innerHTML = "<p>Welcome! Please login to continue.</p>";
+        }
+        sessionStorage.removeItem("currentPage");
+      }
+
       function updateAuthUI(user) {
         console.log("[INDEX] updateAuthUI called with user:", user);
         if (!authButtonsDiv) {
@@ -391,7 +424,7 @@
           userBtn.style.cursor = "pointer";
           userBtn.onclick = () => {
             console.log("[INDEX] Username button clicked");
-            alert("You clicked your username. Add dashboard logic here.");
+            loadDashboard();
           };
 
           const logoutBtn = document.createElement("button");
@@ -403,6 +436,7 @@
               .then(() => {
                 console.log("[INDEX] Signed out successfully");
                 restoreAccountButton();
+                loadDefaultPage();
               })
               .catch((err) => {
                 console.error("[INDEX] Sign out error:", err);
@@ -415,6 +449,7 @@
         } else {
           console.log("[INDEX] No user logged in, restoring Account button");
           restoreAccountButton();
+          loadDefaultPage();
         }
       }
 
@@ -425,8 +460,17 @@
           console.log("[INDEX] onAuthStateChanged fired. User:", user);
           if (user) {
             updateAuthUI(user);
+
+            // Load saved page if any (e.g. dashboard)
+            const savedPage = sessionStorage.getItem("currentPage");
+            if (savedPage === "dashboard") {
+              console.log("[INDEX] Loading saved dashboard page");
+              loadDashboard();
+            }
+            // Add more savedPage conditions here if you have multiple pages to restore
           } else {
             restoreAccountButton();
+            loadDefaultPage();
           }
         });
       });
