@@ -457,5 +457,37 @@
         });
       });
     </script>
+    <script>
+      let lastScrollTop = 0;
+      const header = document.querySelector(".header-container");
+
+      // Set a threshold to prevent early hiding near top of the page
+      const scrollThreshold = 50;
+
+      window.addEventListener("scroll", function () {
+        const scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop;
+
+        // Prevent hiding if within the top threshold
+        if (scrollTop < scrollThreshold) {
+          header.classList.remove("hide-on-scroll");
+          header.classList.add("show-on-scroll");
+          lastScrollTop = scrollTop;
+          return;
+        }
+
+        if (scrollTop > lastScrollTop) {
+          // Scrolling down
+          header.classList.remove("show-on-scroll");
+          header.classList.add("hide-on-scroll");
+        } else {
+          // Scrolling up
+          header.classList.remove("hide-on-scroll");
+          header.classList.add("show-on-scroll");
+        }
+
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+      });
+    </script>
   </body>
 </html>

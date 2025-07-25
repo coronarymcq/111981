@@ -178,6 +178,7 @@ function loadContent(page) {
     .then((html) => {
       mainContent.innerHTML = html;
       sessionStorage.setItem("currentPage", page);
+      updateNavActiveState(page); // ✅ ADDED: Updates the nav button state
 
       // Remove previous page script to avoid duplicates
       const oldScript = document.querySelector(
@@ -218,10 +219,6 @@ function loadContent(page) {
       } else {
         return Promise.resolve();
       }
-    })
-    .catch((error) => {
-      console.error("Error loading content:", error);
-      return Promise.reject(error);
     });
 }
 
@@ -310,6 +307,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const storedPage = sessionStorage.getItem("currentPage") || "main";
   loadContent(storedPage).then(() => {
-    updateNavActiveState(storedPage);
+    updateNavActiveState(storedPage); // 🔥 This applies the correct active class
   });
 });
+
+function updateNavActiveState(page) {
+  document.querySelectorAll(".nav-bar, .nav-bar5, .nav-bar6").forEach((btn) => {
+    const btnPage = btn.getAttribute("data-page");
+    if (btnPage === page) {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
+  });
+
+  // Special case: keep sidebar "Library" active if page is library
+  if (page === "library") {
+    const sidebarLibBtn = document.getElementById("nav-bar2");
+    if (sidebarLibBtn) sidebarLibBtn.classList.add("active");
+  }
+}

@@ -40,7 +40,7 @@
 
       const containerHome = document.querySelector(".containerhome");
       if (containerHome) {
-        const offset = 50;
+        const offset = 0;
         const topPos =
           containerHome.getBoundingClientRect().top +
           window.pageYOffset -
