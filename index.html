@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/socrates.css" />
     <link rel="stylesheet" href="css/contact.css" />
     <link rel="stylesheet" href="css/library.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -292,6 +293,11 @@
       const app = initializeApp(firebaseConfig);
       const auth = getAuth(app);
 
+      window.firebaseApp = app;
+      window.auth = auth;
+      window.onAuthStateChanged = onAuthStateChanged;
+      window.signOut = signOut;
+
       // Helper to dynamically load dashboard.js as a module and cache it
       async function loadDashboardScript() {
         try {
@@ -335,15 +341,18 @@
           mainContainer.innerHTML = html;
           console.log("[INDEX] Dashboard HTML loaded successfully");
 
-          await loadDashboardScript();
-
-          // If your dashboard.js exposes an init function, call it here
           if (typeof window.initDashboard === "function") {
             window.initDashboard();
             console.log("[INDEX] initDashboard() called");
           }
 
-          sessionStorage.setItem("currentPage", "dashboard"); // Save current page state
+          // Trigger animation after initDashboard
+          if (typeof window.animateDashboardActiveSection === "function") {
+            window.animateDashboardActiveSection();
+            console.log("[INDEX] animateDashboardActiveSection() called");
+          }
+
+          sessionStorage.setItem("currentPage", "dashboard");
         } catch (err) {
           console.error("[INDEX] Error loading dashboard:", err);
         }
@@ -489,5 +498,21 @@
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
       });
     </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.getElementById("submit-and-download");
+        if (btn) {
+          btn.addEventListener("click", () => {
+            // Your download or submit logic here
+            console.log("Submit & Download button clicked");
+            // Example: generate PDF or trigger download
+          });
+        } else {
+          console.warn("submit-and-download button not found");
+        }
+      });
+    </script>
+
+    <script src="cont/00.dashboard/dashboard.js" defer></script>
   </body>
 </html>

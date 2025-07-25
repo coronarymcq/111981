@@ -1,7 +1,47 @@
-<div id="profile-section">
-  <h2 id="welcomeMessage">Hello, User!</h2>
+<!-- Firebase User Dashboard -->
+<div id="dashboard">
+  <header class="dashboard-header">
+    <h1>User Dashboard</h1>
+    <nav class="nav-menu">
+      <button class="nav-btn active" data-section="profile">Profile</button>
+      <button class="nav-btn" data-section="files">Files</button>
+    </nav>
+  </header>
+
+  <section id="profile" class="dashboard-section active">
+    <h2>Your Profile</h2>
+    <div id="user-profile">
+      <p><strong>UID:</strong> <span id="uid"></span></p>
+      <p><strong>Email:</strong> <span id="email"></span></p>
+      <p><strong>Name:</strong> <span id="displayName"></span></p>
+      <p><strong>Last Login:</strong> <span id="lastLogin"></span></p>
+      <p><strong>Account Created:</strong> <span id="createdAt"></span></p>
+      <img
+        id="photoURL"
+        alt="User Photo"
+        style="display: none; max-width: 100px; max-height: 100px"
+      />
+    </div>
+  </section>
+
+  <section id="files" class="dashboard-section">
+    <h2>Your Files</h2>
+    <div id="files-content">
+      <p>Loading files...</p>
+    </div>
+  </section>
 </div>
 
-<div>
-  <button id="dashboardLogoutBtn">Logout</button>
+<div class="error">
+  <p>
+    Oops! <br />
+    Seems like this page is not supported on this screen size! <br />
+    Maximize your screen to view the page
+  </p>
+  <img
+    id="diagnosis-icon"
+    src="icons/diagnosis.png"
+    alt="Diagnosis Icon"
+    style="width: 50px; margin-top: 30px; margin-left: 15px; opacity: 0.9"
+  />
 </div>
